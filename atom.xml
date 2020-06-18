@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
-    <title>OOrange-Ma</title>
-    <updated>2020-06-18T08:00:52.956Z</updated>
+    <title>Vinci-Ma</title>
+    <updated>2020-06-18T08:21:33.338Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
     <subtitle>Stay cooool!</subtitle>
     <logo>https://Vinci-Ma.github.io/images/avatar.png</logo>
     <icon>https://Vinci-Ma.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, OOrange-Ma</rights>
+    <rights>All rights reserved 2020, Vinci-Ma</rights>
     <entry>
         <title type="html"><![CDATA[Java基础学习——数组及其常用算法]]></title>
         <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-shu-zu-ji-qi-chang-yong-suan-fa</id>
