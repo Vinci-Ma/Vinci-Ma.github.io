@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-06-19T02:33:16.313Z</updated>
+    <updated>2020-06-26T15:08:45.360Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://Vinci-Ma.github.io/images/avatar.png</logo>
     <icon>https://Vinci-Ma.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Vinci-Ma</rights>
+    <entry>
+        <title type="html"><![CDATA[test]]></title>
+        <id>https://Vinci-Ma.github.io/post/test</id>
+        <link href="https://Vinci-Ma.github.io/post/test">
+        </link>
+        <updated>2020-06-26T13:43:31.000Z</updated>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1593179018207.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Java基础学习——数组及其常用算法]]></title>
         <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-shu-zu-ji-qi-chang-yong-suan-fa</id>
