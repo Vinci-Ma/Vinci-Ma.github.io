@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-06-26T15:20:13.788Z</updated>
+    <updated>2020-06-28T08:06:07.147Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -17,6 +17,124 @@
         </link>
         <updated>2020-06-26T13:43:31.000Z</updated>
         <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1593179018207.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[二叉树遍历Java的代码实现]]></title>
+        <id>https://Vinci-Ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian</id>
+        <link href="https://Vinci-Ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian">
+        </link>
+        <updated>2020-06-26T13:14:39.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="二叉树">二叉树</h1>
+<p>二叉树是树的一种，每个结点最多可具有两个子树，即结点的度最大为2</p>
+<h1 id="二叉树的遍历">二叉树的遍历</h1>
+<p>先序遍历：先访问根节点，然后访问左节点，最后访问右节点。<br>
+【1-&gt;2-&gt;4-&gt;8-&gt;9-&gt;5-&gt;10-&gt;3-&gt;6-&gt;7】<br>
+<img src="https://img-blog.csdnimg.cn/20200627000853767.png?x-oss-process=image" alt="在这里插入图片描述" loading="lazy"><br>
+中序遍历：先访问左节点，然后访问根节点，最后访问右节点。<br>
+【8-&gt;4-&gt;9-&gt;2-&gt;10-&gt;5-&gt;1-&gt;6-&gt;3-&gt;7】<br>
+<img src="https://img-blog.csdnimg.cn/20200627001030262.png?x-oss-process=image" alt="在这里插入图片描述" loading="lazy"><br>
+后序遍历：先访问左节点，然后访问右节点，最后访问根节点。<br>
+【8-&gt;9-&gt;4-&gt;10-&gt;5-&gt;2-&gt;6-&gt;7-&gt;3-&gt;1】<br>
+<img src="https://img-blog.csdnimg.cn/20200627001118497.png?x-oss-process=image" alt="在这里插入图片描述" loading="lazy"></p>
+<h1 id="代码实现">代码实现</h1>
+<h2 id="首先创建一个结点">首先创建一个结点</h2>
+<p>这个结点包括，一个根结点，一个根所对应的左结点，一个根所对应的右节点</p>
+<pre><code class="language-javascript">public class Node {
+    Object data;
+    Node left = null;
+    Node right = null;
+    void Node(Object data,Node left,Node right){
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+}
+</code></pre>
+<h2 id="其次是进行遍历操作的binarytree类">其次是进行遍历操作的BinaryTree类</h2>
+<p>用递归的方法实现遍历</p>
+<pre><code class="language-javascript">public class BinaryTree {
+// 先序遍历
+    void preSearch(Node root){
+        if (root != null){
+            System.out.printf(&quot;%-4s&quot;,root.data);
+            preSearch(root.left);
+            preSearch(root.right);
+        }
+    }
+    // 中序遍历
+    void midSearch(Node root){
+        if (root != null){
+            midSearch(root.left);
+            System.out.printf(&quot;%-4s&quot;,root.data);
+            midSearch(root.right);
+        }
+    }
+    // 后序遍历
+    void bacSearch(Node root){
+        if (root != null){
+            bacSearch(root.left);
+            bacSearch(root.right);
+            System.out.printf(&quot;%-4s&quot;,root.data);
+        }
+    }
+}
+</code></pre>
+<h3 id="能够使用递归的三个条件">能够使用递归的三个条件</h3>
+<ol>
+<li>一个问题可以分解成几个子问题。</li>
+<li>这个问题与分解过后的子问题，除了数据规模不同（子问题更为简单），求解思路完全一样。</li>
+<li>存在一个明确的递归终止条件。</li>
+</ol>
+<p>在此例中，</p>
+<ol>
+<li>遍历二叉树的操作可以分解为遍历单个结点的操作。</li>
+<li>遍历整个二叉树的操作和遍历一个结点的操作相同。</li>
+<li>存在截止条件，即根节点不为null。</li>
+</ol>
+<p>所以，可以使用递归实现二叉树的遍历。</p>
+<h3 id="递归实现二叉树遍历方法详述以中序遍历为例">递归实现二叉树遍历方法详述（以中序遍历为例）</h3>
+<p><img src="https://img-blog.csdnimg.cn/20200627001030262.png?x-oss-process=image" alt="" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1593329449625.jpg" alt="" loading="lazy"></p>
+<h2 id="主函数">主函数</h2>
+<pre><code class="language-javascript">public class E1 {
+    public static void main(String[] args) {
+        //构造一个二叉树
+        Node node10 = new Node();
+        node10.Node(&quot;10&quot;,null,null);
+        Node node9 = new Node();
+        node9.Node(&quot;9&quot;,null,null);
+        Node node8 = new Node();
+        node8.Node(&quot;8&quot;,null,null);
+        Node node7 = new Node();
+        node7.Node(&quot;7&quot;,null,null);
+        Node node6 = new Node();
+        node6.Node(&quot;6&quot;,null,null);
+        Node node5 = new Node();
+        node5.Node(&quot;5&quot;,node10,null);
+        Node node4 = new Node();
+        node4.Node(&quot;4&quot;,node8,node9);
+        Node node3 = new Node();
+        node3.Node(&quot;3&quot;,node6,node7);
+        Node node2 = new Node();
+        node2.Node(&quot;2&quot;,node4,node5);
+        Node node1 = new Node();
+        node1.Node(&quot;1&quot;,node2,node3);
+        BinaryTree b = new BinaryTree();
+        //对所构造的二叉树遍历输出
+        System.out.println(&quot;前序遍历输出：&quot;);
+        b.preSearch(node1);
+        System.out.println();
+        System.out.println(&quot;中序遍历输出：&quot;);
+        b.midSearch(node1);
+        System.out.println();
+        System.out.println(&quot;后序遍历输出：&quot;);
+        b.bacSearch(node1);
+    }
+}
+</code></pre>
+<h2 id="输出结果">输出结果</h2>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1593178800956.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
     <entry>
