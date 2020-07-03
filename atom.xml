@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-06-28T08:11:03.998Z</updated>
+    <updated>2020-07-03T15:53:10.232Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -10,15 +10,6 @@
     <logo>https://Vinci-Ma.github.io/images/avatar.png</logo>
     <icon>https://Vinci-Ma.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Vinci-Ma</rights>
-    <entry>
-        <title type="html"><![CDATA[test]]></title>
-        <id>https://Vinci-Ma.github.io/post/test</id>
-        <link href="https://Vinci-Ma.github.io/post/test">
-        </link>
-        <updated>2020-06-26T13:43:31.000Z</updated>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1593179018207.png" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[二叉树遍历Java的代码实现]]></title>
         <id>https://Vinci-Ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian</id>
@@ -153,6 +144,103 @@
 </code></pre>
 <h2 id="输出结果">输出结果</h2>
 <figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1593178800956.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java基础学习——面向对象]]></title>
+        <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-mian-xiang-dui-xiang</id>
+        <link href="https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-mian-xiang-dui-xiang">
+        </link>
+        <updated>2020-06-20T13:37:01.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3">面向对象思想</a>
+<ul>
+<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E6%80%9D%E6%83%B3">面向对象的三大思想</a></li>
+<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81">面向对象的三大特征</a>
+<ul>
+<li><a href="#%E5%B0%81%E8%A3%85">封装</a></li>
+<li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
+<li><a href="#%E5%A4%9A%E6%80%81">多态</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="面向对象思想">面向对象思想</h1>
+<p>面向对象（Object Oriented）是软件开发方法。面向对象（Procedure Oriented）是相对于面向过程来说的，指的是把相关的数据和方法组织为一个整体来看待。面向过程关注的是执行的过程，面向对象关注的是具备功能的对象。</p>
+<h2 id="面向对象的三大思想">面向对象的三大思想</h2>
+<p>OOA（Object Oriented Analysis）：面向对象分析<br>
+OOD（Object Oriented Design）：面向对象设计<br>
+OOP（Object Oriented Programming）：面向对象程序</p>
+<h2 id="面向对象的三大特征">面向对象的三大特征</h2>
+<h3 id="封装">封装</h3>
+<p>1、隐藏具体的实现细节【安全性】<br>
+2、对外提供公共的访问方式【功能】</p>
+<h3 id="继承">继承</h3>
+<p>1、子类可以继承父类的所有非私有成员（成员属性和成员方法）。<br>
+2、子类不可以继承父类的构造，但是默认访问父类的空参构造。<br>
+3、只可以单继承，不能多继承，但是可以多级继承。</p>
+<h3 id="多态">多态</h3>
+<p><strong>多态的前提：</strong></p>
+<ol>
+<li>有类的继承或接口的实现</li>
+<li>子类重写父类的方法</li>
+<li>父类引用指向子类对象</li>
+</ol>
+<p><strong>多态的成员访问特点：</strong></p>
+<ol>
+<li>属性：编译看父类，运行看父类 --- 只有父类有的，编译才能够通过&lt;-多态的弊端产生的原因</li>
+<li><mark>功能：编译看父类，运行看子类</mark></li>
+</ol>
+<p>对于多态访问特点的理解：父类的引用指向子类的对象，可以理解为，fu的外在表现为父类，而实际内核是子类。<br>
+对于属性来说，表现的是外在的特征，所以属性的运行看的是父类；<br>
+而调用方法表现的是本质，所以运行的结果是子类。</p>
+<pre><code class="language-javascript">//示例如下
+public class E1 {
+    public static void main(String[] args) {
+        Fu fu = new Zi();// 3、父类的引用指向子类的对象
+        fu.say();//结果：=====子类   ---&gt;对于功能来说：编译看父类，运行看子类
+        //fu.show;----&gt;编译报错
+        System.out.println(fu.name);//结果：父类   ---&gt;对于属性来说：编译看父类，运行看父类
+        //System.out.println(fu.age);----&gt;编译报错
+        Zi zi = (Zi) fu;//向下转型
+        zi.show();//结果：=====子类show
+    }
+}
+class Fu{
+    String name = &quot;父类&quot;;
+    public void say(){
+        System.out.println(&quot;=====父类&quot;);
+    }
+}
+class Zi extends Fu{  // 1、有类的继承或接口的实现
+    String name = &quot;子类&quot;;
+    int age;
+    public void say(){  // 2、子类重写父类的方法
+        System.out.println(&quot;=====子类&quot;);
+    }
+    public void show(){  
+        System.out.println(&quot;=====子类show&quot;);
+    }
+}
+</code></pre>
+<p><strong>多态的成员访问特点：</strong></p>
+<ol>
+<li>属性：编译看父类，运行看父类 --- 只有父类有的，编译才能够通过&lt;-多态的弊端产生的原因</li>
+<li>功能：编译看父类，运行看子类</li>
+</ol>
+<p>**多态的弊端：**不能访问子类特有的成员<br>
+<mark>**应用场景：**当做形参传递使用</mark></p>
+<pre><code class="language-javascript">//例如在调用时
+say(&quot;aaa&quot;);
+
+ //在定义该方法时，根本不需要指导具体的子类是谁，但是可以保证最终执行的是子类的功能
+void say(Object o ){
+    //实际参数 ====&gt; 形式参数  Object o = &quot;aaa&quot;;   形成了多态【父类引用指向子类的对象】
+     System.out.println(o);
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
