@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java中的递归算法 | Vinci-Ma</title>
-<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1593880946783">
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1593881955187">
 <link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="Java中的递归算法 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
@@ -33,7 +33,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://Vinci-Ma.github.io">
-  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1593880946783" alt="">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1593881955187" alt="">
   </a>
   <h1 class="site-title">
     Vinci-Ma
@@ -161,7 +161,8 @@ static int fibonacci(int nums){
 【注：start为圆盘开始时的位置，mid 为圆盘暂时存放的位置，last 为圆盘最终需要到达的位置】</p>
 <ol>
 <li>当圆盘个数为1时，可以直接从 start 移动到 last</li>
-<li>当圆盘个数为n时，需要把（n - 1）个圆盘移动到 mid ，再把剩下的圆盘移动到 last</li>
+<li>当圆盘个数为n时，需要把（n - 1）个圆盘移动到 mid</li>
+<li>最后把剩下的圆盘移动到 last</li>
 </ol>
 <pre><code class="language-javascript">hanoi(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,3);
 
@@ -180,7 +181,9 @@ static void hanoi(String start,String mid,String last,int n){
     }
 </code></pre>
 <p><strong>结果：</strong><br>
-<img src="https://img-blog.csdnimg.cn/20200705003826677.png" alt="结果" loading="lazy"></p>
+<img src="https://img-blog.csdnimg.cn/20200705003826677.png" alt="结果" loading="lazy"><br>
+<strong>动画演示</strong><br>
+<img src="https://Vinci-Ma.github.io/post-images/1593881942534.gif" alt="" loading="lazy"></p>
 <h2 id="3-二叉树">3、二叉树</h2>
 <p>见前篇<br>
 链接: <a href="https://vinci-ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian/">二叉树遍历——Java的代码实现</a>.</p>

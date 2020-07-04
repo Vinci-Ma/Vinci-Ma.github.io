@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-07-04T16:42:29.696Z</updated>
+    <updated>2020-07-04T16:59:17.905Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -73,7 +73,8 @@ static int fibonacci(int nums){
 【注：start为圆盘开始时的位置，mid 为圆盘暂时存放的位置，last 为圆盘最终需要到达的位置】</p>
 <ol>
 <li>当圆盘个数为1时，可以直接从 start 移动到 last</li>
-<li>当圆盘个数为n时，需要把（n - 1）个圆盘移动到 mid ，再把剩下的圆盘移动到 last</li>
+<li>当圆盘个数为n时，需要把（n - 1）个圆盘移动到 mid</li>
+<li>最后把剩下的圆盘移动到 last</li>
 </ol>
 <pre><code class="language-javascript">hanoi(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,3);
 
@@ -92,7 +93,9 @@ static void hanoi(String start,String mid,String last,int n){
     }
 </code></pre>
 <p><strong>结果：</strong><br>
-<img src="https://img-blog.csdnimg.cn/20200705003826677.png" alt="结果" loading="lazy"></p>
+<img src="https://img-blog.csdnimg.cn/20200705003826677.png" alt="结果" loading="lazy"><br>
+<strong>动画演示</strong><br>
+<img src="https://Vinci-Ma.github.io/post-images/1593881942534.gif" alt="" loading="lazy"></p>
 <h2 id="3-二叉树">3、二叉树</h2>
 <p>见前篇<br>
 链接: <a href="https://vinci-ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian/">二叉树遍历——Java的代码实现</a>.</p>
