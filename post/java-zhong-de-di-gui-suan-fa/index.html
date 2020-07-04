@@ -1,0 +1,271 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java中的递归算法 | Vinci-Ma</title>
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1593880850606">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Java中的递归算法 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+使用递归算法的三个条件
+递归的应用
+程序示例
+
+1、斐波那契数列
+2、汉诺塔问题
+3、二叉树
+
+
+
+(Java中的递归算法)
+编程语言中，函数直接或间接调用函数本身，则该函数称为递归函数。程序调用自身的编程技巧称为递归（ recursio..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Vinci-Ma.github.io">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1593880850606" alt="">
+  </a>
+  <h1 class="site-title">
+    Vinci-Ma
+  </h1>
+  <p class="site-description">
+    Stay cooool!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Vinci-Ma" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Java中的递归算法
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-06-25
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><ul class="markdownIt-TOC">
+<li><a href="#%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%89%E4%B8%AA%E6%9D%A1%E4%BB%B6">使用递归算法的三个条件</a></li>
+<li><a href="#%E9%80%92%E5%BD%92%E7%9A%84%E5%BA%94%E7%94%A8">递归的应用</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B">程序示例</a>
+<ul>
+<li><a href="#1-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97">1、斐波那契数列</a></li>
+<li><a href="#2-%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98">2、汉诺塔问题</a></li>
+<li><a href="#3-%E4%BA%8C%E5%8F%89%E6%A0%91">3、二叉树</a></li>
+</ul>
+</li>
+</ul>
+(Java中的递归算法)<br>
+编程语言中，函数直接或间接调用函数本身，则该函数称为递归函数。程序调用自身的编程技巧称为递归（ recursion）。递归通常是把一个大问题转化成为与大问题解决方法相似的小问题来解决，一般递归需要有<mark>边界条件</mark>、<mark>递归前进段</mark>和<mark>递归返回段</mark>。当边界条件不满足时，递归前进；当边界条件满足时，递归返回。</p>
+<h1 id="使用递归算法的三个条件">使用递归算法的三个条件</h1>
+<ol>
+<li>一个问题可以分解为几个子问题</li>
+<li>分解形成的子问题，除了数据规模不同，求解思路与原问题相同</li>
+<li>存在递归终止的条件</li>
+</ol>
+<h1 id="递归的应用">递归的应用</h1>
+<p>递归算法一般用于解决三类问题：</p>
+<ol>
+<li><strong>数据的定义是按递归定义的</strong><br>
+如：斐波那契数列（Fibonacci sequence）</li>
+<li><strong>问题解法按递归算法实现</strong><br>
+如：汉诺塔问题（Hanoi）</li>
+<li><strong>数据的结构形式是按递归定义的</strong><br>
+如：二叉树、广义表等</li>
+</ol>
+<h1 id="程序示例">程序示例</h1>
+<h2 id="1-斐波那契数列">1、斐波那契数列</h2>
+<p>斐波那契数列（Fibonacci sequence），又称黄金分割数列，是这样一组数列：1、1、2、3、5、8、13、21、34、……从这个数列的第3项开始，每一项都等于前两项数字的和。</p>
+<pre><code class="language-javascript">for (int i = 1;i &lt; 10;i++){
+            System.out.printf(&quot;%4d&quot;,fibonacci(i));
+        }
+//结果为：   1   1   2   3   5   8  13  21  34
+
+//f(n) = f(n - 1) + f(n - 2)
+static int fibonacci(int nums){
+        if (nums &lt; 0){
+            return 1;
+        }else if (nums &lt; 3){
+            return 1;
+        }else
+            return fibonacci(nums - 1) + fibonacci(nums - 2);
+    }
+</code></pre>
+<h2 id="2-汉诺塔问题">2、汉诺塔问题</h2>
+<blockquote>
+<p>相传在古印度圣庙中，有一种被称为汉诺塔(Hanoi)的游戏。该游戏是在一块铜板装置上，有三根杆(编号A、B、C)，在A杆自下而上、由大到小按顺序放置64个金盘(如下图)。游戏的目标：把A杆上的金盘全部移到C杆上，并仍保持原有顺序叠好。操作规则：每次只能移动一个盘子，并且在移动过程中三根杆上都始终保持大盘在下，小盘在上，操作过程中盘子可以置于A、B、C任一杆上。<br>
+【百度百科】</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200705001114632.png" alt="汉诺塔" loading="lazy"><br>
+思路：<br>
+【注：Start为圆盘开始时的位置，Mid 为圆盘暂时存放的位置，Final 为圆盘最终需要到达的位置】</p>
+<ol>
+<li>当圆盘个数为1时，可以直接从 Start 移动到 Final</li>
+<li>当圆盘个数为n时，需要把（n - 1）个圆盘移动到 Mid ，再把剩下的圆盘移动到 Final</li>
+</ol>
+<pre><code class="language-javascript">hanoi(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,3);
+
+static void hanoi(String start,String mid,String last,int n){
+        if(n == 1){
+            System.out.println(start+&quot;------&gt;&quot;+last);
+        }else{
+            //把 n - 1 个圆盘移动到过渡位置
+            hanoi(start,last,mid,n-1);
+            //把最底层的圆盘移动到最后的位置
+            hanoi(start,mid,last,1);
+            //把在过渡位置的 n - 1 个圆盘移动到最终的位置
+            hanoi(mid,start,last,n-1);
+        }
+
+    }
+</code></pre>
+<p><strong>结果：</strong><br>
+<img src="https://img-blog.csdnimg.cn/20200705003826677.png" alt="结果" loading="lazy"></p>
+<h2 id="3-二叉树">3、二叉树</h2>
+<p>见前篇<br>
+链接: <a href="https://vinci-ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian/">二叉树遍历——Java的代码实现</a>.</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%89%E4%B8%AA%E6%9D%A1%E4%BB%B6">使用递归算法的三个条件</a></li>
+<li><a href="#%E9%80%92%E5%BD%92%E7%9A%84%E5%BA%94%E7%94%A8">递归的应用</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B">程序示例</a>
+<ul>
+<li><a href="#1-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97">1、斐波那契数列</a></li>
+<li><a href="#2-%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98">2、汉诺塔问题</a></li>
+<li><a href="#3-%E4%BA%8C%E5%8F%89%E6%A0%91">3、二叉树</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Vinci-Ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian">
+              <h3 class="post-title">
+                二叉树遍历Java的代码实现
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://Vinci-Ma.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
