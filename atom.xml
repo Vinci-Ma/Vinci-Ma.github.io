@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-07-04T10:52:06.209Z</updated>
+    <updated>2020-07-04T11:00:59.149Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -237,7 +237,7 @@ class Zi extends Fu{  // 1、有类的继承或接口的实现
 <pre><code class="language-javascript">//例如在调用时
 say(&quot;aaa&quot;);
 
- //在定义该方法时，根本不需要指导具体的子类是谁，但是可以保证最终执行的是子类的功能
+//在定义该方法时，根本不需要指导具体的子类是谁，但是可以保证最终执行的是子类的功能
 void say(Object o ){
     //实际参数 ====&gt; 形式参数  Object o = &quot;aaa&quot;;   形成了多态【父类引用指向子类的对象】
      System.out.println(o);
