@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java中的递归算法 | Vinci-Ma</title>
-<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1593880850606">
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1593880946783">
 <link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="Java中的递归算法 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
@@ -33,7 +33,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://Vinci-Ma.github.io">
-  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1593880850606" alt="">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1593880946783" alt="">
   </a>
   <h1 class="site-title">
     Vinci-Ma
@@ -158,10 +158,10 @@ static int fibonacci(int nums){
 </blockquote>
 <p><img src="https://img-blog.csdnimg.cn/20200705001114632.png" alt="汉诺塔" loading="lazy"><br>
 思路：<br>
-【注：Start为圆盘开始时的位置，Mid 为圆盘暂时存放的位置，Final 为圆盘最终需要到达的位置】</p>
+【注：start为圆盘开始时的位置，mid 为圆盘暂时存放的位置，last 为圆盘最终需要到达的位置】</p>
 <ol>
-<li>当圆盘个数为1时，可以直接从 Start 移动到 Final</li>
-<li>当圆盘个数为n时，需要把（n - 1）个圆盘移动到 Mid ，再把剩下的圆盘移动到 Final</li>
+<li>当圆盘个数为1时，可以直接从 start 移动到 last</li>
+<li>当圆盘个数为n时，需要把（n - 1）个圆盘移动到 mid ，再把剩下的圆盘移动到 last</li>
 </ol>
 <pre><code class="language-javascript">hanoi(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,3);
 
