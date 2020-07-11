@@ -1,0 +1,310 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java基础学习——JSON 解析 | Vinci-Ma</title>
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1594441292814">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Java基础学习——JSON 解析 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+JSON简介
+JSON语法规则
+JSON解析
+
+引入JAR文件
+Gson
+
+1.将对象转换成 GSON
+2.将JSON转换成对象
+
+
+FastJson
+
+1.将对象转换成FastJson
+2.将FastJson转换成对象
+
+
+
+
+
+(Ja..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Vinci-Ma.github.io">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1594441292814" alt="">
+  </a>
+  <h1 class="site-title">
+    Vinci-Ma
+  </h1>
+  <p class="site-description">
+    Stay cooool!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Vinci-Ma" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Java基础学习——JSON 解析
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-11
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><ul class="markdownIt-TOC">
+<li><a href="#json%E7%AE%80%E4%BB%8B">JSON简介</a></li>
+<li><a href="#json%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99">JSON语法规则</a></li>
+<li><a href="#json%E8%A7%A3%E6%9E%90">JSON解析</a>
+<ul>
+<li><a href="#%E5%BC%95%E5%85%A5jar%E6%96%87%E4%BB%B6">引入JAR文件</a></li>
+<li><a href="#gson">Gson</a>
+<ul>
+<li><a href="#1%E5%B0%86%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90-gson">1.将对象转换成 GSON</a></li>
+<li><a href="#2%E5%B0%86json%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AF%B9%E8%B1%A1">2.将JSON转换成对象</a></li>
+</ul>
+</li>
+<li><a href="#fastjson">FastJson</a>
+<ul>
+<li><a href="#1%E5%B0%86%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90fastjson">1.将对象转换成FastJson</a></li>
+<li><a href="#2%E5%B0%86fastjson%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AF%B9%E8%B1%A1">2.将FastJson转换成对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+(Java基础学习——JSON 解析)</p>
+<h1 id="json简介">JSON简介</h1>
+<blockquote>
+<p>JSON(JavaScript Object Notation, JS 对象简谱) 是<mark>一种轻量级的数据交换格式</mark>。它基于 ECMAScript (欧洲计算机协会制定的js规范)的一个子集，<mark>采用完全独立于编程语言的文本格式来存储和表示数据</mark>。简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。 易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。<br>
+【百度百科】</p>
+</blockquote>
+<h1 id="json语法规则">JSON语法规则</h1>
+<ol>
+<li>对象由大括号表示，括号中通过键值对描述对象的属性；</li>
+<li>键与值之间使用冒号连接，多个键值对之间用逗号分离；</li>
+<li>键值对的键，用引号引住；</li>
+<li>键值对的值，可以是JS中任意类型的数据</li>
+</ol>
+<pre><code class="language-javascript">// 示例
+{
+	&quot;name&quot;:&quot;哈利·波特&quot;，
+	&quot;friends&quot;:[&quot;赫敏&quot;,&quot;罗恩&quot;,
+			{
+			&quot;name&quot;:&quot;小天狼星布莱克&quot;
+			&quot;status&quot;:&quot;哈利的教父&quot;}]
+	&quot;wand&quot;:{
+		&quot;length&quot;:&quot;11英寸&quot;,
+		&quot;details&quot;:&quot;冬青木，杖芯是凤凰福克斯的尾毛&quot;
+	}
+}
+</code></pre>
+<h1 id="json解析">JSON解析</h1>
+<h2 id="引入jar文件">引入JAR文件</h2>
+<p><img src="https://Vinci-Ma.github.io/post-images/1594440402092.png" alt="1" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440409797.png" alt="2" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440445090.png" alt="3" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440416932.png" alt="3.1" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440421736.png" alt="3.2" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440426566.png" alt="3.3" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440432621.png" alt="3.4" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440437486.png" alt="4" loading="lazy"></p>
+<h2 id="gson">Gson</h2>
+<p>由Google开发的， Java 语言实现的 JSON 解析器和生成器。<br>
+<a href="https://github.com/google/gson">Gson JAR文件下载地址</a>.</p>
+<h3 id="1将对象转换成-gson">1.将对象转换成 GSON</h3>
+<pre><code class="language-javascript">//将对象转换成 GSON
+		Person p = new Person(&quot;哈利波特&quot;, 
+			 new String[]{&quot;赫敏&quot;, &quot;罗恩&quot;},
+			 new String[]{&quot;11英寸&quot;,&quot;冬青木，杖芯是凤凰福克斯的尾毛&quot;});
+        String s = new Gson().toJson(p);
+        System.out.println(s);
+</code></pre>
+<p><strong>输出结果：</strong><br>
+<img src="https://img-blog.csdnimg.cn/20200711105924659.png" alt="在这里插入图片描述" loading="lazy"></p>
+<h3 id="2将json转换成对象">2.将JSON转换成对象</h3>
+<pre><code class="language-javascript">//将JSON转换成对象
+        Person p = new Gson().fromJson(&quot;{\&quot;name\&quot;:\&quot;哈利波特\&quot;,\&quot;friends\&quot;:[\&quot;赫敏\&quot;,\&quot;罗恩\&quot;],\&quot;wand\&quot;:[\&quot;11英寸\&quot;,\&quot;冬青木，杖芯是凤凰福克斯的尾毛\&quot;]}\n&quot;,Person.class);
+        System.out.println(p.getName());
+        System.out.println(p.getFriends()[0]);
+        System.out.println(p.getWand()[1]);
+</code></pre>
+<p><strong>输出结果：</strong><br>
+<img src="https://img-blog.csdnimg.cn/20200711110505590.png" alt="在这里插入图片描述" loading="lazy"></p>
+<h2 id="fastjson">FastJson</h2>
+<p>由阿里巴巴的工程师开发的， Java 语言实现的 JSON 解析器和生成器。<br>
+<a href="https://github.com/alibaba/fastjson">FastJson JAR文件下载地址</a>.</p>
+<h3 id="1将对象转换成fastjson">1.将对象转换成FastJson</h3>
+<pre><code class="language-javascript">//将对象转换成FastJson
+		Person p = new Person(&quot;哈利波特&quot;, 
+			new String[]{&quot;赫敏&quot;, &quot;罗恩&quot;}, 
+			new String[]{&quot;11英寸&quot;,&quot;冬青木，杖芯是凤凰福克斯的尾毛&quot;});
+        String fjson = JSON.toJSONString(p);
+		System.out.println(p);
+</code></pre>
+<p><strong>输出结果：</strong><br>
+<img src="https://img-blog.csdnimg.cn/20200711111258310.png" alt="在这里插入图片描述" loading="lazy"></p>
+<h3 id="2将fastjson转换成对象">2.将FastJson转换成对象</h3>
+<pre><code class="language-javascript">//将FastJson转换成对象
+        Person p = JSON.parseObject(&quot;{\&quot;name\&quot;:\&quot;哈利波特\&quot;,\&quot;friends\&quot;:[\&quot;赫敏\&quot;,\&quot;罗恩\&quot;],\&quot;wand\&quot;:[\&quot;11英寸\&quot;,\&quot;冬青木，杖芯是凤凰福克斯的尾毛\&quot;]}\n&quot;,Person.class);
+        System.out.println(p.getName());
+        System.out.println(p.toString());
+</code></pre>
+<p><strong>输出结果：</strong><br>
+<img src="https://img-blog.csdnimg.cn/20200711112008345.png" alt="在这里插入图片描述" loading="lazy"></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#json%E7%AE%80%E4%BB%8B">JSON简介</a></li>
+<li><a href="#json%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99">JSON语法规则</a></li>
+<li><a href="#json%E8%A7%A3%E6%9E%90">JSON解析</a>
+<ul>
+<li><a href="#%E5%BC%95%E5%85%A5jar%E6%96%87%E4%BB%B6">引入JAR文件</a></li>
+<li><a href="#gson">Gson</a>
+<ul>
+<li><a href="#1%E5%B0%86%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90-gson">1.将对象转换成 GSON</a></li>
+<li><a href="#2%E5%B0%86json%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AF%B9%E8%B1%A1">2.将JSON转换成对象</a></li>
+</ul>
+</li>
+<li><a href="#fastjson">FastJson</a>
+<ul>
+<li><a href="#1%E5%B0%86%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90fastjson">1.将对象转换成FastJson</a></li>
+<li><a href="#2%E5%B0%86fastjson%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AF%B9%E8%B1%A1">2.将FastJson转换成对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Vinci-Ma.github.io/post/java-zhong-de-di-gui-suan-fa">
+              <h3 class="post-title">
+                Java中的递归算法
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://Vinci-Ma.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

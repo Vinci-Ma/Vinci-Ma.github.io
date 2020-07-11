@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-07-04T16:59:17.905Z</updated>
+    <updated>2020-07-11T04:21:49.016Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -10,6 +10,114 @@
     <logo>https://Vinci-Ma.github.io/images/avatar.png</logo>
     <icon>https://Vinci-Ma.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Vinci-Ma</rights>
+    <entry>
+        <title type="html"><![CDATA[Java基础学习——JSON 解析]]></title>
+        <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-json-jie-xi</id>
+        <link href="https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-json-jie-xi">
+        </link>
+        <updated>2020-07-11T03:28:46.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#json%E7%AE%80%E4%BB%8B">JSON简介</a></li>
+<li><a href="#json%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99">JSON语法规则</a></li>
+<li><a href="#json%E8%A7%A3%E6%9E%90">JSON解析</a>
+<ul>
+<li><a href="#%E5%BC%95%E5%85%A5jar%E6%96%87%E4%BB%B6">引入JAR文件</a></li>
+<li><a href="#gson">Gson</a>
+<ul>
+<li><a href="#1%E5%B0%86%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90-gson">1.将对象转换成 GSON</a></li>
+<li><a href="#2%E5%B0%86json%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AF%B9%E8%B1%A1">2.将JSON转换成对象</a></li>
+</ul>
+</li>
+<li><a href="#fastjson">FastJson</a>
+<ul>
+<li><a href="#1%E5%B0%86%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90fastjson">1.将对象转换成FastJson</a></li>
+<li><a href="#2%E5%B0%86fastjson%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AF%B9%E8%B1%A1">2.将FastJson转换成对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+(Java基础学习——JSON 解析)</p>
+<h1 id="json简介">JSON简介</h1>
+<blockquote>
+<p>JSON(JavaScript Object Notation, JS 对象简谱) 是<mark>一种轻量级的数据交换格式</mark>。它基于 ECMAScript (欧洲计算机协会制定的js规范)的一个子集，<mark>采用完全独立于编程语言的文本格式来存储和表示数据</mark>。简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。 易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。<br>
+【百度百科】</p>
+</blockquote>
+<h1 id="json语法规则">JSON语法规则</h1>
+<ol>
+<li>对象由大括号表示，括号中通过键值对描述对象的属性；</li>
+<li>键与值之间使用冒号连接，多个键值对之间用逗号分离；</li>
+<li>键值对的键，用引号引住；</li>
+<li>键值对的值，可以是JS中任意类型的数据</li>
+</ol>
+<pre><code class="language-javascript">// 示例
+{
+	&quot;name&quot;:&quot;哈利·波特&quot;，
+	&quot;friends&quot;:[&quot;赫敏&quot;,&quot;罗恩&quot;,
+			{
+			&quot;name&quot;:&quot;小天狼星布莱克&quot;
+			&quot;status&quot;:&quot;哈利的教父&quot;}]
+	&quot;wand&quot;:{
+		&quot;length&quot;:&quot;11英寸&quot;,
+		&quot;details&quot;:&quot;冬青木，杖芯是凤凰福克斯的尾毛&quot;
+	}
+}
+</code></pre>
+<h1 id="json解析">JSON解析</h1>
+<h2 id="引入jar文件">引入JAR文件</h2>
+<p><img src="https://Vinci-Ma.github.io/post-images/1594440402092.png" alt="1" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440409797.png" alt="2" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440445090.png" alt="3" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440416932.png" alt="3.1" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440421736.png" alt="3.2" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440426566.png" alt="3.3" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440432621.png" alt="3.4" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1594440437486.png" alt="4" loading="lazy"></p>
+<h2 id="gson">Gson</h2>
+<p>由Google开发的， Java 语言实现的 JSON 解析器和生成器。<br>
+<a href="https://github.com/google/gson">Gson JAR文件下载地址</a>.</p>
+<h3 id="1将对象转换成-gson">1.将对象转换成 GSON</h3>
+<pre><code class="language-javascript">//将对象转换成 GSON
+		Person p = new Person(&quot;哈利波特&quot;, 
+			 new String[]{&quot;赫敏&quot;, &quot;罗恩&quot;},
+			 new String[]{&quot;11英寸&quot;,&quot;冬青木，杖芯是凤凰福克斯的尾毛&quot;});
+        String s = new Gson().toJson(p);
+        System.out.println(s);
+</code></pre>
+<p><strong>输出结果：</strong><br>
+<img src="https://img-blog.csdnimg.cn/20200711105924659.png" alt="在这里插入图片描述" loading="lazy"></p>
+<h3 id="2将json转换成对象">2.将JSON转换成对象</h3>
+<pre><code class="language-javascript">//将JSON转换成对象
+        Person p = new Gson().fromJson(&quot;{\&quot;name\&quot;:\&quot;哈利波特\&quot;,\&quot;friends\&quot;:[\&quot;赫敏\&quot;,\&quot;罗恩\&quot;],\&quot;wand\&quot;:[\&quot;11英寸\&quot;,\&quot;冬青木，杖芯是凤凰福克斯的尾毛\&quot;]}\n&quot;,Person.class);
+        System.out.println(p.getName());
+        System.out.println(p.getFriends()[0]);
+        System.out.println(p.getWand()[1]);
+</code></pre>
+<p><strong>输出结果：</strong><br>
+<img src="https://img-blog.csdnimg.cn/20200711110505590.png" alt="在这里插入图片描述" loading="lazy"></p>
+<h2 id="fastjson">FastJson</h2>
+<p>由阿里巴巴的工程师开发的， Java 语言实现的 JSON 解析器和生成器。<br>
+<a href="https://github.com/alibaba/fastjson">FastJson JAR文件下载地址</a>.</p>
+<h3 id="1将对象转换成fastjson">1.将对象转换成FastJson</h3>
+<pre><code class="language-javascript">//将对象转换成FastJson
+		Person p = new Person(&quot;哈利波特&quot;, 
+			new String[]{&quot;赫敏&quot;, &quot;罗恩&quot;}, 
+			new String[]{&quot;11英寸&quot;,&quot;冬青木，杖芯是凤凰福克斯的尾毛&quot;});
+        String fjson = JSON.toJSONString(p);
+		System.out.println(p);
+</code></pre>
+<p><strong>输出结果：</strong><br>
+<img src="https://img-blog.csdnimg.cn/20200711111258310.png" alt="在这里插入图片描述" loading="lazy"></p>
+<h3 id="2将fastjson转换成对象">2.将FastJson转换成对象</h3>
+<pre><code class="language-javascript">//将FastJson转换成对象
+        Person p = JSON.parseObject(&quot;{\&quot;name\&quot;:\&quot;哈利波特\&quot;,\&quot;friends\&quot;:[\&quot;赫敏\&quot;,\&quot;罗恩\&quot;],\&quot;wand\&quot;:[\&quot;11英寸\&quot;,\&quot;冬青木，杖芯是凤凰福克斯的尾毛\&quot;]}\n&quot;,Person.class);
+        System.out.println(p.getName());
+        System.out.println(p.toString());
+</code></pre>
+<p><strong>输出结果：</strong><br>
+<img src="https://img-blog.csdnimg.cn/20200711112008345.png" alt="在这里插入图片描述" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Java中的递归算法]]></title>
         <id>https://Vinci-Ma.github.io/post/java-zhong-de-di-gui-suan-fa</id>
