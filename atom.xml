@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-07-12T07:33:32.972Z</updated>
+    <updated>2020-07-12T07:36:50.604Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, Vinci-Ma</rights>
     <entry>
         <title type="html"><![CDATA[Java基础学习——JSON 解析]]></title>
-        <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-json-jie-xi/</id>
-        <link href="https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-json-jie-xi/">
+        <id>https://Vinci-Ma.github.io/post/reads/</id>
+        <link href="https://Vinci-Ma.github.io/post/reads/">
         </link>
         <updated>2020-07-11T03:28:46.000Z</updated>
         <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
