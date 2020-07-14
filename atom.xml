@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-07-14T02:45:32.203Z</updated>
+    <updated>2020-07-14T02:58:33.624Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -10,18 +10,6 @@
     <logo>https://Vinci-Ma.github.io/images/avatar.png</logo>
     <icon>https://Vinci-Ma.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Vinci-Ma</rights>
-    <entry>
-        <title type="html"><![CDATA[血疫]]></title>
-        <id>https://Vinci-Ma.github.io/post/xue-yi/</id>
-        <link href="https://Vinci-Ma.github.io/post/xue-yi/">
-        </link>
-        <updated>2020-07-12T07:41:15.000Z</updated>
-        <content type="html"><![CDATA[<p><img src="https://Vinci-Ma.github.io/post-images/1594694122874.jpg" alt="血疫" loading="lazy"><br>
-几乎是颤抖着读着前几章，本来觉得离我很遥远的病毒，在作者细致的描写中，仿佛就在眼前，仿佛跟随着感染者的脚步，看着他一步步的“融化”在我的面前。切实的感受到了自然的力量与人类的渺小。在感叹的同时加深了对自然的敬畏之心。<br>
-埃博拉、艾滋、SARS等最开始都是寄宿在在动物身上，随着人类社会的工业化进程、人类的繁衍，领地的不断扩张，使得很多动物濒临灭绝，原本存在了万亿年的病毒失去了宿主，于是发生了进化，能够寄生在人类身上，这一切仿佛由一双手来操纵，以维持生态的平衡。科技和工业的发展使得人们逐渐自大，觉得自己能够在自然界中称王称霸，可事实呢？地震、病毒、洪水……一次次向人们昭示了大自然非同一般的力量，让人们看到自己的弱小与无力。有时不禁在想，那些晚年追求神学的科学家们，是不是真的如我们所想的“走歪了路”，还是说是因为看到了自然的伟大，从而臣服于自然了呢？<br>
-也许人类真的是大自然的病毒，而我们所惧怕的病毒却是大自然自己的免疫系统。</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Java基础学习——JSON 解析]]></title>
         <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-json-jie-xi/</id>
