@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MySQL学习 | Vinci-Ma</title>
-<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1595689743011">
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1595690470505">
 <link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="MySQL学习 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
@@ -40,7 +40,7 @@ MySQL基础操作
       <div class="main-content">
         <div class="site-header">
   <a href="https://Vinci-Ma.github.io">
-  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1595689743011" alt="">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1595690470505" alt="">
   </a>
   <h1 class="site-title">
     Vinci-Ma
@@ -179,7 +179,7 @@ MySQL数据库是最流行的关系型数据库管理系统。</li>
 </ul>
 <h2 id="2-数值类型">2、数值类型</h2>
 <figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1595685848153.png" alt="" loading="lazy"></figure>
-<pre><code class="language-mysql">decimal(5, 2) 表示数值总共5位, 小数占2位
+<pre><code class="language-javascript">decimal(5, 2) 表示数值总共5位, 小数占2位
 tinyint 1字节(8位) 0-255。-128，127
 int 4字节。 -21亿，21亿。0-42亿
 float.
@@ -211,7 +211,7 @@ SQL语言分为4个部分：DDL（定义）、DML（操作）、DQL（查询）�
 \h 查看帮助</li>
 <li><strong>连接MySQL</strong></li>
 </ul>
-<pre><code class="language-mysql">mysql -u root -p
+<pre><code class="language-javascript">mysql -u root -p
 </code></pre>
 <p>其中：<br>
 -h 服务器地址<br>
@@ -221,39 +221,39 @@ SQL语言分为4个部分：DDL（定义）、DML（操作）、DQL（查询）�
 <ul>
 <li><strong>退出MySQL</strong></li>
 </ul>
-<pre><code class="language-mysql">exit; 或者 quit; 或者 \q
+<pre><code class="language-javascript">exit; 或者 quit; 或者 \q
 </code></pre>
 <h2 id="数据库的基本操作">数据库的基本操作</h2>
 <ul>
 <li><strong>查看数据库</strong></li>
 </ul>
-<pre><code class="language-mysql">show databases;
+<pre><code class="language-javascript">show databases;
 </code></pre>
 <ul>
 <li><strong>打开数据库</strong></li>
 </ul>
-<pre><code class="language-mysql">use 库名;
+<pre><code class="language-javascript">use 库名;
 </code></pre>
 <ul>
 <li><strong>创建数据库</strong></li>
 </ul>
-<pre><code class="language-mysql">create database 库名 default charset=utf8;
+<pre><code class="language-javascript">create database 库名 default charset=utf8;
 </code></pre>
 <ul>
-<li>删除数据库</li>
+<li><strong>删除数据库</strong></li>
 </ul>
-<pre><code class="language-mysql">drop database 库名;
+<pre><code class="language-javascript">drop database 库名;
 </code></pre>
 <h2 id="表的基本操作">表的基本操作</h2>
 <ul>
 <li><strong>查看表</strong></li>
 </ul>
-<pre><code class="language-mysql">show tables;
+<pre><code class="language-javascript">show tables;
 </code></pre>
 <ul>
 <li><strong>新建表</strong></li>
 </ul>
-<pre><code class="language-mysql">create student(
+<pre><code class="language-javascript">create student(
     Id int unsigned primary key not null unique auto_increment,  
     name varchar(4) not null,
     age int unsigned not null
@@ -286,17 +286,17 @@ SQL语言分为4个部分：DDL（定义）、DML（操作）、DQL（查询）�
 <li>可以使用多个列作为联合主键，但联合主键并不常用。使用多列作为主键时，所有列值的组合必须是唯一的</li>
 <li><strong>查看表结构</strong></li>
 </ul>
-<pre><code class="language-mysql">desc 表名;
+<pre><code class="language-javascript">desc 表名;
 </code></pre>
 <ul>
 <li><strong>修改表结构</strong></li>
 </ul>
-<pre><code class="language-mysql">alter table 表名 action (更改的选项)
+<pre><code class="language-javascript">alter table 表名 action (更改的选项)
 </code></pre>
 <ol>
 <li>添加字段</li>
 </ol>
-<pre><code class="language-mysql"># 语法：alter table 表名 add 添加的字段信息
+<pre><code class="language-javascript"># 语法：alter table 表名 add 添加的字段信息
 -- 在 users 表中 追加 一个 num 字段
 alter table users add num int not null;
 -- 在指定字段后面追加字段 在 users 表中 age字段后面 添加一个 email 字段
@@ -309,13 +309,13 @@ alter table users add aa int first;
 <ol start="2">
 <li>删除字段</li>
 </ol>
-<pre><code class="language-mysql"># 删除字段 alter table 表名 drop 被删除的字段名
+<pre><code class="language-javascript"># 删除字段 alter table 表名 drop 被删除的字段名
 alter table users drop aa;
 </code></pre>
 <ol start="3">
 <li>修改字段</li>
 </ol>
-<pre><code class="language-mysql">语法格式： alter table 表名 change|modify 被修改的字段信息
+<pre><code class="language-javascript">语法格式： alter table 表名 change|modify 被修改的字段信息
 change: 可以修改字段名，
 modify: 不能修改字段名。
 # 修改表中的 num 字段 类型，使用 modify 不修改表名
@@ -327,18 +327,18 @@ alter table users change num mm int;
 <ul>
 <li><strong>修改表名</strong></li>
 </ul>
-<pre><code class="language-mysql"># 语法：alter table 原表名 rename as 新表名
+<pre><code class="language-javascript"># 语法：alter table 原表名 rename as 新表名
 </code></pre>
 <ul>
 <li><strong>更改表中的自增的值</strong></li>
 </ul>
-<pre><code class="language-mysql"># 在常规情况下，auto_increment 默认从1开始继续递增
+<pre><code class="language-javascript"># 在常规情况下，auto_increment 默认从1开始继续递增
 alter table users auto_increment = 1000;
 </code></pre>
 <ul>
 <li><strong>修改表引擎</strong></li>
 </ul>
-<pre><code class="language-mysql"># 推荐在定义表时，表引擎为 innodb。
+<pre><code class="language-javascript"># 推荐在定义表时，表引擎为 innodb。
 # 通过查看建表语句获取当前的表引擎
 mysql&gt; show create table users\G;
 *************************** 1. row ***************************
@@ -358,20 +358,20 @@ alter table users engine = 'myisam';
 <ul>
 <li><strong>删除表</strong></li>
 </ul>
-<pre><code class="language-mysql">drop table 表名;
+<pre><code class="language-javascript">drop table 表名;
 </code></pre>
 <h2 id="数据的基本操作">数据的基本操作</h2>
 <ul>
 <li><strong>查看表中的数据</strong></li>
 </ul>
-<pre><code class="language-mysql">select * from 表名;
+<pre><code class="language-javascript">select * from 表名;
 select 字段1,字段2,字段3 from 表名;
 select * from 表名 where 字段=某个值;
 </code></pre>
 <ul>
 <li><strong>向表中插入数据</strong></li>
 </ul>
-<pre><code class="language-mysql">--标准添加（指定所有字段，给定所有的值）
+<pre><code class="language-javascript">--标准添加（指定所有字段，给定所有的值）
  insert into stu(id,name,age,sex,classid) values(1,'zhangsan',20,'m','lamp138');
 --指定部分字段添加值
 insert into stu(name,classid) value('lisi','lamp138');
@@ -390,7 +390,7 @@ insert into stu values
 <ul>
 <li><strong>修改表中的数据</strong></li>
 </ul>
-<pre><code class="language-mysql">update 表名 set 字段=某个值 where 条件;
+<pre><code class="language-javascript">update 表名 set 字段=某个值 where 条件;
 update 表名 set 字段1=值1,字段2=值2 where 条件;
 update 表名 set 字段=字段+值 where 条件;
 -- 将id为11的age改为35，sex改为m值
@@ -413,7 +413,7 @@ like: 支持特殊符号%和_ ;<br>
 <ul>
 <li><strong>删除表中的数据</strong></li>
 </ul>
-<pre><code class="language-mysql">delete from 表名 where 字段=某个值;
+<pre><code class="language-javascript">delete from 表名 where 字段=某个值;
 -- 删除stu表中id值为100的数据
 mysql&gt; delete from stu where id=100;
 -- 删除stu表中id值为20到30的数据
