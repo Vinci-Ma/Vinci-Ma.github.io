@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-07-14T02:58:33.624Z</updated>
+    <updated>2020-07-25T15:09:10.567Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -10,6 +10,326 @@
     <logo>https://Vinci-Ma.github.io/images/avatar.png</logo>
     <icon>https://Vinci-Ma.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Vinci-Ma</rights>
+    <entry>
+        <title type="html"><![CDATA[MySQL学习]]></title>
+        <id>https://Vinci-Ma.github.io/post/mysql-xue-xi/</id>
+        <link href="https://Vinci-Ma.github.io/post/mysql-xue-xi/">
+        </link>
+        <updated>2020-07-25T08:38:34.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D">MySQL数据库介绍</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93">什么是数据库</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BD%9C%E7%94%A8">数据库的作用</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E5%BA%93">常见数据库</a></li>
+</ul>
+</li>
+<li><a href="#mysql%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">MySQL中的数据类型</a>
+<ul>
+<li><a href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">1、字符串数据类型</a></li>
+<li><a href="#2-%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B">2、数值类型</a></li>
+<li><a href="#3-%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B">3、日期和时间类型</a></li>
+<li><a href="#4-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%BE%88%E5%B0%91%E4%BD%BF%E7%94%A8">4、二进制数据类型（很少使用）</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4">数据库的基本命令</a>
+<ul>
+<li><a href="#mysql%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C">MySQL基础操作</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">数据库的基本操作</a></li>
+<li><a href="#%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">表的基本操作</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">数据的基本操作</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="mysql数据库介绍">MySQL数据库介绍</h1>
+<h2 id="什么是数据库">什么是数据库</h2>
+<ul>
+<li>数据库(Database)就是按照数据结构来组织，存储和管理数据的仓库。</li>
+<li>专业的数据库是专门对数据进行创建，访问，管理，搜索等操作的软件，比起我们自己用文件读写的方<br>
+式对象数据进行管理更加的方便，快速，安全。</li>
+</ul>
+<h2 id="数据库的作用">数据库的作用</h2>
+<ol>
+<li>对数据进行持久化的保存。</li>
+<li>方便数据的存储和查询，速度快，安全，方便。</li>
+<li>可以处理并发访问。</li>
+<li>更加安全的权限管理访问机制。</li>
+</ol>
+<h2 id="常见数据库">常见数据库</h2>
+<ul>
+<li>关系型数据库： MySQL，Oracle，PostgreSQL，SQLserver……</li>
+<li>非关系型数据库：Redis内存数据库，MongoDB文档数据库……<br>
+MySQL数据库是最流行的关系型数据库管理系统。</li>
+</ul>
+<h1 id="mysql中的数据类型">MySQL中的数据类型</h1>
+<h2 id="1-字符串数据类型">1、字符串数据类型</h2>
+<p>存储串，如名字、地址、电 话号码、邮政编码等</p>
+<ul>
+<li>定长串：char</li>
+</ul>
+<ol>
+<li>接受长度固定的字符串，其长度是在创建表时指定的。<br>
+定长列不允许存储多于指定长度字符的数据。</li>
+<li>指定长度后，就会分配固定的存储空间用于存放数据</li>
+</ol>
+<ul>
+<li>变长串 varchar<br>
+存储可变长度的字符串 varchar(7) 如果实际插入4个字符, 那么它只占4个字符位置,当然插入的数据长度不能超过7个字符。<br>
+<mark>注意</mark><br>
+既然变长数据类型这样灵活，为什么还要使用定长数据类型？<br>
+回答：因为性能，MySQL处理定长列远比处理变长列快得多。</li>
+<li>Text 变长文本类型存储<br>
+<img src="https://Vinci-Ma.github.io/post-images/1595685781112.png" alt="" loading="lazy"></li>
+</ul>
+<h2 id="2-数值类型">2、数值类型</h2>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1595685848153.png" alt="" loading="lazy"></figure>
+<pre><code class="language-mysql">decimal(5, 2) 表示数值总共5位, 小数占2位
+tinyint 1字节(8位) 0-255。-128，127
+int 4字节。 -21亿，21亿。0-42亿
+float.
+MySQL中没有专门存储货币的数据类型，一般情况下使用DECIMAL(8, 2)
+</code></pre>
+<p><strong>有符号或无符号</strong><br>
+所有数值数据类型（除BIT和BOOLEAN外）都可以有符号或无符号<br>
+有符号数值列可以存储正或负的数值<br>
+无符号数值列只能存储正数。<br>
+默认情况为有符号，但如果你知道自己不需要存储负值，可以使用UNSIGNED关键字<br>
+<mark>注意</mark><br>
+如果将邮政编码类似于01234存储为数值类型，则保存的将是数值1234，此时需要使用字符串类型<br>
+手机号也应该使用字符串类型</p>
+<h2 id="3-日期和时间类型">3、日期和时间类型</h2>
+<figure data-type="image" tabindex="2"><img src="https://Vinci-Ma.github.io/post-images/1595686044391.png" alt="" loading="lazy"></figure>
+<h2 id="4-二进制数据类型很少使用">4、二进制数据类型（很少使用）</h2>
+<p>二进制数据类型可存储任何数据（甚至包括二进制信息），如图像、多媒体、字处理文档等<br>
+<img src="https://Vinci-Ma.github.io/post-images/1595686105163.png" alt="" loading="lazy"></p>
+<h1 id="数据库的基本命令">数据库的基本命令</h1>
+<h2 id="mysql基础操作">MySQL基础操作</h2>
+<ul>
+<li><strong>SQL ( Structure query language ) 结构化查询语言</strong><br>
+SQL语言分为4个部分：DDL（定义）、DML（操作）、DQL（查询）、DCL（控制）</li>
+<li><strong>SQL语句中的快捷键</strong><br>
+\G 格式化输出（文本式，竖立显示）<br>
+\s 查看服务器端信息<br>
+\c 结束命令输入操作<br>
+\q 退出当前sql命令行模式<br>
+\h 查看帮助</li>
+<li><strong>连接MySQL</strong></li>
+</ul>
+<pre><code class="language-mysql">mysql -u root -p
+</code></pre>
+<p>其中：<br>
+-h 服务器地址<br>
+-u 登录账号<br>
+-p 回车后输入密码<br>
+-P （大写）端口号</p>
+<ul>
+<li><strong>退出MySQL</strong></li>
+</ul>
+<pre><code class="language-mysql">exit; 或者 quit; 或者 \q
+</code></pre>
+<h2 id="数据库的基本操作">数据库的基本操作</h2>
+<ul>
+<li><strong>查看数据库</strong></li>
+</ul>
+<pre><code class="language-mysql">show databases;
+</code></pre>
+<ul>
+<li><strong>打开数据库</strong></li>
+</ul>
+<pre><code class="language-mysql">use 库名;
+</code></pre>
+<ul>
+<li><strong>创建数据库</strong></li>
+</ul>
+<pre><code class="language-mysql">create database 库名 default charset=utf8;
+</code></pre>
+<ul>
+<li>删除数据库</li>
+</ul>
+<pre><code class="language-mysql">drop database 库名;
+</code></pre>
+<h2 id="表的基本操作">表的基本操作</h2>
+<ul>
+<li><strong>查看表</strong></li>
+</ul>
+<pre><code class="language-mysql">show tables;
+</code></pre>
+<ul>
+<li><strong>新建表</strong></li>
+</ul>
+<pre><code class="language-mysql">create student(
+    Id int unsigned primary key not null unique auto_increment,  
+    name varchar(4) not null,
+    age int unsigned not null
+)engine=innodb default charset=utf8;
+</code></pre>
+<p><strong>表的字段约束</strong></p>
+<ul>
+<li>unsigned 无符号(给数值类型使用，表示为正数，不写可以表示正负数都可以)</li>
+<li>字段类型后面加括号限制宽度
+<ul>
+<li>char(5). varchar(7) 在字符类型后面加限制 表示 字符串的长度</li>
+<li>int(4) 没有意义，默认无符号的int为int(11)，有符号的int(10)</li>
+<li>nt(4) unsigned zerofill只有当给int类型设置有前导零时，设置int的宽度才有意义。</li>
+</ul>
+</li>
+<li>not null 不能为空,在操作数据库时如果输入该字段的数据为NULL ，就会报错</li>
+<li>default 设置默认值</li>
+<li>primary key 主键不能为空,且唯一.一般和自动递增一起配合使用。</li>
+<li>auto_increment 定义列为自增属性，一般用于主键，数值会自动加1</li>
+<li>unique 唯一索引(数据不能重复:用户名)可以增加查询速度,但是会降低插入和更新速度<br>
+<strong>主键</strong><br>
+1、表中每一行都应该有可以唯一标识自己的一列，用于记录两条记录不能重复，任意两行都不具有相同的主键值<br>
+2、应该总是定义主键 虽然并不总是都需要主键，但大多数数据库设计人员都应保证他们创建的每个表具有一个主<br>
+键，以便于以后的数据操纵和管理。<br>
+<mark>要求</mark></li>
+<li>记录一旦插入到表中，主键最好不要再修改</li>
+<li>不允许NULL</li>
+<li>不在主键列中使用可能会更改的值。</li>
+<li>自增整数类型：数据库会在插入数据时自动为每一条记录分配一个自增整数，这样我们就完全不用担心主键重复，也不用自己预先生成主键</li>
+<li>可以使用多个列作为联合主键，但联合主键并不常用。使用多列作为主键时，所有列值的组合必须是唯一的</li>
+<li><strong>查看表结构</strong></li>
+</ul>
+<pre><code class="language-mysql">desc 表名;
+</code></pre>
+<ul>
+<li><strong>修改表结构</strong></li>
+</ul>
+<pre><code class="language-mysql">alter table 表名 action (更改的选项)
+</code></pre>
+<ol>
+<li>添加字段</li>
+</ol>
+<pre><code class="language-mysql"># 语法：alter table 表名 add 添加的字段信息
+-- 在 users 表中 追加 一个 num 字段
+alter table users add num int not null;
+-- 在指定字段后面追加字段 在 users 表中 age字段后面 添加一个 email 字段
+alter table users add email varchar(50) after age;
+-- 在指定字段后面追加字段，在 users 表中 age字段后面 添加一个 phone
+alter table users add phone char(11) not null after age;
+-- 在表的最前面添加一个字段
+alter table users add aa int first;
+</code></pre>
+<ol start="2">
+<li>删除字段</li>
+</ol>
+<pre><code class="language-mysql"># 删除字段 alter table 表名 drop 被删除的字段名
+alter table users drop aa;
+</code></pre>
+<ol start="3">
+<li>修改字段</li>
+</ol>
+<pre><code class="language-mysql">语法格式： alter table 表名 change|modify 被修改的字段信息
+change: 可以修改字段名，
+modify: 不能修改字段名。
+# 修改表中的 num 字段 类型，使用 modify 不修改表名
+alter table users modify num tinyint not null default 12;
+# 修改表中的 num 字段 为 int并且字段名为 nn
+alter table users change num mm int;
+# 注意：一般情况下，无特殊要求，不要轻易修改表结构
+</code></pre>
+<ul>
+<li><strong>修改表名</strong></li>
+</ul>
+<pre><code class="language-mysql"># 语法：alter table 原表名 rename as 新表名
+</code></pre>
+<ul>
+<li><strong>更改表中的自增的值</strong></li>
+</ul>
+<pre><code class="language-mysql"># 在常规情况下，auto_increment 默认从1开始继续递增
+alter table users auto_increment = 1000;
+</code></pre>
+<ul>
+<li><strong>修改表引擎</strong></li>
+</ul>
+<pre><code class="language-mysql"># 推荐在定义表时，表引擎为 innodb。
+# 通过查看建表语句获取当前的表引擎
+mysql&gt; show create table users\G;
+*************************** 1. row ***************************
+Table: users
+Create Table: CREATE TABLE `users` (
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8
+1 row in set (0.00 sec)
+# 直接查看当前表状态信息
+mysql&gt; show table status from tlxy where name = 'users'\G;
+*************************** 1. row ***************************
+Name: users
+Engine: InnoDB
+# 修改表引擎语句
+alter table users engine = 'myisam';
+</code></pre>
+<ul>
+<li><strong>删除表</strong></li>
+</ul>
+<pre><code class="language-mysql">drop table 表名;
+</code></pre>
+<h2 id="数据的基本操作">数据的基本操作</h2>
+<ul>
+<li><strong>查看表中的数据</strong></li>
+</ul>
+<pre><code class="language-mysql">select * from 表名;
+select 字段1,字段2,字段3 from 表名;
+select * from 表名 where 字段=某个值;
+</code></pre>
+<ul>
+<li><strong>向表中插入数据</strong></li>
+</ul>
+<pre><code class="language-mysql">--标准添加（指定所有字段，给定所有的值）
+ insert into stu(id,name,age,sex,classid) values(1,'zhangsan',20,'m','lamp138');
+--指定部分字段添加值
+insert into stu(name,classid) value('lisi','lamp138');
+-- 不指定字段添加值
+ insert into stu value(null,'wangwu',21,'w','lamp138');
+-- 批量添加值
+insert into stu values
+-&gt; (null,'zhaoliu',25,'w','lamp94'),
+-&gt; (null,'uu01',26,'m','lamp94'),
+-&gt; (null,'uu02',28,'w','lamp92'),
+-&gt; (null,'qq02',24,'m','lamp92'),
+-&gt; (null,'uu03',32,'m','lamp138'),
+-&gt; (null,'qq03',23,'w','lamp94'),
+-&gt; (null,'aa',19,'m','lamp138');
+</code></pre>
+<ul>
+<li><strong>修改表中的数据</strong></li>
+</ul>
+<pre><code class="language-mysql">update 表名 set 字段=某个值 where 条件;
+update 表名 set 字段1=值1,字段2=值2 where 条件;
+update 表名 set 字段=字段+值 where 条件;
+-- 将id为11的age改为35，sex改为m值
+mysql&gt; update stu set age=35,sex='m' where id=11;
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1 Changed: 1 Warnings: 0
+-- 将id值为12和14的数据值sex改为m，classid改为lamp92
+mysql&gt; update stu set sex='m',classid='lamp92' where id=12 or id=14 --等价于下面
+mysql&gt; update stu set sex='m',classid='lamp92' where id in(12,14);
+</code></pre>
+<blockquote>
+<p>MySQL中的运算符<br>
+算术运算符： +、 -、 *、 /、 %<br>
+比较运算符： =、 &gt;、 &lt;、 &gt;=、 &lt;=、!=<br>
+数据库特有的比较： in、not in、is null、is not null、like、between、and<br>
+逻辑运算符： and、or、not<br>
+like: 支持特殊符号%和_ ;<br>
+其中%表示任意数量的任意字符，_表示任意一位字符</p>
+</blockquote>
+<ul>
+<li><strong>删除表中的数据</strong></li>
+</ul>
+<pre><code class="language-mysql">delete from 表名 where 字段=某个值;
+-- 删除stu表中id值为100的数据
+mysql&gt; delete from stu where id=100;
+-- 删除stu表中id值为20到30的数据
+mysql&gt; delete from stu where id&gt;=20 and id&lt;=30;
+-- 删除stu表中id值为20到30的数据（等级于上面写法）
+mysql&gt; delete from stu where id between 20 and 30;
+-- 删除stu表中id值大于200的数据
+mysql&gt; delete from stu where id&gt;200;
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Java基础学习——JSON 解析]]></title>
         <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-json-jie-xi/</id>
@@ -116,147 +436,6 @@
 </code></pre>
 <p><strong>输出结果：</strong><br>
 <img src="https://img-blog.csdnimg.cn/20200711112008345.png" alt="在这里插入图片描述" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[TCP连接的”三次握手“和”四次挥手“]]></title>
-        <id>https://Vinci-Ma.github.io/post/tcp-lian-jie-de-san-ci-wo-shou-he-si-ci-hui-shou/</id>
-        <link href="https://Vinci-Ma.github.io/post/tcp-lian-jie-de-san-ci-wo-shou-he-si-ci-hui-shou/">
-        </link>
-        <updated>2020-07-07T06:25:47.000Z</updated>
-        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
-<li><a href="#tcp%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B">TCP连接的”三次握手“</a>
-<ul>
-<li><a href="#tcp%E8%BF%9E%E6%8E%A5%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5">TCP连接”三次握手“的异常情况</a>
-<ul>
-<li><a href="#1-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AC%AC%E4%B8%80%E4%B8%AAsyn%E5%8C%85%E4%B8%A2%E4%BA%86"><strong>1、客户端第一个【SYN】包丢了</strong></a></li>
-<li><a href="#2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%94%B6%E5%88%B0syn%E5%9B%9E%E5%A4%8D%E4%BD%86%E6%98%AF%E5%9B%9E%E5%A4%8D%E7%9A%84synack%E5%8C%85%E4%B8%A2%E4%BA%86"><strong>2、服务器端收到【SYN】回复，但是回复的【SYN，ACK】包丢了</strong></a></li>
-<li><a href="#3-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%94%B6%E5%88%B0synack%E5%8C%85%E5%9C%A8%E5%9B%9E%E5%A4%8D%E6%97%B6%E4%B8%A2%E5%A4%B1ack%E5%8C%85"><strong>3、客户端收到【SYN，ACK】包，在回复时丢失【ACK】包</strong></a></li>
-<li><a href="#4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%85%E6%84%8F%E4%B8%8D%E5%8F%91%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1syn%E5%8C%85"><strong>4、客户端故意不发最后一次【SYN】包</strong></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#tcp%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B">TCP连接的”四次挥手“</a>
-<ul>
-<li><a href="#tcp%E8%BF%9E%E6%8E%A5%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%BB%A5%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%A6%96%E5%85%88%E5%8F%91%E9%80%81fin%E4%B8%BA%E4%BE%8B">TCP连接“四次挥手”的异常情况（以客户端首先发送【FIN】为例）</a>
-<ul>
-<li><a href="#1-%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5%E7%9A%84fin%E5%8C%85%E4%B8%A2%E5%A4%B1"><strong>1、断开连接的【FIN】包丢失</strong></a></li>
-<li><a href="#2-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9B%9E%E5%A4%8D%E7%9A%84ack%E4%B8%A2%E5%8C%85"><strong>2、服务端第一次回复的【ACK】丢包</strong></a></li>
-<li><a href="#3-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%91%E9%80%81%E7%9A%84-finack-%E4%B8%A2%E5%8C%85"><strong>3、服务端发送的 【FIN,ACK】 丢包</strong></a></li>
-<li><a href="#4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%80%E5%90%8E%E5%9B%9E%E5%A4%8D%E7%9A%84ack%E4%B8%A2%E5%8C%85"><strong>4、客户端最后回复的【ACK】丢包</strong></a></li>
-<li><a href="#5-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%94%B6%E5%88%B0ack%E5%90%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%B7%91%E8%B7%AF%E4%BA%86"><strong>5. 客户端收到【ACK】后，服务端跑路了</strong></a></li>
-<li><a href="#6-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%94%B6%E5%88%B0-ack-%E5%90%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%87%AA%E5%B7%B1%E8%B7%91%E8%B7%AF%E4%BA%86"><strong>6. 客户端收到 ACK 后，客户端自己跑路了</strong></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98">常见面试题</a></li>
-</ul>
-(TCP连接的”三次握手“和”四次挥手“)<br>
-<img src="https://Vinci-Ma.github.io/post-images/1594630185256.png" alt="TCP连接的”三次握手“和”四次挥手“图示" loading="lazy"></p>
-<h1 id="tcp连接的三次握手">TCP连接的”三次握手“</h1>
-<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1594640308254.png" alt="三次握手" loading="lazy"></figure>
-<ol>
-<li>开始时，客户端和服务器端都处于CLOSE状态，【服务器为了提供服务，会主动监听某个端口，进入LISTEN状态】？？？？？？</li>
-<li>客户端主动发送连接的 【SYN】 包，之后进入SYN-SENT状态，服务端在收到客户端发来的 【SYN】包后，回复 【SYN , ACK】包，之后进入 SYN-RCVD 状态。</li>
-<li>客户端收到服务端发来的【SYN ,ACK】包后，可以确认对方的的存在，回复 【ACK】包，进入ESTABLISHED状态</li>
-<li>服务端收到最后一个[ACK]包后，也进入ESTABLISHED状态</li>
-</ol>
-<p>正常的三次握手之后，双端都进入ESTABLISHED状态，然后开始传输数据。</p>
-<h2 id="tcp连接三次握手的异常情况">TCP连接”三次握手“的异常情况</h2>
-<h3 id="1-客户端第一个syn包丢了"><strong>1、客户端第一个【SYN】包丢了</strong></h3>
-<ol>
-<li>如果在TCP连接中，客户端的第一个【SYN】包丢了，而此时跟服务器端并无联系，所以处理办法在客户端。</li>
-<li>在TCP协议中，任何一端的【请求——应答】过程中，在一定时间范围内没哟接收到对方的回应的【ACK】包，就会认为是丢包，此时触发超时重传机制。</li>
-<li>此时会重传【SYN】包，会重传3次，时间间隔分别是： 5.8s、24s、48s，三次时间大约是 76s 左右，而大多数伯克利系统将建立一个新连接的最长时间，限制为 75s。</li>
-</ol>
-<p><mark>总结：</mark><br>
-<mark>客户端第一个【SYN】包丢了：客户端会进行三次重传【SYN】包，总的尝试时间大约在75s左右。</mark></p>
-<h3 id="2-服务器端收到syn回复但是回复的synack包丢了"><strong>2、服务器端收到【SYN】回复，但是回复的【SYN，ACK】包丢了</strong></h3>
-<ol>
-<li>对于客户端来说，在规定时间内没有接收到来自服务器端的回复，会认为是自己丢包了，会进行重传【SYN】包。</li>
-<li>对于服务器端来说，发出的【SYN，SCK】迟迟没有客户端的【ACK】回复，会触发重传，此时服务端处于 SYN_RCVD 状态，会依次等待 3s、6s、12s 后，重新发送【SYN，ACK】包；而【SYN，ACK】的重传次数，不同操作系统有不同的配置，例如在 Linux 下可以通过 tcp_synack_retries 进行配置，默认值为 5。如果这个重试次数内，仍未收到【ACK】应答包，那么服务端会自动关闭这个连接。</li>
-<li>同时由于客户端在没有收到【SYN，ACK】时，也会进行重传，当客户端重传的【SYN】收到后，会立即重新发送【SYN，ACK】包。</li>
-</ol>
-<p><mark>总结：</mark><br>
-<mark>服务器端收到【SYN】回复，但是回复的【SYN，ACK】包丢了：客户端会进行如上的重传；服务器端也会进行重传。</mark></p>
-<h3 id="3-客户端收到synack包在回复时丢失ack包"><strong>3、客户端收到【SYN，ACK】包，在回复时丢失【ACK】包</strong></h3>
-<ol>
-<li>对于客户端，在发送【ACK】包后进入 ESTABLISHED 状态。多数情况下，客户端进入ESTABLISHED 状态后，认为连接已建立，会立即发送数据。</li>
-<li>对于服务端，因为没有收到【ACK】会走重传机制，但是服务端因为没有收到最后一个【ACK】包，依然处于 SYN-RCVD 状态。</li>
-<li>当服务端处于 SYN-RCVD 状态下时，接收到客户端真实发送来的数据包时，会认为连接已建立，并进入ESTABLISHED状态。<br>
-原因：<br>
-当客户端在 ESTABLISHED 状态下，开始发送数据包时，会携带上一个【ACK】的确认序号，所以哪怕客户端响应的【ACK】包丢了，服务端在收到这个数据包时，能够通过包内 ACK 的确认序号，正常进入 ESTABLISHED 状态。<br>
-<mark>总结：</mark><br>
-<mark>客户端收到【SYN，ACK】包，在回复时丢失【ACK】包：客户端会进入 ESTABLISHED状态，向服务器端发送数据；服务器端虽然没有接收到客户端最后发来【ACK】包，但是因为数据包携带ACK的确认序号，所以在接收到数据包时，会认为连接已经建立，变为ESTABLISHED状态。</mark></li>
-</ol>
-<h3 id="4-客户端故意不发最后一次syn包"><strong>4、客户端故意不发最后一次【SYN】包</strong></h3>
-<p>如果客户端是恶意的，在发送【SYN】包后，并收到【SYN,ACK】后就不回复了，那么服务端此时处于一种半连接的状态，虽然服务端会通过 tcp_synack_retries 配置重试的次数，不会无限等待下去，但是这也是有一个时间周期的。<br>
-如果短时间内存在大量的这种恶意连接，对服务端来说压力就会很大，这就是所谓的 SYN FLOOD 攻击。</p>
-<h1 id="tcp连接的四次挥手">TCP连接的”四次挥手“</h1>
-<figure data-type="image" tabindex="2"><img src="https://Vinci-Ma.github.io/post-images/1594640340361.jpg" alt="四次挥手" loading="lazy"></figure>
-<ol>
-<li>开始客户端和服务器端都处于ESTABLISHED状态，两端任意一端都可以发送【FIN】包准备断开，图中为客户端发送【FIN】包，请求与服务器断开连接，在发出【FIN】后，客户端进入 FIN-WAIT-1 状态。</li>
-<li>服务器端收到【FIN】，回复【ACK】表示接收到了信息，并从 ESTABLISHED 状态进入 CLOSED-WAIT 状态，开始做一些断开连接前的准备工作。</li>
-<li>客户端收到服务器端回复的【ACK】消息后，进入 FIN-WAIT-2 状态。而当服务器端做好断开前的准备工作后，也会发送一个【FIN,ACK】的消息給客户端，表示服务器端已经准备好了，请求断开连接，并在发送消息后，服务器端进入 LAST-ACK 状态。</li>
-<li>客户端在收到【FIN,ACK】消息后，会立即回复【ACK】，表示收到了消息，并进入 TIME_WAIT 状态，为了稳定和安全考虑，客户端会在 TIME-WAIT 状态等待 2MSL 的时长，最终进入 CLOSED 状态；服务器端收到客户端回复的【ACK】消息后，直接从 LAST-ACK 状态进入 CLOSED 状态。</li>
-</ol>
-<p>经过了“四次挥手”之后，双端都为CLOSED 状态，双端正式断开了连接。</p>
-<h2 id="tcp连接四次挥手的异常情况以客户端首先发送fin为例">TCP连接“四次挥手”的异常情况（以客户端首先发送【FIN】为例）</h2>
-<h3 id="1-断开连接的fin包丢失"><strong>1、断开连接的【FIN】包丢失</strong></h3>
-<ol>
-<li>对于客户端，【FIN】发送后，进入 FIN-WAIT-1 状态，长时间没有接收到服务器端发送的【ACK】回复，会触发超时重传机制，重新向服务器端发送【FIN】包，直到触发重传的次数，关闭连接。</li>
-<li>对于服务器端，如果没有收到【FIN】，没有任何感知，会在一段时间后，也关闭连接。</li>
-</ol>
-<p><mark>总结：</mark><br>
-<mark>断开连接的【FIN】包丢失：客户端超时重传，重新发送【FIN】包，直至触发重传次数，关闭连接。</mark></p>
-<h3 id="2-服务端第一次回复的ack丢包"><strong>2、服务端第一次回复的【ACK】丢包</strong></h3>
-<ol>
-<li>对于客户端，没有收到服务器端返回的【ACK】包，会触发会触发超时重传机制，重新向服务器端发送【FIN】包，直到触发重传的次数，关闭连接。</li>
-<li>对于服务器端，收到客户端的重传【FIN】包后，又会立即再重传【ACK】。发送过【ACK】之后，进入 CLOSED-WAIT 状态，开始做断开连接前的准备工作，当准备好之后，会回复【FIN,ACK】，而这个消息是携带了之前【ACK】的响应序号的。只要这个消息没丢，客户端可以凭借【FIN,ACK】包中的响应序号，直接从 FIN-WAIT-1 状态，进入 TIME-WAIT 状态，开始长达 2MSL 的等待。</li>
-</ol>
-<p><mark>总结：</mark><br>
-<mark>服务端第一次回复的【ACK】丢包：客户端超时重传，重新发送【FIN】包。服务器端发送【ACK】后，进入CLOSED-WAIT 状态，做断开连接前的准备，准备完毕后，如果发送的【FIN，ACK】顺利传输，则正常进行。</mark></p>
-<h3 id="3-服务端发送的-finack-丢包"><strong>3、服务端发送的 【FIN,ACK】 丢包</strong></h3>
-<p>服务端在超时后会重传，此时客户端有两种情况，要么处于 FIN-WAIT-2 状态（之前的 ACK 也丢了），会一直等待；要么处于 TIME-WAIT 状态，会等待 2MSL 时间。</p>
-<p>也就是说，在一小段时间内客户端还在，客户端在收到服务端发来的「FIN,ACK」包后，也会回复一个「ACK」应答，并做好自己的状态切换。</p>
-<p>也就是说，在一小段时间内客户端还在，客户端在收到服务端发来的「FIN,ACK」包后，也会回复一个「ACK」应答，并做好自己的状态切换。</p>
-<h3 id="4-客户端最后回复的ack丢包"><strong>4、客户端最后回复的【ACK】丢包</strong></h3>
-<ol>
-<li>对于客户端，在回复【ACK】后，会进入 TIME-WAIT 状态，开始长达 2MSL 的等待。</li>
-<li>对于服务器端，因为没有收到【ACK】的回复，会重试一段时间，直到服务器端重试超时后主动断开；或者等待新的客户端接入后，收到服务器端重试的【FIN】消息后，回复【RST】消息，在收到【RST】消息后，复位服务器端的状态。</li>
-</ol>
-<h3 id="5-客户端收到ack后服务端跑路了"><strong>5. 客户端收到【ACK】后，服务端跑路了</strong></h3>
-<p>客户端在收到「ACK」后，进入了 FIN-WAIT-2 状态，等待服务端发来的「FIN」包，而如果服务端跑路了，这个包永远都等不到。</p>
-<p>在 TCP 协议中，是没有对这个状态的处理机制的。但是协议不管，系统来凑，操作系统会接管这个状态，例如在 Linux 下，就可以通过 tcp_fin_timeout 参数，来对这个状态设定一个超时时间。</p>
-<p>需要注意的是，当超过 tcp_fin_timeout 的限制后，状态并不是切换到 TIME_WAIT，而是直接进入 CLOSED 状态。</p>
-<p>参考：《关于FIN_WAIT2》</p>
-<h3 id="6-客户端收到-ack-后客户端自己跑路了"><strong>6. 客户端收到 ACK 后，客户端自己跑路了</strong></h3>
-<p>客户端收到「ACK」后直接跑路，服务端后续在发送的「FIN,ACK」就没有接收端，也就不会得到回复，会不断的走 TCP 的超时重试的机制，此时服务端处于 LAST-ACK 状态。</p>
-<p>那就要分 2 种情况分析：</p>
-<p>在超过一定时间后，服务端主动断开。<br>
-收到「RST」后，主动断开连接。<br>
-「RST」消息是一种重置消息，表示当前错误了，应该回到初始的状态。如果客户端跑路后有新的客户端接入，会在此发送「SYN」以期望建立连接，此时这个「SYN」将被忽略，并直接回复「FIN,ACK」消息，新客户端在收到「FIN」消息后是不会认的，并且会回复一个「RST」消息。</p>
-<h1 id="常见面试题">常见面试题</h1>
-<ol>
-<li>【问题1】为什么连接的时候是三次握手，关闭的时候却是四次握手？</li>
-</ol>
-<p>答：因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，&quot;你发的FIN报文我收到了&quot;。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。</p>
-<ol start="2">
-<li>【问题2】为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</li>
-</ol>
-<p>答：虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假象网络是不可靠的，有可以最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。在Client发送出最后的ACK回复，但该ACK可能丢失。Server如果没有收到ACK，将不断重复发送FIN片段。所以Client不能立即关闭，它必须确认Server接收到了该ACK。Client会在发送出ACK之后进入到TIME_WAIT状态。Client会设置一个计时器，等待2MSL的时间。如果在该时间内再次收到FIN，那么Client会重发ACK并再次等待2MSL。所谓的2MSL是两倍的MSL(Maximum Segment Lifetime)。MSL指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
-<ol start="3">
-<li>【问题3】为什么不能用两次握手进行连接？</li>
-</ol>
-<p>答：3次握手完成两个重要的功能，既要双方做好发送数据的准备工作(双方都知道彼此已准备好)，也要允许双方就初始序列号进行协商，这个序列号在握手过程中被发送和确认。</p>
-<pre><code>   现在把三次握手改成仅需要两次握手，死锁是可能发生的。作为例子，考虑计算机S和C之间的通信，假定C给S发送一个连接请求分组，S收到了这个分组，并发 送了确认应答分组。按照两次握手的协定，S认为连接已经成功地建立了，可以开始发送数据分组。可是，C在S的应答分组在传输中被丢失的情况下，将不知道S 是否已准备好，不知道S建立什么样的序列号，C甚至怀疑S是否收到自己的连接请求分组。在这种情况下，C认为连接还未建立成功，将忽略S发来的任何数据分 组，只等待连接确认应答分组。而S在发出的分组超时后，重复发送同样的分组。这样就形成了死锁。
-</code></pre>
-<ol start="4">
-<li>【问题4】如果已经建立了连接，但是客户端突然出现故障了怎么办？</li>
-</ol>
-<p>TCP还设有一个保活计时器，显然，客户端如果出现故障，服务器不能一直等下去，白白浪费资源。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
 ]]></content>
     </entry>
     <entry>
