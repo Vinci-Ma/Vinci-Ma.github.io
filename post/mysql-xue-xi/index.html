@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MySQL学习 | Vinci-Ma</title>
-<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1595690470505">
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1595729922114">
 <link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="MySQL学习 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
@@ -40,7 +40,7 @@ MySQL基础操作
       <div class="main-content">
         <div class="site-header">
   <a href="https://Vinci-Ma.github.io">
-  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1595690470505" alt="">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1595729922114" alt="">
   </a>
   <h1 class="site-title">
     Vinci-Ma
@@ -104,7 +104,7 @@ MySQL基础操作
                 2020-07-25
               </span>
               <span>
-                10 min read
+                18 min read
               </span>
               
             </div>
@@ -133,6 +133,7 @@ MySQL基础操作
 <li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">数据库的基本操作</a></li>
 <li><a href="#%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">表的基本操作</a></li>
 <li><a href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">数据的基本操作</a></li>
+<li><a href="#mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AF%BC%E5%85%A5%E5%92%8C%E5%AF%BC%E5%87%BA">MySQL数据库的导入和导出</a></li>
 </ul>
 </li>
 </ul>
@@ -364,9 +365,158 @@ alter table users engine = 'myisam';
 <ul>
 <li><strong>查看表中的数据</strong></li>
 </ul>
-<pre><code class="language-javascript">select * from 表名;
-select 字段1,字段2,字段3 from 表名;
-select * from 表名 where 字段=某个值;
+<pre><code class="language-javascript">select 字段列表|* from 表名
+[where 搜索条件]
+[group by 分组字段 [having 分组条件]]
+[order by 排序字段 排序规则]
+[limit 分页参数]
+</code></pre>
+<ol>
+<li>基础查询</li>
+</ol>
+<pre><code class="language-javascript"># 查询表中所有列 所有数据
+select * from users;
+# 指定字段列表进行查询
+select id,name,phone from users;
+</code></pre>
+<ol start="2">
+<li>Where条件查询</li>
+</ol>
+<blockquote>
+<p>可以在where子句中指定任何条件<br>
+可以使用 and 或者 or 指定一个或多个条件<br>
+where条件也可以运用在update和delete语句的后面<br>
+where子句类似程序语言中if条件，根据mysql表中的字段值来进行数据的过滤</p>
+</blockquote>
+<pre><code class="language-javascript">-- 查询users表中 age &gt; 22的数据
+select * from users where age &gt; 22;
+-- 查询 users 表中 name=某个条件值 的数据
+select * from users where name = '王五';
+-- 查询 users 表中 年龄在22到25之间的数据
+select * from users where age &gt;= 22 and age &lt;= 25;
+select * from users where age between 22 and 25;
+-- 查询 users 表中 年龄不在22到25之间的数据
+select * from users where age &lt; 22 or age &gt; 25;
+select * from users where age not between 22 and 25;
+-- 查询 users 表中 年龄在22到25之间的女生信息
+select * from users where age &gt;= 22 and age &lt;= 25 and sex = '女';
+</code></pre>
+<p>and和or使用时注意：在 sql 计算的顺序上，sql会优先处理and条件，使用时记得加括号。<br>
+3. Like子句<br>
+可以使用like语句进行某个字段的模糊搜索。</p>
+<pre><code class="language-javascript">-- like 语句 like某个确定的值 和 where name = '王五' 是一样
+select * from users where name like '王五';
+-- 使用 % 模糊搜索。%代表任意个任意字符
+    -- 查询name字段中包含五的
+select * from users where name like '%五%';
+-- 查询name字段中最后一个字符 为 五的
+select * from users where name like '%五';
+-- 查询name字段中第一个字符 为 王 的
+select * from users where name like '王%';
+-- 使用 _ 单个的下划线。表示一个任意字符，使用和%类似
+    -- 查询表中 name 字段为两个字符的数据
+    select * from users where name like '__';
+    -- 查询 name 字段最后为五，的两个字符的数据
+    select * from users where name like '_五';
+</code></pre>
+<p><mark>注意：</mark><br>
+where子句中的like在使用%或者_进行模糊搜索时，效率不高，使用时注意：<br>
+尽可能的不去使用%或者_<br>
+如果需要使用，也尽可能不要把通配符放在开头处<br>
+4. MySQL中的统计函数（聚合函数）<br>
+max(),min(),count(),sum(),avg()</p>
+<pre><code class="language-javascript"># 计算 users 表中 最大年龄，最小年龄，年龄和及平均年龄
+select max(age),min(age),sum(age),avg(age) from users;
++----------+----------+----------+----------+
+| max(age) | min(age) | sum(age) | avg(age) |
++----------+----------+----------+----------+
+| 28 | 20 | 202 | 22.4444 |
++----------+----------+----------+----------+
+-- 上面数据中的列都是在查询时使用的函数名，不方便阅读和后期的调用，可以通过别名方式 美化
+select max(age) as max_age,
+min(age) min_age,sum(age) as sum_age,
+avg(age) as avg_age
+from users;
++---------+---------+---------+---------+
+| max_age | min_age | sum_age | avg_age |
++---------+---------+---------+---------+
+| 28 | 20 | 202 | 22.4444 |
++---------+---------+---------+---------+
+-- 统计 users 表中的数据量
+select count(*) from users;
++----------+
+| count(*) |
++----------+
+| 9 |
++----------+
+select count(id) from users;
++-----------+
+| count(id) |
++-----------+
+| 9 |
++-----------+
+-- 上面的两个统计，分别使用了 count(*) 和 count(id),结果目前都一样，有什么区别？
+-- count(*) 是按照 users表中所有的列进行数据的统计，只要其中一列上有数据，就可以计算
+-- count(id) 是按照指定的 id 字段进行统计，也可以使用别的字段进行统计，
+-- 但是注意，如果指定的列上出现了NULL值，那么为NULL的这个数据不会被统计
+</code></pre>
+<ol start="5">
+<li>Group by分组<br>
+group by 语句根据一个或多个列对结果集进行分组<br>
+一般情况下，是用与数据的统计或计算，配合聚合函数使用</li>
+</ol>
+<pre><code class="language-javascript">-- 统计 users 表中 男女生人数,
+-- 很明显按照上面的需要，可以写出两个语句进行分别统计
+select count(*) from users where sex = '女';
+select count(*) from users where sex = '男';
+-- 可以使用分组进行统计，更方便
+select sex,count(*) from users group by sex;
+-- 统计1班和2班的人数
+select classid,count(*) from users group by classid;
+-- 分别统计每个班级的男女生人数
+select classid,sex,count(*) as num from users group by classid,sex;
+# 注意，在使用。group by分组时，一般除了聚合函数，其它在select后面出现的字段列都需要出现在group by 后面
+</code></pre>
+<p><strong>Having 子句</strong><br>
+having时在分组聚合计算后，对结果再一次进行过滤，类似于where，<br>
+where过滤的是行数据，having过滤的是分组数据</p>
+<pre><code class="language-javascript">-- 要统计班级人数
+select classid,count(*) from users group by classid;
+-- 统计班级人数，并且要人数达到5人及以上
+select classid,count(*) as num from users group by classid having num &gt;=5;
+</code></pre>
+<ol start="6">
+<li>Order by分组<br>
+我们在mysql中使用select的语句查询的数据结果是根据数据在底层文件的结构来排序的，<br>
+首先不要依赖默认的排序，另外在需要排序时要使用orderby对返回的结果进行排序<br>
+Asc 升序，默认<br>
+desc降序</li>
+</ol>
+<pre><code class="language-javascript">-- 按照年龄对结果进行排序，从大到小
+select * from users order by age desc;
+-- 从小到大排序 asc 默认就是。可以不写
+select * from users order by age;
+-- 也可以按照多个字段进行排序
+select * from users order by age,id; # 先按照age进行排序，age相同情况下，按照id进行排序
+select * from users order by age,id desc;
+</code></pre>
+<ol start="7">
+<li>Limit数据分页<br>
+limit n 提取n条数据，<br>
+limit m,n 跳过m跳数据，提取n条数据</li>
+</ol>
+<pre><code class="language-javascript">-- 查询users表中的数据，只要3条
+select * from users limit 3;
+-- 跳过前4条数据，再取3条数据
+select * from users limit 4,3;
+-- limit一般应用在数据分页上面
+-- 例如每页显示10条数据，第三页的 limit应该怎么写？ 思考
+第一页 limit 0,10
+第二页 limit 10,10
+第三页 limit 20,10
+第四页 limit 30,10
+-- 提取 user表中 年龄最大的三个用户数据 怎么查询？
+select * from users order by age desc limit 3;
 </code></pre>
 <ul>
 <li><strong>向表中插入数据</strong></li>
@@ -423,6 +573,42 @@ mysql&gt; delete from stu where id between 20 and 30;
 -- 删除stu表中id值大于200的数据
 mysql&gt; delete from stu where id&gt;200;
 </code></pre>
+<h2 id="mysql数据库的导入和导出">MySQL数据库的导入和导出</h2>
+<ul>
+<li><strong>数据导出</strong></li>
+</ul>
+<pre><code class="language-javascript">1、数据库数据导出
+# 不要进入mysql，然后输入以下命令 导出某个库中的数据
+mysqldump -u root -p tlxy &gt; ~/Desktop/code/tlxy.sql（文件路径）
+2、将数据库中的表导出
+# 不要进入mysql，然后输入以下命令 导出某个库中指定的表的数据
+mysqldump -u root -p tlxy tts &gt; ~/Desktop/code/tlxy-tts.sql
+</code></pre>
+<ul>
+<li><strong>数据导入</strong></li>
+</ul>
+<pre><code class="language-javascript"># 在新的数据库中 导入备份的数据，导入导出的sql文件
+mysql -u root -p ops &lt; ./tlxy.sql
+# 把导出的表sql 导入数据库
+mysql -u root -p ops &lt; ./tlxy-tts.sql
+</code></pre>
+<ul>
+<li><strong>权限管理</strong></li>
+</ul>
+<blockquote>
+<p>mysql中的root用户是数据库中权限最高的用户，千万不要用在项目中。<br>
+可以给不同的用户，或者项目，创建不同的mysql用户，并适当的授权，完成数据库的相关操作<br>
+这样就一定程度上保证了数据库的安全。</p>
+</blockquote>
+<pre><code class="language-javascript">创建用户的语法格式：
+grant 授权的操作 on 授权的库.授权的表 to 账户@登录地址 identified by ‘密码’;
+# 在mysql中 创建一个 zhangsan 用户，授权可以对tlxy这个库中的所有表 进行 添加和查询 的权限
+grant select,insert on tlxy.* to zhangsan@'%' identified by '123456';
+# 用户 lisi。密码 123456 可以对tlxy库中的所有表有 所有操作权限
+grant all on tlxy.* to lisi@'%' identified by '123456';
+# 删除用户
+drop user 'lisi'@'%';
+</code></pre>
 
               </div>
               <div class="toc-container">
@@ -448,6 +634,7 @@ mysql&gt; delete from stu where id&gt;200;
 <li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">数据库的基本操作</a></li>
 <li><a href="#%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">表的基本操作</a></li>
 <li><a href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">数据的基本操作</a></li>
+<li><a href="#mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AF%BC%E5%85%A5%E5%92%8C%E5%AF%BC%E5%87%BA">MySQL数据库的导入和导出</a></li>
 </ul>
 </li>
 </ul>
