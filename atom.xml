@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-07-28T01:27:19.989Z</updated>
+    <updated>2020-07-28T02:10:32.050Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -16,7 +16,35 @@
         <link href="https://Vinci-Ma.github.io/post/jdbc-xue-xi/">
         </link>
         <updated>2020-07-27T02:44:28.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="jdbc简介">JDBC简介</h1>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#jdbc%E7%AE%80%E4%BB%8B">JDBC简介</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">使用步骤</a></li>
+<li><a href="#jdbc%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%96%B9%E6%B3%95">JDBC中常用的类型与方法</a></li>
+<li><a href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F">工厂方法设计模式（静态工厂方法模式）</a></li>
+<li><a href="#dao">DAO</a></li>
+<li><a href="#sql%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98">==SQL注入问题==</a>
+<ul>
+<li><a href="#%E8%A7%A3%E5%86%B3sql%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98">解决sql注入问题</a></li>
+<li><a href="#preparedstatement-%E9%A2%84%E7%BC%96%E8%AF%91%E7%9A%84sql%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83">PreparedStatement 预编译的SQL执行环境</a></li>
+<li><a href="#preparedstatement%E4%B8%8Estatement%E8%B0%81%E7%9A%84%E6%80%A7%E8%83%BD%E9%AB%98">PreparedStatement与Statement谁的性能高?</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8B%E5%8A%A1">事务</a>
+<ul>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98">事务相关面试题</a></li>
+</ul>
+</li>
+<li><a href="#%E6%89%B9%E5%A4%84%E7%90%86">批处理</a></li>
+<li><a href="#properties-%E4%BD%9C%E4%B8%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">Properties 作为配置文件</a></li>
+<li><a href="#%E8%BF%9E%E6%8E%A5%E6%B1%A0datasource%E7%9A%84%E4%BD%BF%E7%94%A8">==连接池(DataSource)的使用==</a>
+<ul>
+<li><a href="#dbcp%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">==DBCP连接池的使用步骤==</a></li>
+<li><a href="#%E5%BE%B7%E9%B2%81%E4%BC%8A%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">==德鲁伊连接池的使用步骤==</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="jdbc简介">JDBC简介</h1>
 <p>Java DataBase Connectivity Java数据库连接<br>
 JDBC是一套标准,是Java与各大数据库厂商共同定制的一套接口. 这套接口由各大数据库厂商进行了实现</p>
 <h1 id="使用步骤">使用步骤</h1>
@@ -168,11 +196,11 @@ DAO模式是标准的JavaEE设计模式之一.开发人员使用这个模式把�
 </ul>
 <ol start="3">
 <li><strong>请描述事务的隔离级别</strong><br>
-//三种级别锁: 页级,表级,行级(共享锁,排它锁).</li>
-<li>读未提交 : read uncommitted; (可能产生:脏读, 不可重复读, 幻读)</li>
-<li>读已提交 : read committed; (可能产生: 不可重复度, 幻读)</li>
-<li>可重复读 : repeatable read;(mysql默认值) (可能产生: 幻读)</li>
-<li>串行化 : serializable;</li>
+//三种级别锁: 页级,表级,行级(共享锁,排它锁).<br>
+1、 读未提交 : read uncommitted; (可能产生:脏读, 不可重复读, 幻读)<br>
+2、读已提交 : read committed; (可能产生: 不可重复度, 幻读)<br>
+3、可重复读 : repeatable read;(mysql默认值) (可能产生: 幻读)<br>
+4、串行化 : serializable;</li>
 </ol>
 <ul>
 <li>查看数据库当前的隔离级别: select @@tx_isolation; (了解)</li>
@@ -184,11 +212,11 @@ DAO模式是标准的JavaEE设计模式之一.开发人员使用这个模式把�
 <pre><code class="language-java">Statement对象使用流程:
     1. 得到Statement对象
     Statement state = conn.createStatement();
-    2. 将一条SQL语句, 加入到批处理中.
+    1. 将一条SQL语句, 加入到批处理中.
     state.addBatch(String sql);
-    3. 执行批处理
+    1. 执行批处理
     state.executeBatch();
-    4. 清空批处理
+    1. 清空批处理
     state.clearBatch();
 PreparedStatement对象使用流程:
     1. 得到PreparedStatement对象
@@ -201,6 +229,60 @@ PreparedStatement对象使用流程:
     state.executeBatch();
     5. 清空批处理
     state.clearBatch();
+</code></pre>
+<h1 id="properties-作为配置文件">Properties 作为配置文件</h1>
+<p>Properties类 是Java中的Map集合的实现类.<br>
+.properties文件 用于通过文件描述一组键值对!<br>
+.properties文件 ,可以快速的转换为Properties类的对象.</p>
+<pre><code class="language-java">文件中内容的格式:
+    文件内容都是字符串 , 键与值之间通过等号连接 , 多个键值对之间换行分割.
+    例如:
+    url=xxx
+    user=xxx
+    password=xxx
+如何将文件 转换为 集合:
+    步骤:
+    1. 创建Properties对象
+        Properties ppt = new Properties();
+    2. 创建一个字节输入流 , 指向.properties文件
+        InputStream is = new FileInputStream(&quot;文件地址&quot;);
+    3. 将字节输入流, 传递给properties对象, 进行加载.
+        ppt.load(is);
+</code></pre>
+<h1 id="连接池datasource的使用"><mark>连接池(DataSource)的使用</mark></h1>
+<p>连接池用于缓存连接!<br>
+当我们需要使用连接时, 可以不用再创建连接 ! 可以直接从连接池中获取连接.<br>
+当连接池中存在空闲连接时, 会将空闲连接给到程序使用.<br>
+当连接池中不存在空闲连接时, 且连接池未满时 , 则创建连接提供给程序使用 ,并在程序使用完毕后,<br>
+缓存连接.<br>
+当连接池中不存在空闲连接时, 且连接池已满时 , 则排队等候空闲连接的出现.<br>
+<mark>注意:</mark><br>
+使用连接池中的连接对象操作数据库时, 操作完毕依然需要释放连接(调用close()).<br>
+连接池中的连接在设计时, 使用了动态代理设计模式+装饰者设计模式 . 我们调用它的close方法,代理没有关闭这个连接, 而是将连接重新放入了池中.</p>
+<h2 id="dbcp连接池的使用步骤"><mark>DBCP连接池的使用步骤</mark></h2>
+<pre><code class="language-java">1. 引入相关的jar文件
+    - dbcp.jar
+    - poll.jar
+2. 将配置文件引入
+3. 将配置文件, 转换为Properties对象
+    Properties ppt = new Properties();
+    ppt.load(配置文件的输入流);
+4. 通过连接池的工厂类(BasicDataSourceFactory)的创建连接池的方法(createDataSource())
+    DataSource ds = BasicDataSourceFactory.createDataSource(ppt);
+5. 从连接池中 获取连接对象
+    Connection conn = ds.getConnection();
+</code></pre>
+<h2 id="德鲁伊连接池的使用步骤"><mark>德鲁伊连接池的使用步骤</mark></h2>
+<pre><code class="language-java">1. 引入相关的jar文件
+    - druid-1.0.9.jar
+2. 将配置文件引入
+3. 将配置文件, 转换为Properties对象
+    Properties ppt = new Properties();
+    ppt.load(配置文件的输入流);
+4. 通过连接池的工厂类(DruidDataSourceFactory)的创建连接池的方法(createDataSource())
+    DataSource ds = DruidDataSourceFactory.createDataSource(ppt);
+5. 从连接池中 获取连接对象
+    Connection conn = ds.getConnection();
 </code></pre>
 ]]></content>
     </entry>
