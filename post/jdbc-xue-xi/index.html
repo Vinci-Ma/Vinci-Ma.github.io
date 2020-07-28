@@ -1,0 +1,380 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JDBC学习 | Vinci-Ma</title>
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1595899631461">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="JDBC学习 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="JDBC简介
+Java DataBase Connectivity Java数据库连接
+JDBC是一套标准,是Java与各大数据库厂商共同定制的一套接口. 这套接口由各大数据库厂商进行了实现
+使用步骤
+
+1、 引入jar文件.
+2、加载数据..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Vinci-Ma.github.io">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1595899631461" alt="">
+  </a>
+  <h1 class="site-title">
+    Vinci-Ma
+  </h1>
+  <p class="site-description">
+    Stay cooool!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://Vinci-Ma.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Vinci-Ma" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              JDBC学习
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-27
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="jdbc简介">JDBC简介</h1>
+<p>Java DataBase Connectivity Java数据库连接<br>
+JDBC是一套标准,是Java与各大数据库厂商共同定制的一套接口. 这套接口由各大数据库厂商进行了实现</p>
+<h1 id="使用步骤">使用步骤</h1>
+<blockquote>
+<p>1、 引入jar文件.<br>
+2、加载数据库驱动 (JavaSE项目中可以省略 , JavaWeb项目必须编写此步骤)<br>
+Class.forName(&quot;com.mysql.jdbc.Driver&quot;);<br>
+3、通过驱动管理器, 获取JDBC连接对象.<br>
+Connection conn = DriverManager.getConnection(&quot;数据库连接地址&quot;,&quot;帐号&quot;,&quot;密码&quot;);<br>
+// 数据库连接地址格式: 主协议:子协议://ip地址:端口号/数据库名称<br>
+// mysql的连接地址: jdbc:mysql://localhost:3306/java35<br>
+// oracle的连接地址: jdbc:oracle:thin:@localhost:1521:ORCL<br>
+4、 通过连接对象, 创建SQL执行对象 (SQL执行环境)<br>
+Statement state = conn.createStatement();<br>
+5、通过SQL执行对象 ,执行SQL语句.<br>
+state.execute(String sql语句);<br>
+返回值：true【表示的sql语句有结果集，并不是说执行成功】<br>
+6、释放资源<br>
+state.close();<br>
+conn.close();</p>
+</blockquote>
+<h1 id="jdbc中常用的类型与方法">JDBC中常用的类型与方法</h1>
+<pre><code class="language-javascript">1. DriverManager : 驱动管理器
+    常用方法:
+    - 获取数据库连接:
+    static Connection getConnection(String 数据库地址,String 账号 ,String 密码)
+2. Connection : 数据库连接对象
+    常用方法:
+    - 创建SQL执行对象: Statement createStatement();
+3. Statement : SQL执行对象
+    常用方法:
+    - 执行SQL语句(查询语句返回true, 其它语句返回false)
+    boolean execute(String sql);
+    - 执行DML语句(INSERT UPDATE DELETE) 和 DDL语句(create alter drop)
+    (返回int值, 表示语句对数据库表格的影响行数 !)
+    (通常我们认为 返回值&gt;0 表示执行成功.)
+    int executeUpdate(String sql);
+    - 执行DQL语句 (select)
+    ResultSet executeQuery(String sql);
+4. ResultSet : 结果集对象 (指的是一个select语句的查询结果)
+    常用方法:
+        1. 控制游标移动的常用方法:
+            - boolean next() ****
+            作用: 控制游标向下一行移动.
+            返回值: 移动成功返回true , 下一行不存在移动失败, 返回false
+            - boolean privious() 了解
+            作用: 控制游标向上一行移动.
+            返回值: 移动成功返回true , 上一行不存在移动失败, 返回false
+            - boolean absolute(int 行号) 了解
+            作用: 控制游标向指定行移动
+            返回值: 移动成功返回true , 行不存在移动失败, 返回false
+            - boolean beforeFirst() 了解
+            作用: 控制游标移动到第一行
+            返回值: 移动成功返回true, 没有第一行数据返回false
+            - boolean afterLast() 了解
+            作用: 控制游标移动到最后一行
+            返回值: 移动成功返回true, 没有最后一行数据返回false
+        2. 获取游标指向行的字段值的常用方法:
+            - XXX getXXX(String 列名) ***
+            根据字段名, 得到此字段的值
+            - XXX getXXX(int 字段的索引) *
+            根据字段的索引, 得到字段的值 , 索引从1开始
+</code></pre>
+<h1 id="工厂方法设计模式静态工厂方法模式">工厂方法设计模式（静态工厂方法模式）</h1>
+<p>工厂方法模式一种创建对象的模式.<br>
+工厂方法模式基于&quot;输入&quot;，应用在超类和多个子类之间的情况，这种模式将创建对象的责任转移到工厂类；<br>
+<mark>工厂设计模式的优点:</mark></p>
+<ol>
+<li>面向接口编程，体现了面向对象的思想</li>
+<li>降低了耦合, 将创建对象的工作转移到了工厂类</li>
+</ol>
+<h1 id="dao">DAO</h1>
+<p>DAO(Data Access Object)是一个数据访问接口，数据访问：顾名思义就是与数据库打交道。夹在业务逻辑与数据库资源中间。<br>
+为了建立一个健壮的Java应用，应该将所有对数据源的访问操作抽象封装在一个公共API中。用程序设计的<br>
+语言来说，就是建立一个接口，接口中定义了此应用程序中将会用到的所有事务方法。在这个应用程序中，<br>
+当需要和数据源进行交互的时候则使用这个接口，并且编写一个单独的类来实现这个接口在逻辑上对应这个<br>
+特定的数据存储。<br>
+DAO模式是标准的JavaEE设计模式之一.开发人员使用这个模式把底层的数据访问操作和上层的商务逻辑分<br>
+开.一个典型的DAO实现有下列几个组件：</p>
+<ol>
+<li>一个DAO工厂类；</li>
+<li>一个DAO接口；</li>
+<li>至少一个实现DAO接口的具体类；</li>
+<li>数据传递对象（有些时候叫做Bean对象）</li>
+</ol>
+<h1 id="sql注入问题"><mark>SQL注入问题</mark></h1>
+<pre><code class="language-java">进行用户登录时, 输入不存在的帐号 和 如下的密码:
+    1' or '1'='1
+结果显示登录成功.
+因为用户输入的密码, 与我们的查询语句拼接后, 使得我们的查询语句产生了歧义:
+原查询语句:
+    select * from xzk_user where username='' and password='密码'
+拼接后:
+    select * from xzk_user where username='hahahaheiheihei' and password='1' or '1'='1'
+</code></pre>
+<h2 id="解决sql注入问题">解决sql注入问题</h2>
+<p>我们可以将SQL语句与参数分离,将参数作为SQL的特殊部分进行预处理</p>
+<h2 id="preparedstatement-预编译的sql执行环境">PreparedStatement 预编译的SQL执行环境</h2>
+<p>内部实现原理:<br>
+1. 将未拼接参数的SQL语句, 作为SQL指令, 先传递给数据库 进行编译.<br>
+2. 再将参数传递给数据库, 此时传递的参数不会再作为指令执行, 只会被当作文本存在.</p>
+<pre><code class="language-java">操作流程与Statement基本一致:
+    1. 如何得到一个PreparedStatement 对象
+            PreparedStatement state = conn.prepareStatement(&quot;预编译的SQL语句&quot;);
+    2. 预编译的SQL语句如何编写
+            需要填充参数的位置, 使用?代替即可! 例如:
+            select id from xzk_user where username=? and password=?
+    3. 参数如何填充
+            state.setXXX(int index,XXX value);
+            setXXX中XXX指的是数据类型,
+            参数1: index : SQL语句中?的索引值 , 从1开始
+            参数2: value : 填充的参数值.
+    4. 如何执行填充完毕参数的SQL
+            - boolean execute();
+            - int executeUpdate();
+            - ResultSet executeQuery();
+</code></pre>
+<h2 id="preparedstatement与statement谁的性能高">PreparedStatement与Statement谁的性能高?</h2>
+<p>根据数据库的不同，两者的性能高低也不同。<br>
+在<strong>mysql</strong>中, preparedStatement原理是拼接SQL, 所以<strong>Statement</strong>性能高.<br>
+在<strong>Oracle</strong>中, preparedStatement原理是对SQL指令进行预处理, 再传递的参数不具备特殊含义.有更好的SQL缓存策略,<strong>PreparedStatement</strong>高.</p>
+<h1 id="事务">事务</h1>
+<p>将多条SQL语句, 看作一个整体. 要么一起成功, 要么一起失败。<br>
+事务在mysql中, 是默认自动提交的。</p>
+<pre><code class="language-java">操作方式1：命令行
+    - 开启事务: start transaction;
+    - 回滚 : rollback; --此次事务中所有的sql操作, 放弃.
+    - 提交 : commit; --此次事务中所有的sql操作, 作为一个整体, 提交.
+操作方式2：java
+    JDBC事务通过连接对象开启, 回滚 ,提交. 只针对当前连接对象生效.
+    - 开启事务: conn.setAutoCommit(false);
+    - 回滚事务: conn.rollback();
+    - 提交事务: conn.commit();
+</code></pre>
+<h2 id="事务相关面试题">事务相关面试题</h2>
+<ol>
+<li><strong>请描述事务的四大特征 :</strong><br>
+&lt;1&gt;. 原子性: 事务是一个整体 , 不可分割 , 要么同时成功, 要么同时失败.<br>
+&lt;2&gt;. 持久性: 当事务提交或回滚后, 数据库会持久化的保存数据.<br>
+&lt;3&gt;. 隔离性: 多个事务之间, 隔离开, 相互独立.<br>
+&lt;4&gt;. 一致性: 事务操作的前后 , 数据总量不变 (例如: 转账时: 孟亮给帅兵转账是一个事务, 转账完毕后. 两人余额的和不变.)</li>
+<li><strong>请描述什么是脏读, 幻读, 不可重复读 ?</strong></li>
+</ol>
+<ul>
+<li>脏读: 读取到了一个事务 未提交的数据.</li>
+<li>不可重复读: 一个事务中, 两次连续的读取 ,结果不一致(中间被其它事务更改了).</li>
+<li>幻读: 一个事务A在执行DML语句时, 另一个事务B也在执行DML语句 , B修改了A修改过的数据, 导致A在查询时就像发生了幻觉一样(A更改的内容A看不到了.)<br>
+解决方法：加锁</li>
+</ul>
+<ol start="3">
+<li><strong>请描述事务的隔离级别</strong><br>
+//三种级别锁: 页级,表级,行级(共享锁,排它锁).</li>
+<li>读未提交 : read uncommitted; (可能产生:脏读, 不可重复读, 幻读)</li>
+<li>读已提交 : read committed; (可能产生: 不可重复度, 幻读)</li>
+<li>可重复读 : repeatable read;(mysql默认值) (可能产生: 幻读)</li>
+<li>串行化 : serializable;</li>
+</ol>
+<ul>
+<li>查看数据库当前的隔离级别: select @@tx_isolation; (了解)</li>
+<li>数据库设置隔离级别: set global transaction isolation level 级别字符串;(了解)</li>
+</ul>
+<h1 id="批处理">批处理</h1>
+<p>将多条语句, 放到一起批量处理 。<br>
+批处理的原理: 将多条SQL语句, 转换为一个SQL指令. 显著的提高大量SQL语句执行时的数据库性能。</p>
+<pre><code class="language-java">Statement对象使用流程:
+    1. 得到Statement对象
+    Statement state = conn.createStatement();
+    2. 将一条SQL语句, 加入到批处理中.
+    state.addBatch(String sql);
+    3. 执行批处理
+    state.executeBatch();
+    4. 清空批处理
+    state.clearBatch();
+PreparedStatement对象使用流程:
+    1. 得到PreparedStatement对象
+    PreparedStatement state = conn.prepareStatement(&quot;预编译的SQL&quot;);
+    2. 填充预编译的参数
+    state.setXXX(1,填充参数);
+    3. 将一条填充完毕参数的SQL, 加入到批处理中.
+    state.addBatch();
+    4. 执行批处理
+    state.executeBatch();
+    5. 清空批处理
+    state.clearBatch();
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#jdbc%E7%AE%80%E4%BB%8B">JDBC简介</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">使用步骤</a></li>
+<li><a href="#jdbc%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%96%B9%E6%B3%95">JDBC中常用的类型与方法</a></li>
+<li><a href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F">工厂方法设计模式（静态工厂方法模式）</a></li>
+<li><a href="#dao">DAO</a></li>
+<li><a href="#sql%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98">==SQL注入问题==</a>
+<ul>
+<li><a href="#%E8%A7%A3%E5%86%B3sql%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98">解决sql注入问题</a></li>
+<li><a href="#preparedstatement-%E9%A2%84%E7%BC%96%E8%AF%91%E7%9A%84sql%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83">PreparedStatement 预编译的SQL执行环境</a></li>
+<li><a href="#preparedstatement%E4%B8%8Estatement%E8%B0%81%E7%9A%84%E6%80%A7%E8%83%BD%E9%AB%98">PreparedStatement与Statement谁的性能高?</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8B%E5%8A%A1">事务</a>
+<ul>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98">事务相关面试题</a></li>
+</ul>
+</li>
+<li><a href="#%E6%89%B9%E5%A4%84%E7%90%86">批处理</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Vinci-Ma.github.io/post/mysql-xue-xi/">
+              <h3 class="post-title">
+                MySQL学习
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://Vinci-Ma.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
