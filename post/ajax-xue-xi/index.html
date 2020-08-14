@@ -1,0 +1,535 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AJAX学习 | Vinci-Ma</title>
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1597417160648">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="AJAX学习 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+Ajax技术与原理
+
+1、Ajax简介
+2、Ajax所包含的技术
+3、Ajax的工作原理
+
+1、模型
+2、交互方式
+
+
+4、XMLHttpRequest常用属性
+
+1、onreadystatechange 属性（回调函数）
+2、ready..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Vinci-Ma.github.io">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1597417160648" alt="">
+  </a>
+  <h1 class="site-title">
+    Vinci-Ma
+  </h1>
+  <p class="site-description">
+    Stay cooool!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://Vinci-Ma.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Vinci-Ma" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              AJAX学习
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-14
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><ul class="markdownIt-TOC">
+<li><a href="#ajax%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%8E%9F%E7%90%86">Ajax技术与原理</a>
+<ul>
+<li><a href="#1-ajax%E7%AE%80%E4%BB%8B">1、Ajax简介</a></li>
+<li><a href="#2-ajax%E6%89%80%E5%8C%85%E5%90%AB%E7%9A%84%E6%8A%80%E6%9C%AF">2、Ajax所包含的技术</a></li>
+<li><a href="#3-ajax%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">3、Ajax的工作原理</a>
+<ul>
+<li><a href="#1-%E6%A8%A1%E5%9E%8B">1、模型</a></li>
+<li><a href="#2-%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F">2、交互方式</a></li>
+</ul>
+</li>
+<li><a href="#4-xmlhttprequest%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7">4、XMLHttpRequest常用属性</a>
+<ul>
+<li><a href="#1-onreadystatechange-%E5%B1%9E%E6%80%A7%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0">1、onreadystatechange 属性（回调函数）</a></li>
+<li><a href="#2-readystate-%E5%B1%9E%E6%80%A7">2、readyState 属性</a></li>
+<li><a href="#3-responsetext-%E5%B1%9E%E6%80%A7">3、responseText 属性</a></li>
+</ul>
+</li>
+<li><a href="#5-xmlhttprequest%E6%96%B9%E6%B3%95">5、XMLHttpRequest方法</a>
+<ul>
+<li><a href="#1-open-%E6%96%B9%E6%B3%95">1、open() 方法</a></li>
+<li><a href="#2-send-%E6%96%B9%E6%B3%95">2、send() 方法</a></li>
+<li><a href="#3-%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95">3、其他方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#ajax%E7%BC%96%E7%A8%8B%E6%AD%A5%E9%AA%A4%E5%9F%BA%E4%BA%8Ejs%E5%AE%9E%E7%8E%B0ajax">Ajax编程步骤（基于js实现ajax）</a>
+<ul>
+<li><a href="#1-%E5%88%9B%E5%BB%BAxmlhttprequest%E5%AF%B9%E8%B1%A1">1、创建XMLHttpRequest对象</a></li>
+<li><a href="#2-%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F">2、设置请求方式</a></li>
+<li><a href="#3-%E8%B0%83%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0">3、调用回调函数</a></li>
+<li><a href="#4-%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82">4、发送请求</a></li>
+</ul>
+</li>
+<li><a href="#jquery%E7%9A%84ajax%E6%93%8D%E4%BD%9C">jquery的ajax操作*</a><br>
+*
+<ul>
+<li><a href="#1-%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0ajax%E7%9A%84%E4%B8%8D%E8%B6%B3">1、传统方式实现Ajax的不足</a></li>
+<li><a href="#2-ajax%E6%96%B9%E6%B3%95">2、ajax()方法</a></li>
+<li><a href="#3-get-%E6%96%B9%E6%B3%95%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B-http-get-%E8%AF%B7%E6%B1%82%E8%BD%BD%E5%85%A5%E4%BF%A1%E6%81%AF">3、get() 方法通过远程 HTTP GET 请求载入信息</a></li>
+<li><a href="#4-post-%E6%96%B9%E6%B3%95%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B-http-get-%E8%AF%B7%E6%B1%82%E8%BD%BD%E5%85%A5%E4%BF%A1%E6%81%AF">4、post() 方法通过远程 HTTP GET 请求载入信息</a></li>
+</ul>
+</li>
+<li><a href="#json">JSON</a>
+<ul>
+<li><a href="#1-json%E6%A6%82%E5%BF%B5">1、JSON概念</a></li>
+<li><a href="#2-json%E5%AF%B9%E8%B1%A1%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">2、JSON对象定义和基本使用</a>
+<ul>
+<li><a href="#1-%E5%AE%9A%E4%B9%89">1、定义</a></li>
+<li><a href="#2-json%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BF%E9%97%AE">2、JSON对象的访问</a></li>
+</ul>
+</li>
+<li><a href="#3-json%E5%9C%A8java%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">3、JSON在java中的使用*</a>
+<ul>
+<li><a href="#java%E5%AF%B9%E8%B1%A1%E5%92%8Cjson%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2">java对象和json之间的转换</a>
+<ul>
+<li><a href="#1-%E5%8D%95%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%88%96map%E9%9B%86%E5%90%88">1、单个对象或map集合</a></li>
+<li><a href="#2-%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E5%92%8Cjson%E7%9A%84%E8%BD%AC%E6%8D%A2">2、对象集合和json的转换</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="ajax技术与原理">Ajax技术与原理</h1>
+<h2 id="1-ajax简介">1、Ajax简介</h2>
+<p>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。</p>
+<p>AJAX 不是新的编程语言，而是一种使用现有标准的新方法。</p>
+<p>AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。</p>
+<h2 id="2-ajax所包含的技术">2、Ajax所包含的技术</h2>
+<p>Ajax并非一种新的技术，而是几种原有技术的结合体。它由下列技术组合而成。</p>
+<pre><code class="language-java">1.使用CSS和XHTML来表示。
+2.使用DOM模型来交互和动态显示。
+3.使用XMLHttpRequest来和服务器进行异步通信。
+4.使用javascript来绑定和调用。
+</code></pre>
+<p>AJAX 的核心是 XMLHttpRequest 对象</p>
+<p>不同的浏览器创建 XMLHttpRequest 对象的方法是有差异的。</p>
+<p><strong>IE 浏览器使用 ActiveXObject，而其他的浏览器使用名为 XMLHttpRequest 的 JavaScript 内建对象</strong></p>
+<h2 id="3-ajax的工作原理">3、Ajax的工作原理</h2>
+<p>Ajax的工作原理相当于在用户和服务器之间加了—个<strong>中间层(AJAX引擎)</strong>，使用户操作与服务器响应<strong>异步化</strong>。</p>
+<p>并不是所有的用户请求都提交给服务器。像—些数据验证和数据处理等都交给Ajax引擎自己来做,，只有确定需要从服务器读取新数据时再由Ajax引擎代为向服务器提交请求。</p>
+<p><strong>两者区别：</strong></p>
+<h3 id="1-模型">1、模型</h3>
+<p>1、传统的Web模型<br>
+<img src="https://Vinci-Ma.github.io/post-images/1597416658095.png" alt="" loading="lazy"><br>
+2、Ajax模型<br>
+<img src="https://Vinci-Ma.github.io/post-images/1597416689051.png" alt="" loading="lazy"></p>
+<h3 id="2-交互方式">2、交互方式</h3>
+<p>1、浏览器的普通交互方式</p>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1597416712107.jpg" alt="" loading="lazy"></figure>
+<p>2、浏览器的Ajax交互方式</p>
+<figure data-type="image" tabindex="2"><img src="https://Vinci-Ma.github.io/post-images/1597416723665.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://Vinci-Ma.github.io/post-images/1597416744223.png" alt="" loading="lazy"></figure>
+<h2 id="4-xmlhttprequest常用属性">4、XMLHttpRequest常用属性</h2>
+<h3 id="1-onreadystatechange-属性回调函数">1、onreadystatechange 属性（回调函数）</h3>
+<p>onreadystatechange 属性存有处理服务器响应的函数。 下面的代码定义一个空的函数，可同时对onreadystatechange 属性进行设置：</p>
+<pre><code class="language-java">xmlHttp.onreadystatechange = function() { //我们需要在这写一些代码}
+</code></pre>
+<h3 id="2-readystate-属性">2、readyState 属性</h3>
+<p>readyState 属性<strong>存有服务器响应的状态信息</strong>。每当 readyState 改变时，onreadystatechange 函数就会被执行。<br>
+readyState 属性可能的值：</p>
+<h3 id="3-responsetext-属性">3、responseText 属性</h3>
+<p>可以通过 responseText 属性来取回由服务器返回的数据。 在我们的代码中，我们将把时间文本框的值设置为等于responseText：</p>
+<pre><code class="language-java">xmlHttp.onreadystatechange = function() {
+if (xmlHttp.readyState == 4) {
+document.myForm.time.value = xmlHttp.responseText;
+}
+}
+</code></pre>
+<h2 id="5-xmlhttprequest方法">5、XMLHttpRequest方法</h2>
+<h3 id="1-open-方法">1、open() 方法</h3>
+<p>open() 有三个参数。第一个参数定义发送请求所使用的方法，第二个参数规定服务器端脚本的URL，第三个参数规定应当对请求进行异步地处理。</p>
+<pre><code class="language-java">xmlHttp.open(&quot;GET&quot;,&quot;test.php&quot;,true);
+</code></pre>
+<h3 id="2-send-方法">2、send() 方法</h3>
+<p>send() 方法将请求送往服务器。如果我们假设 HTML 文件和 PHP 文件位于相同的目录，那么代码是这样的：</p>
+<pre><code class="language-java">xmlHttp.send(null);
+</code></pre>
+<h3 id="3-其他方法">3、其他方法</h3>
+<figure data-type="image" tabindex="4"><img src="https://Vinci-Ma.github.io/post-images/1597416761579.png" alt="" loading="lazy"></figure>
+<h1 id="ajax编程步骤基于js实现ajax">Ajax编程步骤（基于js实现ajax）</h1>
+<pre><code class="language-java">1. 创建XMLHttpRequest对象。
+2. 设置请求方式。
+3. 调用回调函数。
+4. 发送请求。
+</code></pre>
+<h2 id="1-创建xmlhttprequest对象">1、创建XMLHttpRequest对象</h2>
+<pre><code class="language-java">var xmlHttp=new XMLHttpRequest();
+如果是IE5或者IE6浏览器，则使用ActiveX对象，创建方法是：
+var xmlHttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+一般我们手写AJAX的时候，首先要判断该浏览器是否支持XMLHttpRequest对象，如果支持则创建该对象，如果不支持则创建ActiveX对象。JS代码如下：
+    //第一步：创建XMLHttpRequest对象
+var xmlHttp;
+if (window.XMLHttpRequest) {
+    //非IE
+    xmlHttp = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+    //IE
+    xmlHttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;)
+}
+</code></pre>
+<h2 id="2-设置请求方式">2、设置请求方式</h2>
+<pre><code class="language-java">//第二步：设置和服务器端交互的相应参数，向路径http://localhost:8080/JsLearning3/getAjax准备发送数据
+var url = &quot;http://localhost:8080/JsLearning3/getAjax&quot;;
+xmlHttp.open(&quot;POST&quot;, url, true);
+</code></pre>
+<h2 id="3-调用回调函数">3、调用回调函数</h2>
+<pre><code class="language-java">//第三步：注册回调函数
+xmlHttp.onreadystatechange = function() {
+    //判断状态
+    if (xmlHttp.readyState == 4) {
+        //接收返回的内容
+        if (xmlHttp.status == 200) {
+            var obj = document.getElementById(id);
+            obj.innerHTML = xmlHttp.responseText;
+        } else {
+        	alert(&quot;AJAX服务器返回错误！&quot;);
+        }
+    }
+}
+</code></pre>
+<h2 id="4-发送请求">4、发送请求</h2>
+<pre><code class="language-java">//第四步：设置发送请求的内容和发送报送。然后发送请求
+var uname= document.getElementsByName(&quot;userName&quot;)[0].value;
+var upass= document.getElementsByName(&quot;userPass&quot;)[0].value ;
+var params = &quot;userName=&quot; + uname+ &quot;&amp;userPass=&quot; +upass+ &quot;&amp;time=&quot; + Math.random();
+// 增加time随机参数，防止读取缓存
+xmlHttp.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded;charset=UTF-8&quot;);
+
+// 向请求添加 HTTP 头，POST如果有数据一定加加！！！！
+xmlHttp.send(params);
+</code></pre>
+<h1 id="jquery的ajax操作">jquery的ajax操作*</h1>
+<h3 id="1-传统方式实现ajax的不足">1、传统方式实现Ajax的不足</h3>
+<p>步骤繁琐，方法、属性、常用值较多不好记忆</p>
+<h3 id="2-ajax方法">2、ajax()方法</h3>
+<p>可以通过发送 HTTP请求加载远程数据，是 jQuery 最底层的 Ajax 实现，具有较高灵活性。</p>
+<p>$.ajax([settings]);//参数settings是方法的参数列表，用于配置Ajax请求的键值对集合；</p>
+<pre><code class="language-java">$.ajax({
+    url:请求地址
+    type:&quot;get | post | put | delete &quot; 默认是get,
+    data:请求参数 {&quot;id&quot;:&quot;123&quot;,&quot;pwd&quot;:&quot;123456&quot;},
+    dataType:请求数据类型&quot;html | text | json | xml | script | jsonp &quot;,
+    success:function(data,dataTextStatus,jqxhr){ },//请求成功时
+error:function(jqxhr,textStatus,error)//请求失败时
+})
+</code></pre>
+<h3 id="3-get-方法通过远程-http-get-请求载入信息">3、get() 方法通过远程 HTTP GET 请求载入信息</h3>
+<p>这是一个简单的 GET 请求功能以取代复杂 $.ajax</p>
+<pre><code class="language-java">$.get(url,data,function(result) {
+//省略将服务器返回的数据显示到页面的代码
+});
+url:请求的路径
+data:发送的数据
+success:成功函数
+datatype 返回的数据
+</code></pre>
+<h3 id="4-post-方法通过远程-http-get-请求载入信息">4、post() 方法通过远程 HTTP GET 请求载入信息</h3>
+<pre><code class="language-java">$.post(url,data,function(result) {
+//省略将服务器返回的数据显示到页面的代码
+});
+url:请求的路径
+data:发送的数据
+success:成功函数
+datatype 返回的数据
+</code></pre>
+<h1 id="json">JSON</h1>
+<h2 id="1-json概念">1、JSON概念</h2>
+<p>JSON (JavaScript Object Notation) 是一种轻量级的数据交换格式。 易于人阅读和编写。同时也易于机器解析和生成。</p>
+<h2 id="2-json对象定义和基本使用">2、JSON对象定义和基本使用</h2>
+<h3 id="1-定义">1、定义</h3>
+<pre><code class="language-java">var 变量名 = {
+“key” : value , // Number类型
+“key2” : “value” , // 字符串类型
+“key3” : [] , // 数组类型
+“key4” : {}, // json 对象类型
+“key5” : [{},{}] // json 数组
+};
+</code></pre>
+<h3 id="2-json对象的访问">2、JSON对象的访问</h3>
+<p>son对象，顾名思义，就知道它是一个对象。里面的key就是对象的属性。我们要访问一个对象的属性，只需要使用【对象名.属性名】的方式访问即可</p>
+<pre><code class="language-java">&lt;script type=&quot;text/javascript&quot;&gt;
+// json的定义
+var jsons = {
+&quot;key1&quot;:&quot;abc&quot;, // 字符串类型
+&quot;key2&quot;:1234, // Number
+&quot;key3&quot;:[1234,&quot;21341&quot;,&quot;53&quot;], // 数组
+&quot;key4&quot;:{ // json类型
+    &quot;key4_1&quot; : 12,
+    &quot;key4_2&quot; : &quot;kkk&quot;
+    },
+&quot;key5&quot;:[{ // json数组
+    &quot;key5_1_1&quot; : 12,
+    &quot;key5_1_2&quot; : &quot;abc&quot;
+    },{
+        &quot;key5_2_1&quot; : 41,
+            &quot;key5_2_2&quot; : &quot;bbj&quot;
+        }]
+};
+// 访问json的属性
+alert(jsons.key1); // &quot;abc&quot;
+// 访问json的数组属性
+alert(jsons.key3[1]); // &quot;21341&quot;
+// 访问json的json属性
+alert(jsons.key4.key4_1);//12
+// 访问json的json数组
+alert(jsons.key5[0].key5_1_2);//&quot;abc&quot;
+&lt;/script&gt;
+</code></pre>
+<h2 id="3-json在java中的使用">3、JSON在java中的使用*</h2>
+<figure data-type="image" tabindex="5"><img src="https://Vinci-Ma.github.io/post-images/1597416788349.png" alt="" loading="lazy"></figure>
+<h3 id="java对象和json之间的转换">java对象和json之间的转换</h3>
+<h4 id="1-单个对象或map集合">1、单个对象或map集合</h4>
+<pre><code class="language-java">java-&gt;json：
+    Users user2=new Users();
+    user2.setUsername(&quot;李四&quot;);
+    user2.setPassword(&quot;abc&quot;);
+    user2.setAge(20);
+    JSONObject obj=JSONObject.fromObject(user);//obj就是json格式的
+
+json-&gt;java
+    String str=&quot;{'username':'李四','password':'admin','age':19}&quot;;
+    JSONObject json=JSONObject.fromObject(str);
+    Users user=(Users)JSONObject.toBean(json,Users.class);
+</code></pre>
+<h4 id="2-对象集合和json的转换">2、对象集合和json的转换</h4>
+<pre><code class="language-java">java集合-&gt;json数组:
+    List list=new ArrayList();
+    list.add(&quot;dd&quot;);
+    list.add(&quot;aa&quot;);
+    JSONArray obj=JSONArray.fromObject(list);//set也是这么转
+json数组-&gt;java集合:
+	Key1:
+	String str2=&quot;[{'age':20,'password':'abc','username':'李四'},{'age':10,'password':'adb','username':'张三'}]&quot;;
+	JSONArray json2=JSONArray.fromObject(str2);
+	Object[] obj=(Object[])JSONArray.toArray(json2,Users.class);
+
+	Key2:
+	String str3=&quot;[{'age':20,'password':'abc','username':'李四'},{'age':10,'password':'adb','username':'展示干'}]&quot;;
+	JSONArray json3=JSONArray.fromObject(str3);
+	//默认转换成ArrayList
+	List&lt;Users&gt; list=(List&lt;Users&gt;) 				JSONArray.toCollection(json3,Users.class);
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#ajax%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%8E%9F%E7%90%86">Ajax技术与原理</a>
+<ul>
+<li><a href="#1-ajax%E7%AE%80%E4%BB%8B">1、Ajax简介</a></li>
+<li><a href="#2-ajax%E6%89%80%E5%8C%85%E5%90%AB%E7%9A%84%E6%8A%80%E6%9C%AF">2、Ajax所包含的技术</a></li>
+<li><a href="#3-ajax%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">3、Ajax的工作原理</a>
+<ul>
+<li><a href="#1-%E6%A8%A1%E5%9E%8B">1、模型</a></li>
+<li><a href="#2-%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F">2、交互方式</a></li>
+</ul>
+</li>
+<li><a href="#4-xmlhttprequest%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7">4、XMLHttpRequest常用属性</a>
+<ul>
+<li><a href="#1-onreadystatechange-%E5%B1%9E%E6%80%A7%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0">1、onreadystatechange 属性（回调函数）</a></li>
+<li><a href="#2-readystate-%E5%B1%9E%E6%80%A7">2、readyState 属性</a></li>
+<li><a href="#3-responsetext-%E5%B1%9E%E6%80%A7">3、responseText 属性</a></li>
+</ul>
+</li>
+<li><a href="#5-xmlhttprequest%E6%96%B9%E6%B3%95">5、XMLHttpRequest方法</a>
+<ul>
+<li><a href="#1-open-%E6%96%B9%E6%B3%95">1、open() 方法</a></li>
+<li><a href="#2-send-%E6%96%B9%E6%B3%95">2、send() 方法</a></li>
+<li><a href="#3-%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95">3、其他方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#ajax%E7%BC%96%E7%A8%8B%E6%AD%A5%E9%AA%A4%E5%9F%BA%E4%BA%8Ejs%E5%AE%9E%E7%8E%B0ajax">Ajax编程步骤（基于js实现ajax）</a>
+<ul>
+<li><a href="#1-%E5%88%9B%E5%BB%BAxmlhttprequest%E5%AF%B9%E8%B1%A1">1、创建XMLHttpRequest对象</a></li>
+<li><a href="#2-%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F">2、设置请求方式</a></li>
+<li><a href="#3-%E8%B0%83%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0">3、调用回调函数</a></li>
+<li><a href="#4-%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82">4、发送请求</a></li>
+</ul>
+</li>
+<li><a href="#jquery%E7%9A%84ajax%E6%93%8D%E4%BD%9C">jquery的ajax操作*</a><br>
+*
+<ul>
+<li><a href="#1-%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0ajax%E7%9A%84%E4%B8%8D%E8%B6%B3">1、传统方式实现Ajax的不足</a></li>
+<li><a href="#2-ajax%E6%96%B9%E6%B3%95">2、ajax()方法</a></li>
+<li><a href="#3-get-%E6%96%B9%E6%B3%95%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B-http-get-%E8%AF%B7%E6%B1%82%E8%BD%BD%E5%85%A5%E4%BF%A1%E6%81%AF">3、get() 方法通过远程 HTTP GET 请求载入信息</a></li>
+<li><a href="#4-post-%E6%96%B9%E6%B3%95%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B-http-get-%E8%AF%B7%E6%B1%82%E8%BD%BD%E5%85%A5%E4%BF%A1%E6%81%AF">4、post() 方法通过远程 HTTP GET 请求载入信息</a></li>
+</ul>
+</li>
+<li><a href="#json">JSON</a>
+<ul>
+<li><a href="#1-json%E6%A6%82%E5%BF%B5">1、JSON概念</a></li>
+<li><a href="#2-json%E5%AF%B9%E8%B1%A1%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">2、JSON对象定义和基本使用</a>
+<ul>
+<li><a href="#1-%E5%AE%9A%E4%B9%89">1、定义</a></li>
+<li><a href="#2-json%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BF%E9%97%AE">2、JSON对象的访问</a></li>
+</ul>
+</li>
+<li><a href="#3-json%E5%9C%A8java%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">3、JSON在java中的使用*</a>
+<ul>
+<li><a href="#java%E5%AF%B9%E8%B1%A1%E5%92%8Cjson%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2">java对象和json之间的转换</a>
+<ul>
+<li><a href="#1-%E5%8D%95%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%88%96map%E9%9B%86%E5%90%88">1、单个对象或map集合</a></li>
+<li><a href="#2-%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E5%92%8Cjson%E7%9A%84%E8%BD%AC%E6%8D%A2">2、对象集合和json的转换</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Vinci-Ma.github.io/post/mvc-xue-xi/">
+              <h3 class="post-title">
+                MVC学习
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://Vinci-Ma.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

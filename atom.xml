@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-08-04T00:49:30.772Z</updated>
+    <updated>2020-08-14T15:00:40.504Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -10,6 +10,990 @@
     <logo>https://Vinci-Ma.github.io/images/avatar.png</logo>
     <icon>https://Vinci-Ma.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Vinci-Ma</rights>
+    <entry>
+        <title type="html"><![CDATA[JSP学习]]></title>
+        <id>https://Vinci-Ma.github.io/post/jsp-xue-xi/</id>
+        <link href="https://Vinci-Ma.github.io/post/jsp-xue-xi/">
+        </link>
+        <updated>2020-08-14T14:56:20.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#jsp">JSP</a></li>
+<li><a href="#jsp%E5%87%BA%E7%8E%B0%E5%8E%9F%E5%9B%A0">JSP出现原因</a></li>
+<li><a href="#jsp%E4%B8%AD%E5%A6%82%E4%BD%95%E5%B5%8C%E5%A5%97java%E4%BB%A3%E7%A0%81">JSP中如何嵌套Java代码</a></li>
+<li><a href="#jsp%E5%8E%9F%E7%90%86">JSP原理</a></li>
+<li><a href="#jsp%E7%9A%849%E4%B8%AA%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9">JSP的9个内置对象【重点】</a>
+<ul>
+<li><a href="#1-request%E5%AF%B9%E8%B1%A1">1、request对象！</a></li>
+<li><a href="#2-response%E5%AF%B9%E8%B1%A1">2、response对象！</a></li>
+<li><a href="#3-session%E5%AF%B9%E8%B1%A1">3、session对象！</a></li>
+<li><a href="#4-application%E5%AF%B9%E8%B1%A1">4、application对象！</a></li>
+<li><a href="#5-out-%E5%AF%B9%E8%B1%A1">5、out 对象</a></li>
+<li><a href="#6-pagecontext-%E5%AF%B9%E8%B1%A1">6、pageContext 对象</a></li>
+<li><a href="#7-config-%E5%AF%B9%E8%B1%A1">7、config 对象</a></li>
+<li><a href="#8-page-%E5%AF%B9%E8%B1%A1">8、page 对象</a></li>
+<li><a href="#9-exception-%E5%AF%B9%E8%B1%A1">9、exception 对象</a></li>
+</ul>
+</li>
+<li><a href="#jsp%E7%9A%84%E4%B8%89%E5%A4%A7%E6%8C%87%E4%BB%A4">JSP的三大指令</a>
+<ul>
+<li><a href="#page-%E6%8C%87%E4%BB%A4">Page 指令</a></li>
+<li><a href="#include%E6%8C%87%E4%BB%A4">include指令</a></li>
+<li><a href="#taglib%E6%8C%87%E4%BB%A4">Taglib指令</a></li>
+</ul>
+</li>
+<li><a href="#jsp%E5%87%BA%E7%8E%B0%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">JSP出现的状态码</a></li>
+<li><a href="#el%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8">EL表达式【常用】</a></li>
+<li><a href="#jstl">JSTL</a>
+<ul>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介：</a></li>
+<li><a href="#jatl%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F">JATL的作用和语法格式</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%A0%87%E7%AD%BE">核心标签</a></li>
+<li><a href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%A0%87%E7%AD%BE">格式化标签</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="jsp">JSP</h1>
+<p>JSP全名为Java Server Pages，中文名叫java服务器页面，其根本是一个简化的Servlet设计，它 是由Sun Microsystems公司倡导、许多公司参与一起建立的一种动态网页技术标准。JSP技术有点类似ASP技术，它是在传统的网页HTML文件(<em>.htm,</em>.html)中插入Java程序段(Scriptlet)和JSP标记(tag)，从而形成JSP文件，后缀名为(*.jsp)。 用JSP开发的Web应用是跨平台的，既能在Linux下运行，也能在其他操作系统上运行。</p>
+<p>JSP将网页逻辑与网页设计的显示分离，支持可重用的基于组件的设计，使基于Web的应用程序的开发变得迅速和容易。</p>
+<p>*.html 静态页面(包含固定的页面内容)</p>
+<p>*.jsp 动态页面(页面数据可以动态更新,支持嵌套java代码和html代码)</p>
+<h1 id="jsp出现原因">JSP出现原因</h1>
+<ol>
+<li>servlet显示信息不方便，引入了JSP</li>
+<li>JSP本质上也是一个servlet</li>
+<li>JSP就是在HTML页面中嵌套了java代码</li>
+</ol>
+<h1 id="jsp中如何嵌套java代码">JSP中如何嵌套Java代码</h1>
+<pre><code class="language-java">声明标签 &lt;%!变量或者方法声明%&gt;
+表达式标签 &lt;%= 表达式%&gt; 在页面上显示的效果
+程序代码标签 &lt;%java代码%&gt; 页面上动态展示内容
+
+page指令:(用于设置当前代码中的一些编码方式、语言、导的包……)
+	&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot;pageEncoding=&quot;UTF-8&quot;%&gt;
+    
+&lt;body&gt;
+&lt;%! int i=10;%&gt;&lt;!--成员变量--&gt;
+&lt;%! public void show(){}%&gt; &lt;!--成员方法--&gt;
+&lt;%=i%&gt; &lt;!--输出变量值--&gt;
+&lt;/body&gt;
+ 
+注释：
+    &lt;!-- html注释内容,查看源码时能看到 --&gt;
+    &lt;%-- jsp注释,查看页面源码时看不到 --%&gt;
+</code></pre>
+<h1 id="jsp原理">JSP原理</h1>
+<p>当浏览器访问http://localhost:8080/day9_1/index.jsp。服务器发现后缀为.jsp，它会根据路径找到index.jsp文件，会将index.jsp翻译成index_jsp.java文件，对这个java文件进行编译，产生一个index_jsp.class文件，将class文件加载运行。</p>
+<p>将JSP翻译成java文件，它是将JSP中的所有的HTML代码通过流进行输出，也就是说最终翻译成class，被虚拟机加载，它本质是servlet，它就会往回响应，响应回去就是把JSP中的HTML代码以流的方式写回浏览器。所以在JSP中展示出了HTML代码。</p>
+<h1 id="jsp的9个内置对象重点">JSP的9个内置对象【重点】</h1>
+<p>JSP中一共预先定义了9个这样的对象，分别为：request、response、session、application、out、pagecontext、config、page、exception</p>
+<h2 id="1-request对象">1、request对象！</h2>
+<p>request 对象是 javax.servlet.httpServletRequest类型的对象。 该对象代表了<strong>客户端的请求信息</strong>，主要用于接受通过HTTP协议传送到服务器的数据。（包括头信息、系统信息、请求方式以及请求参数等）。<strong>request对象的作用域为一次请求。</strong></p>
+<h2 id="2-response对象">2、response对象！</h2>
+<p>response 代表的是<strong>对客户端的响应</strong>，主要是将JSP容器处理过的对象传回到客户端。response对象也具有作用域，它只在JSP页面内有效。所属类型: HttpServletResponse。</p>
+<h2 id="3-session对象">3、session对象！</h2>
+<p>session 对象是由服务器自动创建的与用户请求相关的对象。服务器为每个用户都生成一个session对象，用于保存该用户的信息，跟踪用户的操作状态。session对象内部使用Map类来保存数据，因此保存数据的格式为“Key/value”。 session对象的value可以使复杂的对象类型，而不仅仅局限于字符串类型。<strong>作用域为会话期间</strong>，所属类型: HttpSession。</p>
+<h2 id="4-application对象">4、application对象！</h2>
+<p><strong>application 对象可将信息保存在服务器中，直到服务器关闭，否则application对象中保存的信息会在整个应用中都有效</strong>。<br>
+与session对象相比，application对象生命周期更长，类似于系统的“全局变量” ServletContext。<br>
+<strong><mark>区别：</mark></strong><br>
+request:单次请求<br>
+session:浏览器访问期间(会话期间)<br>
+application:服务器启动期间,所存的数据可以跨浏览器</p>
+<h2 id="5-out-对象">5、out 对象</h2>
+<p><strong>out 对象用于在Web浏览器内输出信息</strong>，并且管理应用服务器上的输出缓冲区。在使用 out 对象输出数据时，可以对数据缓冲区进行操作，及时清除缓冲区中的残余数据，为其他的输出让出缓冲空间。待数据输出完毕后，要及时关闭输出流。</p>
+<pre><code class="language-java">//可以用于弹出弹窗
+out.print(&quot;&lt;script type='text/javascript'&gt;alert('用户名不存在');location.href='index.jsp'&lt;/script&gt;&quot;);
+</code></pre>
+<h2 id="6-pagecontext-对象">6、pageContext 对象</h2>
+<p><strong>pageContext 对象的作用是取得任何范围的参数</strong>，通过它可以获取 JSP页面的out、request、reponse、session、application 等对象。pageContext对象的创建和初始化都是由容器来完成的，在JSP页面中可以直接使用pageContext对象。</p>
+<h2 id="7-config-对象">7、config 对象</h2>
+<p>config 对象的主要作用是<strong>取得服务器的配置信息</strong>。通过 pageConext对象的 getServletConfig() 方法可以获取一个config对象。当一个Servlet 初始化时，容器把某些信息通过config对象传递给这个 Servlet。 开发者可以在web.xml 文件中为应用程序环境中的Servlet程序和JSP页面提供初始化参数。</p>
+<pre><code class="language-java">//将image路径转换成服务器端的路径
+String url= config.getServletContext().getRealPath(&quot;/image&quot;);
+&lt;h1&gt;url=&lt;%=url %&gt;&lt;/h1&gt;
+</code></pre>
+<h2 id="8-page-对象">8、page 对象</h2>
+<p>page 对象代表JSP本身，只有在JSP页面内才是合法的。 page隐含对象本质上包含当前 Servlet接口引用的变量，<strong>类似于Java编程中的 this 指针</strong>。</p>
+<h2 id="9-exception-对象">9、exception 对象</h2>
+<p>exception 对象的作用是<strong>显示异常信息</strong>，只有在包含 isErrorPage=&quot;true&quot; 的页面中才可以被使用，在一般的JSP页面中使用该对象将无法编译JSP文件。excepation对象和Java的所有对象一样，都具有系统提供的继承结构。<br>
+exception 对象几乎定义了所有异常情况。在Java程序中，可以使用try/catch关键字来处理异常情况； 如果在JSP页面中出现没有捕获到的异常，就会生成exception 对象，并把 exception 对象传送到在page指令中设定的错误页面中，然后在错误页面中处理相应的 exception 对象。</p>
+<p>(1)先在可能发生错误的页面中添加errorPage属性:</p>
+<pre><code class="language-java">&lt;%@ page pageEncoding=&quot;utf-8&quot;
+errorPage=&quot;error.jsp&quot;
+contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+</code></pre>
+<p>(2) 在error.jsp页面中设置isErrorPage=&quot;true&quot; 的属性<br>
+(使用exception对象之前，需要先将当前页面设置成错误页面）</p>
+<pre><code class="language-java">&lt;%@ page language=&quot;java&quot; isErrorPage=&quot;true&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+</code></pre>
+<p>jsp存值的作用域:<br>
+pageContext   -&gt;  request     -&gt; session       -&gt; application<br>
+当前页面       单次请求有效  当前会话期间     服务器运行期间有效</p>
+<h1 id="jsp的三大指令">JSP的三大指令</h1>
+<p>JSP指令用来设置整个JSP页面相关的属性，如网页的编码方式和脚本语言。</p>
+<pre><code class="language-java">语法格式如下：
+    &lt;%@ directive attribute=&quot;value&quot; %&gt;
+	directive：指令名称 attribute 属性名 value:属性值
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page</td>
+<td style="text-align:left">定义网路依赖性，比如脚本语言、error页面、缓存需求等</td>
+</tr>
+<tr>
+<td>include</td>
+<td style="text-align:left">包含其他文件</td>
+</tr>
+<tr>
+<td>include</td>
+<td style="text-align:left">引入标签库的定义</td>
+</tr>
+</tbody>
+</table>
+<h2 id="page-指令">Page 指令</h2>
+<pre><code class="language-java">Page指令为容器提供当前页面的使用说明
+一个JSP页面可以包含多个page指令
+Page指令的语法格式：
+	&lt;%@ page attribute=&quot;value&quot; %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>language</td>
+<td>java</td>
+<td>解释该JSP文件时采用的语言，一般为java语言，默认为java</td>
+</tr>
+<tr>
+<td>extends</td>
+<td>任何类的全名</td>
+<td>编译该JSP文件时继承哪个类，JSP为Servlet，因此当指明继承普通类时需要实现Servlet的init、destroy等方法</td>
+</tr>
+<tr>
+<td>import</td>
+<td>任何包名、类名</td>
+<td>引入该JSP中用到的类、包等，import是唯一可以声明多次的page指令属性，一个import可以引用uogelei，中间用英文逗号隔开&lt;%@ page import=包名.类名，包名.类名%&gt;</td>
+</tr>
+<tr>
+<td>session</td>
+<td>true、false</td>
+<td>该JSP内是否内置Session对象，如果为true，则内置Session对象，可直接使用，否则反之，默认为true</td>
+</tr>
+<tr>
+<td>autoFlush</td>
+<td>true、false</td>
+<td>是否运行缓存，如果为true，则使用out.println()等方法输出的字符串并不是立刻到达客户端服务器的，而是暂时存到缓存里，缓存满了或者程序行完毕或者执行out.flush()操作时才到客户端，默认为true。</td>
+</tr>
+<tr>
+<td>buffer</td>
+<td>none或者数字KB</td>
+<td>指定缓存大小，当autoFlush设为true时有效，例如&lt;%@ page buffer=10kb%&gt;</td>
+</tr>
+<tr>
+<td>isThreadSafe</td>
+<td>true、false</td>
+<td>是否线程安全，如果为true，则运行多个线程同时运行该jsp程序，否则只运行一个线程，其余线程等待，默认为false</td>
+</tr>
+<tr>
+<td>isErrorPage</td>
+<td>true、false</td>
+<td>指定该页面是否为错误显示页面，如果为true，则该JSP内置有一个Exception对象exception，可直接使用，否则没有，默认为false</td>
+</tr>
+<tr>
+<td>errorPage</td>
+<td>某个JSP页面的相对路径</td>
+<td>指明一个错误页面，如果该JSP程序抛出一个未捕捉的异常，则转到errorPage指定的页面，errorPage指定的页面通</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>有效的文档类型</td>
+<td>客户端浏览器根据该属性判断文档类型，例如 HTML格式为text/html、纯文本格式为text/plain、JPG图像为image/jpeg、GIF图像为image/gifWORD文档为application/msword，该属性常跟着charset设置编码一起，作用是通知服务器和浏览器都使用同一个码表</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>UTF-8,ISO-8859-</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="include指令">include指令</h2>
+<p>JSP可以通过include指令来包含其他文件。被包含的文件可以是JSP文件、HTML文件或文本文件。包含的文件就好像是该JSP文件的一部分，会被同时编译执行。</p>
+<pre><code class="language-java">Include指令的语法格式如下：
+   &lt;%@ include file=&quot;文件相对 url 地址&quot; %&gt; 
+</code></pre>
+<p>include 指令中的文件名实际上是一个相对的 URL 地址。<br>
+如果您没有给文件关联一个路径，JSP编译器默认在当前路径下寻找。</p>
+<h2 id="taglib指令">Taglib指令</h2>
+<p>JSP API允许<strong>用户自定义标签</strong>，一个自定义标签库就是自定义标签的集合。<br>
+Taglib指令引入一个自定义标签集合的定义，包括库路径、自定义标签。</p>
+<pre><code class="language-java">&lt;%@ taglib uri=&quot;uri&quot; prefix=&quot;&quot; %&gt;
+uri属性确定标签库的位置，prefix属性指定标签库的前缀(可自定义)
+</code></pre>
+<h1 id="jsp出现的状态码">JSP出现的状态码</h1>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1597417114112.png" alt="" loading="lazy"></figure>
+<h1 id="el表达式常用">EL表达式【常用】</h1>
+<p>EL表达式定义：Expression Language，表示语言，只负责取值</p>
+<p>EL表达式语法：</p>
+<ul>
+<li>语法格式：<strong>${需要展示信息的名字}</strong></li>
+<li>语法（想要跳过默认顺序获取时）: <strong>${requestScope.key}</strong></li>
+</ul>
+<p><strong><mark>注意：</mark></strong></p>
+<p>当表达式没有指定变量或者对象的范围时，</p>
+<p>那么容器会依次从pageContext—&gt;request—&gt;session—&gt;application中查找该变量或对象,我们可以通过隐含对象获得指定作用域的值:</p>
+<p>pageScope对象，用于获取当前页面的属性值<br>
+requestScope对象，用于获取请求范围的属性值<br>
+sessionScope对象，用于获取会话范围的属性值<br>
+applicationScope对象，用于获取程序范围的属性值</p>
+<p><strong>EL中基础操作符：</strong><br>
+<img src="https://Vinci-Ma.github.io/post-images/1597417100590.png" alt="" loading="lazy"></p>
+<h1 id="jstl">JSTL</h1>
+<h2 id="简介">简介：</h2>
+<p>JSP标准标签库（JSTL）是一个JSP标签集合，它封装了JSP应用的通用核心功能。</p>
+<p>JSTL支持通用的、结构化的任务，比如迭代，条件判断，XML文档操作，国际化标签，SQL标签。 除了这些，它还提供了一个框架来使用集成JSTL的自定义标签。</p>
+<p>根据JSTL标签所提供的功能，可以将其分为5个类别。核心标签 格式化标签 sql标签 xml标签 jstl函数。</p>
+<h2 id="jatl的作用和语法格式">JATL的作用和语法格式</h2>
+<p><strong>作用：简化jsp页面编写代码</strong></p>
+<p>语法格式：1、配置standard.jar 和 jstl.jar 到 /WEB-INF/lib/ 下</p>
+<p>2、在JSP页面中引入&lt;%@ taglib prefix=”页面使用的名称” uri=”功能范围的路径”%&gt;</p>
+<table>
+<thead>
+<tr>
+<th>功能范围</th>
+<th>url</th>
+<th>前缀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core</td>
+<td>http://java.sun.com/jsp/jstl/core</td>
+<td>c</td>
+</tr>
+<tr>
+<td>i18n</td>
+<td>http://java.sun.com/jsp/jstl/fmt</td>
+<td>fmt</td>
+</tr>
+<tr>
+<td>sql</td>
+<td>http://java.sun.com/jsp/jstl/sql</td>
+<td>sql</td>
+</tr>
+<tr>
+<td>xml</td>
+<td>http://java.sun.com/jsp/jstl/xml</td>
+<td>x</td>
+</tr>
+<tr>
+<td>functions</td>
+<td>http://java.sun.com/jsp/jstl/function</td>
+<td>fn</td>
+</tr>
+</tbody>
+</table>
+<h2 id="核心标签">核心标签</h2>
+<p>核心标签是最常用的 JSTL标签。引用核心标签库的语法如下：</p>
+<pre><code class="language-java">&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+</code></pre>
+<p>核心标签的分类：</p>
+<p>表达式操作 ：out、set、remove、catch</p>
+<p>流程控制 ：if、choose、when、otherwise</p>
+<p>迭代操作： forEach、forTokens</p>
+<p>URL操作： import、param、url、redirect</p>
+<p><strong>Set标签</strong><br>
+<img src="https://Vinci-Ma.github.io/post-images/1597417065005.png" alt="" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1597417073508.png" alt="" loading="lazy"></p>
+<h2 id="格式化标签">格式化标签</h2>
+<p><strong>1、fmt:formatDate 作用：将日期类型格式化为指定模式的字符串</strong></p>
+<p>属性</p>
+<p>value：将要被格式化的数据</p>
+<p>pattern：格式化的模式，与SimpleDateFormat的参数设置一样</p>
+<p>var：格式化后的字符串所要存放的变量，若不指定var，则会将格式化的结果直接显示在页面</p>
+<p>scope：变量存放的域属性空间，默认page</p>
+<p>type：其取值为date、time、both，表示给出的value是日期、时间、还是两者都包含，默认是date</p>
+<p><strong>2、fmt:parseDate 作用：用于将指定字符串转化为日期类型</strong></p>
+<p>&lt;fmt:parseDate value=&quot;$(now)&quot; pattern=&quot;yyyy-MM-dd&quot; var=&quot;today&quot;/&gt;</p>
+<p>Value：服务器获取的时间</p>
+<p>Pattern：转换的格式</p>
+<p>Var：页面显示的变量</p>
+<p><strong>3、fmt:formatNumber 按照指定格式对数字进行格式化</strong></p>
+<p>属性</p>
+<p>maxIntegerDigits：整数部分最多的位数</p>
+<p>minIntegerDigits：整数部分最少的位数</p>
+<p>maxFrctionDigits：小数部分最多的位数</p>
+<p>minFrctionDigits：小数部分最少的位数</p>
+<p>var：存储格式化结果的变量</p>
+<p>scope：var属性的作用域</p>
+<p>integerOnly：是否只解析整型数true或者浮点数false</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Servlet学习]]></title>
+        <id>https://Vinci-Ma.github.io/post/servlet-xue-xi/</id>
+        <link href="https://Vinci-Ma.github.io/post/servlet-xue-xi/">
+        </link>
+        <updated>2020-08-14T14:54:35.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#servlet%E4%BB%8B%E7%BB%8D">Servlet介绍</a></li>
+<li><a href="#servlet-api">Servlet API</a></li>
+<li><a href="#servlet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">Servlet工作原理</a></li>
+<li><a href="#servlet%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">Servlet的生命周期</a></li>
+<li><a href="#%E8%AF%B7%E6%B1%82">请求</a>
+<ul>
+<li><a href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95">常用方法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%93%8D%E5%BA%94">响应</a></li>
+<li><a href="#%E4%BC%9A%E8%AF%9D">会话</a></li>
+<li><a href="#%E8%8E%B7%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0">获得初始化参数</a></li>
+<li><a href="#servlet30">servlet3.0</a></li>
+</ul>
+</p>
+<h1 id="servlet介绍">Servlet介绍</h1>
+<ul>
+<li>
+<p>1、Servlet（Server Applet），全称Java Servlet。==是用Java编写的服务器端程序，其主要功能在于交互式地浏览和修改数据，生成动态Web内容。==狭义的Servlet是指Java语言实现的一个接口，广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。</p>
+</li>
+<li>
+<p>2、 Servlet运行于支持Java的应用服务器中。从实现上讲，Servlet可以响应任何类型的请求，但绝大多数情况下Servlet只用来<mark>扩展基于HTTP协议的Web服务器</mark>。</p>
+</li>
+<li>
+<p>3、Servlet工作模式：</p>
+<ul>
+<li>客户端发送请求至服务器。</li>
+<li>服务器启动大概并调用Servlet，Servlet根据客户端请求生成响应内容并将其传给服务器。</li>
+<li>服务器将响应并返回客户端。</li>
+</ul>
+</li>
+</ul>
+<h1 id="servlet-api">Servlet API</h1>
+<ul>
+<li>javax.serv letinterface Servlet
+<ul>
+<li>1.init()</li>
+<li>2.service()</li>
+<li>3.destroy()</li>
+<li>4.getServletConfig()</li>
+<li>5.getServletInfo()</li>
+</ul>
+</li>
+<li>javax.servlet abstract GenericServlet（除了实现或继承Servlet接口中的五个方法外还提供了额外方法）
+<ul>
+<li>1.getInitParameter()</li>
+<li>2.getServletName()</li>
+<li>3.getServletContext()</li>
+</ul>
+</li>
+<li>javax.servlet.http abstract HttpServlet（重载service()方法）
+<ul>
+<li>1.doGet()</li>
+<li>2.doPost()</li>
+</ul>
+</li>
+</ul>
+<h1 id="servlet工作原理">Servlet工作原理</h1>
+<p>(1) Servlet接口定义了Servlet与servlet容器之间的契约。这个契约是：Servlet容器将Servlet类载入内存，并产生<br>
+Servlet实例和调用它具体的方法。但是要注意的是，在一个应用程序中，每种Servlet类型只能有一个实例。<br>
+(2)用户请求致使Servlet容器调用Servlet的Service（）方法，并传入一个ServletRequest对象和一个<br>
+ServletResponse对象。ServletRequest对象和ServletResponse对象都是由Servlet容器（例如TomCat）封<br>
+装好的，并不需要程序员去实现，程序员可以直接使用这两个对象。<br>
+(3)ServletRequest中封装了当前的Http请求，因此，开发人员不必解析和操作原始的Http数据。ServletResponse<br>
+表示当前用户的Http响应，程序员只需直接操作ServletResponse对象就能把响应轻松的发回给用户。<br>
+(4)对于每一个应用程序，Servlet容器还会创建一个ServletContext对象。这个对象中封装了上下文（应用程序）<br>
+的环境详情。每个应用程序只有一个ServletContext。每个Servlet对象也都有一个封装Servlet配置的<br>
+ServletConfig对象。</p>
+<h1 id="servlet的生命周期">Servlet的生命周期</h1>
+<p>当客户端首次发送第一次请求后，由容器(web服务器(tomcat))去解析请求, 根据请求找到对应的servlet,判断该类的对象是否存在，不存在则创建servlet实例，调取init()方法 进行初始化操作,初始化完成后调取service()方法,由service()判断客户端的请求方式，如果是get，则执行doGet(),如果是post则执行doPost().处理方法完成后,作出相应结果给客户端.单次请求处理完毕。<br>
+当用户发送第二次以后的请求时,会判断对象是否存在,但是不再执行init()，而直接执行service方法,调取doGet()/doPost()方法。<br>
+当服务器关闭时调取destroy()方法进行销毁。<br>
+四个过程:<br>
+(1)实例化 --先创建servlet实例<br>
+(2)初始化 --init()<br>
+(3)处理请求 ---service()<br>
+(4)服务终止 --destory()</p>
+<h1 id="请求">请求</h1>
+<p>HttpServletRequest表示Http环境中的Servlet请求。它扩展于javax.servlet.ServletRequest接口)</p>
+<h2 id="常用方法">常用方法</h2>
+<ul>
+<li>1、String getParameter(String name) 根据表单组件名称获取提交数据，返回值是String<br>
+注：服务器在接收数据时使用字符串统一接收</li>
+<li>2、String[ ] getParameterValues(String name) 获取表单组件对应多个值时的请求数据</li>
+<li>3、void setCharacterEncoding(String charset) 指定每个请求的编码(针对post请求才起作用)</li>
+<li>4、RequestDispatcher getRequestDispatcher(String path) --跳转页面</li>
+</ul>
+<p>返回一个RequestDispatcher对象，该对象的forward( )方法用于转发请求</p>
+<pre><code class="language-java">示例：request.getRequestDispatcher(&quot;../success.jsp&quot;).forward(request,response);
+</code></pre>
+<ul>
+<li>5、存值 request.setAttribute(&quot;key&quot;,value);</li>
+<li>6、取值 request.getAttribute(&quot;key&quot;);//取值后需要向下转型</li>
+</ul>
+<h1 id="响应">响应</h1>
+<p>在Service API中，定义了一个HttpServletResponse接口，它继承自ServletResponse接口，专门用来封装HTTP响应消息。 在HttpServletResponse接口中定义了向客户端发送响应状态码，响应消息头，响应消息体的方法。</p>
+<p><strong>常用方法：</strong></p>
+<p>void addCookie(Cookie var1)：给这个响应添加一个cookie</p>
+<p>void sendRedirect(String var1) ：发送一条响应码，将浏览器跳转到指定的位置</p>
+<p>PrintWriter getWriter() ：获得字符流，通过字符流的write(String s)方法可以将字符串设置到response 缓冲区中，随后Tomcat会将response缓冲区中的内容组装成Http响应返回给浏览器端。</p>
+<p>setContentType() ：设置响应内容的类型。</p>
+<p><strong>重定向和转发的对比：</strong></p>
+<p>重定向:response.sendRedirect()</p>
+<p>转发:request.getRequestDispatcher(&quot;../success.jsp&quot;).forward(request,response);</p>
+<p>相同点:都用来跳转页面。</p>
+<p>不同点:</p>
+<ul>
+<li>重定向时地址栏会改变,request中存储的数据会丢失.转发时地址栏显示的是请求页面的地址,request数据可以保存。</li>
+<li>转发属于一次请求一次响应,重定向属于两次请求(地址栏修改了两次)两次响应。</li>
+</ul>
+<p>补充:使用out对象往页面中输出js或html,css</p>
+<pre><code class="language-java">out.print(&quot;&lt;script type='text/javascript'&gt;alert('登录失败');location='../login.jsp'&lt;/script&gt;&quot;);
+</code></pre>
+<p>注:使用js跳转页面，也会丢失request中的数据</p>
+<h1 id="会话">会话</h1>
+<p>**会话（session）的概念:**从打开浏览器到关闭浏览器,期间访问服务器就称为一次会话</p>
+<p><strong>request &amp; session区别和联系：</strong></p>
+<ul>
+<li>
+<p>request存的值只能在单次请求中保存，保存的数据不能跨页面,当重定向时,request存的值会丢失。</p>
+</li>
+<li>
+<p>session的数据可以在多个页面中共享,即使重定向页面,数据不会丢失。</p>
+</li>
+<li>
+<p>session中可以包含n个request。</p>
+</li>
+</ul>
+<p><strong>常用方法：</strong></p>
+<ul>
+<li>
+<p>void setAttribute(String key,Object value) ：以key/value的形式保存对象值,将数据存储在服务器端</p>
+</li>
+<li>
+<p>Object getAttribute(String key) ：通过key获取对象值</p>
+</li>
+<li>
+<p>void invalidate() ：设置session对象失效</p>
+</li>
+<li>
+<p>String getId() ：获取sessionid,当第一次登录成功后，session会产生一个唯一的id，浏览器之后访问时如果发现id值还是之前id，那么说明当前访问的属于同一个会话</p>
+</li>
+<li>
+<p>void setMaxInactiveInterval(int interval) ：设定session的非活动时间</p>
+<ul>
+<li>方式一：</li>
+</ul>
+<pre><code class="language-java">session.setMaxInactiveInterval(10*60);//设置有效时间为10分钟
+</code></pre>
+<ul>
+<li>方式二：</li>
+</ul>
+<pre><code class="language-java">&lt;session-config&gt;
+&lt;session-timeout&gt;10&lt;/session-timeout&gt;//单位:分钟
+&lt;/session-config&gt;
+</code></pre>
+</li>
+<li>
+<p>int getMaxInactiveInterval() ：获取session的有效非活动时间(以秒为单位)，默认的有效时间:30分钟.</p>
+</li>
+<li>
+<p>void removeAttribute(String key)：从session中删除指定名称(key)所对应的对象</p>
+</li>
+<li>
+<p>小结 :让session失效的方式<br>
+（1）invalidate() （2）removeAttribute(&quot;key&quot;) （3）直接关闭浏览器。<br>
+示例:使用session验证用户是否登录<br>
+补充:<br>
+自动刷新到某页面:<br>
+注:在head标签中添加该标签，单位:秒</p>
+</li>
+</ul>
+<h1 id="获得初始化参数">获得初始化参数</h1>
+<p>request.setCharacterEncoding(&quot;utf-8&quot;);代码的耦合度太高，不便于后期维护修改。可以通过初始化参数实现。</p>
+<p><strong>实现方式:</strong></p>
+<p><strong>一、方式一</strong>：</p>
+<ul>
+<li>1、web.xml中先定义初始化参数</li>
+</ul>
+<pre><code class="language-java">&lt;servlet&gt;
+&lt;servlet-name&gt;&lt;/servlet-name&gt;
+&lt;servlet-class&gt;&lt;/servlet-class&gt;
+&lt;init-param&gt;
+&lt;param-name&gt;encoding&lt;/param-name&gt;
+&lt;param-value&gt;utf-8&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;/servlet&gt;
+</code></pre>
+<ul>
+<li>2、servlet中获得初始化参数，重写init()方法</li>
+</ul>
+<pre><code class="language-jav">public void init(ServletConfig config) throws ServletException {
+encoding= config.getInitParameter(&quot;encoding&quot;);
+}
+</code></pre>
+<p>注意:这种方式的初始化参数仅限于当前servlet中使用。</p>
+<p><strong>二、方式二全局初始化参数</strong></p>
+<ul>
+<li>1、定义，context-param是和servlet标签同级别</li>
+</ul>
+<pre><code class="language-java">&lt;context-param&gt;
+&lt;param-name&gt;bianma&lt;/param-name&gt;
+&lt;param-value&gt;utf-8&lt;/param-value&gt;
+&lt;/context-param&gt;
+</code></pre>
+<h1 id="servlet30">servlet3.0</h1>
+<p>从Servlet3.0开始，配置Servlet支持注解方式，但还是保留了配置web.xml方式，所有使用Servlet有两种方式：</p>
+<p>（1）Servlet类上使用@WebServlet注解进行配置</p>
+<p>（2）web.xml文件中配置<br>
+<img src="https://Vinci-Ma.github.io/post-images/1597416954401.png" alt="" loading="lazy"></p>
+<p><mark>注意</mark></p>
+<ul>
+<li>.loadOnStartup属性：标记容器是否在启动应用时就加载Servlet，默认不配置或数值为负数时表示客户端第一次请求Servlet时再加载；0或正数表示启动应用就加载，正数情况下，数值越小，加载该Servlet的优先级越高；</li>
+</ul>
+<pre><code class="language-java">@WebServlet(value=&quot;/test1&quot;,loadOnStartup=1)
+</code></pre>
+<ul>
+<li>
+<p>.name属性：可以指定也可以不指定，通过getServletName()可以获取到，若不指定，则为Servlet的完整类名，如：cn.edu.njit.servlet.UserServlet</p>
+</li>
+<li>
+<p>.urlPatterns/value属性： String[]类型，可以配置多个映射，如：urlPatterns={&quot;/user/test&quot;, &quot;/user/example&quot;}</p>
+</li>
+<li>
+<p>.在使用注解方式时，需要注意：<br>
+根元素中不能配置属性metadata-complete=&quot;true&quot;，否则无法加载Servlet。metadata-complete属性表示通知<br>
+Web容器是否寻找注解，默认不写或者设置false，容器会扫描注解，为Web应用程序构建有效的元数据；metadata-complete=&quot;true&quot;，会在启动时不扫描注解（annotation）。如果不扫描注解的话，用注解进行的配置就无法生效，例如：@WebServlet</p>
+</li>
+<li>
+<p>.urlPatterns的常用规则：</p>
+<ul>
+<li>/*或者/：拦截所有</li>
+<li>*.do：拦截指定后缀</li>
+<li>/user/test：拦截路径</li>
+<li>/user/.do、/.do、test*.do都是非法的，启动时候会报错</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[AJAX学习]]></title>
+        <id>https://Vinci-Ma.github.io/post/ajax-xue-xi/</id>
+        <link href="https://Vinci-Ma.github.io/post/ajax-xue-xi/">
+        </link>
+        <updated>2020-08-14T14:49:10.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#ajax%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%8E%9F%E7%90%86">Ajax技术与原理</a>
+<ul>
+<li><a href="#1-ajax%E7%AE%80%E4%BB%8B">1、Ajax简介</a></li>
+<li><a href="#2-ajax%E6%89%80%E5%8C%85%E5%90%AB%E7%9A%84%E6%8A%80%E6%9C%AF">2、Ajax所包含的技术</a></li>
+<li><a href="#3-ajax%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">3、Ajax的工作原理</a>
+<ul>
+<li><a href="#1-%E6%A8%A1%E5%9E%8B">1、模型</a></li>
+<li><a href="#2-%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F">2、交互方式</a></li>
+</ul>
+</li>
+<li><a href="#4-xmlhttprequest%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7">4、XMLHttpRequest常用属性</a>
+<ul>
+<li><a href="#1-onreadystatechange-%E5%B1%9E%E6%80%A7%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0">1、onreadystatechange 属性（回调函数）</a></li>
+<li><a href="#2-readystate-%E5%B1%9E%E6%80%A7">2、readyState 属性</a></li>
+<li><a href="#3-responsetext-%E5%B1%9E%E6%80%A7">3、responseText 属性</a></li>
+</ul>
+</li>
+<li><a href="#5-xmlhttprequest%E6%96%B9%E6%B3%95">5、XMLHttpRequest方法</a>
+<ul>
+<li><a href="#1-open-%E6%96%B9%E6%B3%95">1、open() 方法</a></li>
+<li><a href="#2-send-%E6%96%B9%E6%B3%95">2、send() 方法</a></li>
+<li><a href="#3-%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95">3、其他方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#ajax%E7%BC%96%E7%A8%8B%E6%AD%A5%E9%AA%A4%E5%9F%BA%E4%BA%8Ejs%E5%AE%9E%E7%8E%B0ajax">Ajax编程步骤（基于js实现ajax）</a>
+<ul>
+<li><a href="#1-%E5%88%9B%E5%BB%BAxmlhttprequest%E5%AF%B9%E8%B1%A1">1、创建XMLHttpRequest对象</a></li>
+<li><a href="#2-%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F">2、设置请求方式</a></li>
+<li><a href="#3-%E8%B0%83%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0">3、调用回调函数</a></li>
+<li><a href="#4-%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82">4、发送请求</a></li>
+</ul>
+</li>
+<li><a href="#jquery%E7%9A%84ajax%E6%93%8D%E4%BD%9C">jquery的ajax操作*</a><br>
+*
+<ul>
+<li><a href="#1-%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0ajax%E7%9A%84%E4%B8%8D%E8%B6%B3">1、传统方式实现Ajax的不足</a></li>
+<li><a href="#2-ajax%E6%96%B9%E6%B3%95">2、ajax()方法</a></li>
+<li><a href="#3-get-%E6%96%B9%E6%B3%95%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B-http-get-%E8%AF%B7%E6%B1%82%E8%BD%BD%E5%85%A5%E4%BF%A1%E6%81%AF">3、get() 方法通过远程 HTTP GET 请求载入信息</a></li>
+<li><a href="#4-post-%E6%96%B9%E6%B3%95%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B-http-get-%E8%AF%B7%E6%B1%82%E8%BD%BD%E5%85%A5%E4%BF%A1%E6%81%AF">4、post() 方法通过远程 HTTP GET 请求载入信息</a></li>
+</ul>
+</li>
+<li><a href="#json">JSON</a>
+<ul>
+<li><a href="#1-json%E6%A6%82%E5%BF%B5">1、JSON概念</a></li>
+<li><a href="#2-json%E5%AF%B9%E8%B1%A1%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">2、JSON对象定义和基本使用</a>
+<ul>
+<li><a href="#1-%E5%AE%9A%E4%B9%89">1、定义</a></li>
+<li><a href="#2-json%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BF%E9%97%AE">2、JSON对象的访问</a></li>
+</ul>
+</li>
+<li><a href="#3-json%E5%9C%A8java%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">3、JSON在java中的使用*</a>
+<ul>
+<li><a href="#java%E5%AF%B9%E8%B1%A1%E5%92%8Cjson%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2">java对象和json之间的转换</a>
+<ul>
+<li><a href="#1-%E5%8D%95%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%88%96map%E9%9B%86%E5%90%88">1、单个对象或map集合</a></li>
+<li><a href="#2-%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E5%92%8Cjson%E7%9A%84%E8%BD%AC%E6%8D%A2">2、对象集合和json的转换</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="ajax技术与原理">Ajax技术与原理</h1>
+<h2 id="1-ajax简介">1、Ajax简介</h2>
+<p>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。</p>
+<p>AJAX 不是新的编程语言，而是一种使用现有标准的新方法。</p>
+<p>AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。</p>
+<h2 id="2-ajax所包含的技术">2、Ajax所包含的技术</h2>
+<p>Ajax并非一种新的技术，而是几种原有技术的结合体。它由下列技术组合而成。</p>
+<pre><code class="language-java">1.使用CSS和XHTML来表示。
+2.使用DOM模型来交互和动态显示。
+3.使用XMLHttpRequest来和服务器进行异步通信。
+4.使用javascript来绑定和调用。
+</code></pre>
+<p>AJAX 的核心是 XMLHttpRequest 对象</p>
+<p>不同的浏览器创建 XMLHttpRequest 对象的方法是有差异的。</p>
+<p><strong>IE 浏览器使用 ActiveXObject，而其他的浏览器使用名为 XMLHttpRequest 的 JavaScript 内建对象</strong></p>
+<h2 id="3-ajax的工作原理">3、Ajax的工作原理</h2>
+<p>Ajax的工作原理相当于在用户和服务器之间加了—个<strong>中间层(AJAX引擎)</strong>，使用户操作与服务器响应<strong>异步化</strong>。</p>
+<p>并不是所有的用户请求都提交给服务器。像—些数据验证和数据处理等都交给Ajax引擎自己来做,，只有确定需要从服务器读取新数据时再由Ajax引擎代为向服务器提交请求。</p>
+<p><strong>两者区别：</strong></p>
+<h3 id="1-模型">1、模型</h3>
+<p>1、传统的Web模型<br>
+<img src="https://Vinci-Ma.github.io/post-images/1597416658095.png" alt="" loading="lazy"><br>
+2、Ajax模型<br>
+<img src="https://Vinci-Ma.github.io/post-images/1597416689051.png" alt="" loading="lazy"></p>
+<h3 id="2-交互方式">2、交互方式</h3>
+<p>1、浏览器的普通交互方式</p>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1597416712107.jpg" alt="" loading="lazy"></figure>
+<p>2、浏览器的Ajax交互方式</p>
+<figure data-type="image" tabindex="2"><img src="https://Vinci-Ma.github.io/post-images/1597416723665.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://Vinci-Ma.github.io/post-images/1597416744223.png" alt="" loading="lazy"></figure>
+<h2 id="4-xmlhttprequest常用属性">4、XMLHttpRequest常用属性</h2>
+<h3 id="1-onreadystatechange-属性回调函数">1、onreadystatechange 属性（回调函数）</h3>
+<p>onreadystatechange 属性存有处理服务器响应的函数。 下面的代码定义一个空的函数，可同时对onreadystatechange 属性进行设置：</p>
+<pre><code class="language-java">xmlHttp.onreadystatechange = function() { //我们需要在这写一些代码}
+</code></pre>
+<h3 id="2-readystate-属性">2、readyState 属性</h3>
+<p>readyState 属性<strong>存有服务器响应的状态信息</strong>。每当 readyState 改变时，onreadystatechange 函数就会被执行。<br>
+readyState 属性可能的值：</p>
+<h3 id="3-responsetext-属性">3、responseText 属性</h3>
+<p>可以通过 responseText 属性来取回由服务器返回的数据。 在我们的代码中，我们将把时间文本框的值设置为等于responseText：</p>
+<pre><code class="language-java">xmlHttp.onreadystatechange = function() {
+if (xmlHttp.readyState == 4) {
+document.myForm.time.value = xmlHttp.responseText;
+}
+}
+</code></pre>
+<h2 id="5-xmlhttprequest方法">5、XMLHttpRequest方法</h2>
+<h3 id="1-open-方法">1、open() 方法</h3>
+<p>open() 有三个参数。第一个参数定义发送请求所使用的方法，第二个参数规定服务器端脚本的URL，第三个参数规定应当对请求进行异步地处理。</p>
+<pre><code class="language-java">xmlHttp.open(&quot;GET&quot;,&quot;test.php&quot;,true);
+</code></pre>
+<h3 id="2-send-方法">2、send() 方法</h3>
+<p>send() 方法将请求送往服务器。如果我们假设 HTML 文件和 PHP 文件位于相同的目录，那么代码是这样的：</p>
+<pre><code class="language-java">xmlHttp.send(null);
+</code></pre>
+<h3 id="3-其他方法">3、其他方法</h3>
+<figure data-type="image" tabindex="4"><img src="https://Vinci-Ma.github.io/post-images/1597416761579.png" alt="" loading="lazy"></figure>
+<h1 id="ajax编程步骤基于js实现ajax">Ajax编程步骤（基于js实现ajax）</h1>
+<pre><code class="language-java">1. 创建XMLHttpRequest对象。
+2. 设置请求方式。
+3. 调用回调函数。
+4. 发送请求。
+</code></pre>
+<h2 id="1-创建xmlhttprequest对象">1、创建XMLHttpRequest对象</h2>
+<pre><code class="language-java">var xmlHttp=new XMLHttpRequest();
+如果是IE5或者IE6浏览器，则使用ActiveX对象，创建方法是：
+var xmlHttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+一般我们手写AJAX的时候，首先要判断该浏览器是否支持XMLHttpRequest对象，如果支持则创建该对象，如果不支持则创建ActiveX对象。JS代码如下：
+    //第一步：创建XMLHttpRequest对象
+var xmlHttp;
+if (window.XMLHttpRequest) {
+    //非IE
+    xmlHttp = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+    //IE
+    xmlHttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;)
+}
+</code></pre>
+<h2 id="2-设置请求方式">2、设置请求方式</h2>
+<pre><code class="language-java">//第二步：设置和服务器端交互的相应参数，向路径http://localhost:8080/JsLearning3/getAjax准备发送数据
+var url = &quot;http://localhost:8080/JsLearning3/getAjax&quot;;
+xmlHttp.open(&quot;POST&quot;, url, true);
+</code></pre>
+<h2 id="3-调用回调函数">3、调用回调函数</h2>
+<pre><code class="language-java">//第三步：注册回调函数
+xmlHttp.onreadystatechange = function() {
+    //判断状态
+    if (xmlHttp.readyState == 4) {
+        //接收返回的内容
+        if (xmlHttp.status == 200) {
+            var obj = document.getElementById(id);
+            obj.innerHTML = xmlHttp.responseText;
+        } else {
+        	alert(&quot;AJAX服务器返回错误！&quot;);
+        }
+    }
+}
+</code></pre>
+<h2 id="4-发送请求">4、发送请求</h2>
+<pre><code class="language-java">//第四步：设置发送请求的内容和发送报送。然后发送请求
+var uname= document.getElementsByName(&quot;userName&quot;)[0].value;
+var upass= document.getElementsByName(&quot;userPass&quot;)[0].value ;
+var params = &quot;userName=&quot; + uname+ &quot;&amp;userPass=&quot; +upass+ &quot;&amp;time=&quot; + Math.random();
+// 增加time随机参数，防止读取缓存
+xmlHttp.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded;charset=UTF-8&quot;);
+
+// 向请求添加 HTTP 头，POST如果有数据一定加加！！！！
+xmlHttp.send(params);
+</code></pre>
+<h1 id="jquery的ajax操作">jquery的ajax操作*</h1>
+<h3 id="1-传统方式实现ajax的不足">1、传统方式实现Ajax的不足</h3>
+<p>步骤繁琐，方法、属性、常用值较多不好记忆</p>
+<h3 id="2-ajax方法">2、ajax()方法</h3>
+<p>可以通过发送 HTTP请求加载远程数据，是 jQuery 最底层的 Ajax 实现，具有较高灵活性。</p>
+<p>$.ajax([settings]);//参数settings是方法的参数列表，用于配置Ajax请求的键值对集合；</p>
+<pre><code class="language-java">$.ajax({
+    url:请求地址
+    type:&quot;get | post | put | delete &quot; 默认是get,
+    data:请求参数 {&quot;id&quot;:&quot;123&quot;,&quot;pwd&quot;:&quot;123456&quot;},
+    dataType:请求数据类型&quot;html | text | json | xml | script | jsonp &quot;,
+    success:function(data,dataTextStatus,jqxhr){ },//请求成功时
+error:function(jqxhr,textStatus,error)//请求失败时
+})
+</code></pre>
+<h3 id="3-get-方法通过远程-http-get-请求载入信息">3、get() 方法通过远程 HTTP GET 请求载入信息</h3>
+<p>这是一个简单的 GET 请求功能以取代复杂 $.ajax</p>
+<pre><code class="language-java">$.get(url,data,function(result) {
+//省略将服务器返回的数据显示到页面的代码
+});
+url:请求的路径
+data:发送的数据
+success:成功函数
+datatype 返回的数据
+</code></pre>
+<h3 id="4-post-方法通过远程-http-get-请求载入信息">4、post() 方法通过远程 HTTP GET 请求载入信息</h3>
+<pre><code class="language-java">$.post(url,data,function(result) {
+//省略将服务器返回的数据显示到页面的代码
+});
+url:请求的路径
+data:发送的数据
+success:成功函数
+datatype 返回的数据
+</code></pre>
+<h1 id="json">JSON</h1>
+<h2 id="1-json概念">1、JSON概念</h2>
+<p>JSON (JavaScript Object Notation) 是一种轻量级的数据交换格式。 易于人阅读和编写。同时也易于机器解析和生成。</p>
+<h2 id="2-json对象定义和基本使用">2、JSON对象定义和基本使用</h2>
+<h3 id="1-定义">1、定义</h3>
+<pre><code class="language-java">var 变量名 = {
+“key” : value , // Number类型
+“key2” : “value” , // 字符串类型
+“key3” : [] , // 数组类型
+“key4” : {}, // json 对象类型
+“key5” : [{},{}] // json 数组
+};
+</code></pre>
+<h3 id="2-json对象的访问">2、JSON对象的访问</h3>
+<p>son对象，顾名思义，就知道它是一个对象。里面的key就是对象的属性。我们要访问一个对象的属性，只需要使用【对象名.属性名】的方式访问即可</p>
+<pre><code class="language-java">&lt;script type=&quot;text/javascript&quot;&gt;
+// json的定义
+var jsons = {
+&quot;key1&quot;:&quot;abc&quot;, // 字符串类型
+&quot;key2&quot;:1234, // Number
+&quot;key3&quot;:[1234,&quot;21341&quot;,&quot;53&quot;], // 数组
+&quot;key4&quot;:{ // json类型
+    &quot;key4_1&quot; : 12,
+    &quot;key4_2&quot; : &quot;kkk&quot;
+    },
+&quot;key5&quot;:[{ // json数组
+    &quot;key5_1_1&quot; : 12,
+    &quot;key5_1_2&quot; : &quot;abc&quot;
+    },{
+        &quot;key5_2_1&quot; : 41,
+            &quot;key5_2_2&quot; : &quot;bbj&quot;
+        }]
+};
+// 访问json的属性
+alert(jsons.key1); // &quot;abc&quot;
+// 访问json的数组属性
+alert(jsons.key3[1]); // &quot;21341&quot;
+// 访问json的json属性
+alert(jsons.key4.key4_1);//12
+// 访问json的json数组
+alert(jsons.key5[0].key5_1_2);//&quot;abc&quot;
+&lt;/script&gt;
+</code></pre>
+<h2 id="3-json在java中的使用">3、JSON在java中的使用*</h2>
+<figure data-type="image" tabindex="5"><img src="https://Vinci-Ma.github.io/post-images/1597416788349.png" alt="" loading="lazy"></figure>
+<h3 id="java对象和json之间的转换">java对象和json之间的转换</h3>
+<h4 id="1-单个对象或map集合">1、单个对象或map集合</h4>
+<pre><code class="language-java">java-&gt;json：
+    Users user2=new Users();
+    user2.setUsername(&quot;李四&quot;);
+    user2.setPassword(&quot;abc&quot;);
+    user2.setAge(20);
+    JSONObject obj=JSONObject.fromObject(user);//obj就是json格式的
+
+json-&gt;java
+    String str=&quot;{'username':'李四','password':'admin','age':19}&quot;;
+    JSONObject json=JSONObject.fromObject(str);
+    Users user=(Users)JSONObject.toBean(json,Users.class);
+</code></pre>
+<h4 id="2-对象集合和json的转换">2、对象集合和json的转换</h4>
+<pre><code class="language-java">java集合-&gt;json数组:
+    List list=new ArrayList();
+    list.add(&quot;dd&quot;);
+    list.add(&quot;aa&quot;);
+    JSONArray obj=JSONArray.fromObject(list);//set也是这么转
+json数组-&gt;java集合:
+	Key1:
+	String str2=&quot;[{'age':20,'password':'abc','username':'李四'},{'age':10,'password':'adb','username':'张三'}]&quot;;
+	JSONArray json2=JSONArray.fromObject(str2);
+	Object[] obj=(Object[])JSONArray.toArray(json2,Users.class);
+
+	Key2:
+	String str3=&quot;[{'age':20,'password':'abc','username':'李四'},{'age':10,'password':'adb','username':'展示干'}]&quot;;
+	JSONArray json3=JSONArray.fromObject(str3);
+	//默认转换成ArrayList
+	List&lt;Users&gt; list=(List&lt;Users&gt;) 				JSONArray.toCollection(json3,Users.class);
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[MVC学习]]></title>
+        <id>https://Vinci-Ma.github.io/post/mvc-xue-xi/</id>
+        <link href="https://Vinci-Ma.github.io/post/mvc-xue-xi/">
+        </link>
+        <updated>2020-08-14T14:44:15.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#mvc">MVC</a>
+<ul>
+<li><a href="#1mvc%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">1.MVC设计模式</a></li>
+<li><a href="#2%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84%E5%86%99%E4%BB%A3%E7%A0%81%E6%97%B6%E9%9C%80%E8%A6%81%E9%81%B5%E5%BE%AA%E7%9A%84">2.三层架构（写代码时需要遵循的）</a></li>
+<li><a href="#3%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84%E4%B8%8Emvc%E7%9A%84%E5%8C%BA%E5%88%AB">3.三层架构与MVC的区别</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%80%E8%88%AC%E7%9A%84%E5%8C%85%E7%BB%93%E6%9E%84">一般的包结构</a></li>
+</ul>
+</p>
+<h1 id="mvc">MVC</h1>
+<p>随着项目中代码的增多，需要一个模式去规范</p>
+<h2 id="1mvc设计模式">1.MVC设计模式</h2>
+<p>MVC中的M(模型)-V(视图)-C(控制器)概念和标准MVC概念一样</p>
+<p>在Web MVC模式下，模型无法主动推数据给视图，如果用户想要视图更新，需要再发送一次请求（即请求-响应模型）。</p>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1597416425620.jpeg" alt="" loading="lazy"></figure>
+<p><strong>M(Model) 模型 :</strong> 应用程序的核心功能，管理这个模块中用的数据和值（bean,dao）；</p>
+<pre><code class="language-java">JavaBeans :是Java中一种特殊的类（换言之：JavaBean就是一个Java类）.
+一个Java类 ，满足以下要求，则可称为一个JavaBean
+    a. public修饰的类，提供public 无参构造方法
+    b. 所有属性 都是private
+    C. 提供getter和setter方法
+从使用层面来看，JavaBean分为2大类：
+    a. 封装业务逻辑的JavaBean(eg:LoginDao.java 封装了登录逻辑)
+    b. 封装数据的JavaBean(实体类：eg：Student.java Vadio.java 。往往对应于数据库中的一张表，即数据库中有个Student表，项目中就有个Student.java类)通常:表名=类名，列名=属性名
+JavaBean是一个可以重复使用的组件，通过编写一个组件来实现某种通用功能，“一次编写、任何地方执行、任何地方重用”。
+</code></pre>
+<p><strong>V(View )视图：</strong><br>
+视图提供模型的展示，管理模型如何显示给用户，它是应用程序的外观；（jsp/html）<br>
+<strong>C(Controller)控制器：</strong><br>
+对用户的输入做出反应，管理用户和视图的交互，是连接模型和视图的枢纽。（servlet/service）<br>
+MVC用于将web（UI）层进行职责解耦</p>
+<p><strong>MVC设计模式并不属于23种设计模式</strong></p>
+<h2 id="2三层架构写代码时需要遵循的">2.三层架构（写代码时需要遵循的）</h2>
+<p>三层架构，通常意义上的三层架构就是将整个业务应用划分为：表现层（UI）、业务逻辑层（BLL）、数据访问层（DAL）。区分层次的目的即为了“高内聚，低耦合”的思想。</p>
+<p><strong>1、表现层（UI）：</strong><br>
+通俗讲就是展现给用户的界面，即用户在使用一个系统的时候他的所见所得。 jsp/html</p>
+<p>表现层实现的代表作品是Struts,springmvc框架</p>
+<p><strong>2、业务逻辑层（BLL）：</strong><br>
+针对具体问题的操作，也可以说是对数据层的操作，对数据业务逻辑处理。servlet,service</p>
+<p>业务层实现的代表作品是Spring</p>
+<p><strong>3、数据访问层（DAL）：</strong><br>
+该层所做事务直接操作数据库，针对数据的增添、删除、修改、更新、查找等。dao</p>
+<p>持久层实现的代表作品是Hibernate,mybatis。</p>
+<p>层就相当于一个黑盒子，我们不用知道它内部怎么实现，只需要知道如何去调用它就行了。每层只与上下相邻的两层打交道。当一层内部由于技术变迁发生变化时，只要接口不变，其他层不用做任何改变。分层之后灵活性提高，也便于团队分工开发。</p>
+<h2 id="3三层架构与mvc的区别">3.三层架构与MVC的区别</h2>
+<figure data-type="image" tabindex="2"><img src="https://Vinci-Ma.github.io/post-images/1597416456532.png" alt="" loading="lazy"></figure>
+<p>MVC是 Model-View-Controller，严格说这三个加起来以后才是三层架构中的UI层，也就是说，MVC把三层架构中的UI层再度进行了分化，分成了控制器、视图、实体三个部分，控制器完成页面逻辑，通过实体来与界面层完成通话；而C层直接与三层中的BLL进行对话。</p>
+<p>MVC可以是三层中的一个表现层框架，属于表现层。三层和mvc可以共存。</p>
+<p>三层是基于业务逻辑来分的，而MVC是基于页面来分的。</p>
+<p>MVC主要用于表现层，3层主要用于体系架构，3层一般是表现层、中间层、数据层，其中表现层又可以分成M、V、C，(Model View Controller)模型－视图－控制器</p>
+<p>MVC是表现模式（Presentation Pattern）</p>
+<p>三层架构是典型的架构模式（Architecture Pattern）</p>
+<p>三层架构的分层模式是典型的上下关系，上层依赖于下层。但MVC作为表现模式是不存在上下关系的，而是相互协作关系。即使将MVC当作架构模式，也不是分层模式。MVC和三层架构基本没有可比性，是应用于不同领域的技术。</p>
+<h1 id="一般的包结构">一般的包结构</h1>
+<p>src中【bean+dao=M（模型层）】</p>
+<p>【Servlet调取Service，Service调取Dao，Dao调取数据库】</p>
+<ul>
+<li>
+<p>com.~</p>
+<ul>
+<li>bean
+<ul>
+<li>student【创建一个对象类，表名=类名，列名=属性名】</li>
+</ul>
+</li>
+<li>dao（操作数据库的接口）
+<ul>
+<li>StudentDao【接口，定义操作数据库的方法】</li>
+<li>impl.StudentDaoImpl【操作数据库。1、继承德鲁伊，实现StudentDao，得到数据源，加载驱动】</li>
+</ul>
+</li>
+<li>service（Servlet和dao的连接）
+<ul>
+<li>StudentService（接口，复制StudentDao）</li>
+<li>impl.StudentServiceImpl【实现StudentService】</li>
+</ul>
+</li>
+<li>util
+<ul>
+<li>DruidUtil【连接池】</li>
+</ul>
+</li>
+<li>web
+<ul>
+<li>studentservlet【1、接收参数，2、调取service方法，3、跳转页面（需要存值）】</li>
+</ul>
+</li>
+<li>druid.properties【德鲁伊】</li>
+</ul>
+<p>web中</p>
+<ul>
+<li>WEB-INF
+<ul>
+<li>lib【驱动包，需要配置环境】</li>
+</ul>
+</li>
+<li>show.jsp【显示页面（需要取值）】</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Tomcat学习]]></title>
         <id>https://Vinci-Ma.github.io/post/tomcat-xue-xi/</id>
@@ -72,6 +1056,197 @@ http://localhost:8080/examples，进入示例项目。其中examples就是项目
 示例:http://localhost:8080/test0918<br>
 注: (1)启动tomcat后,tomcat会加载部署在服务器端的所有项目<br>
 (2) 浏览器访问的页面是服务器端的页面,基本上服务器的项目和工作空间的项目要保持一致</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[MySQL高阶——表联结查询]]></title>
+        <id>https://Vinci-Ma.github.io/post/mysql-gao-jie-biao-lian-jie-cha-xun/</id>
+        <link href="https://Vinci-Ma.github.io/post/mysql-gao-jie-biao-lian-jie-cha-xun/">
+        </link>
+        <updated>2020-07-30T02:04:07.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#%E5%AD%90%E6%9F%A5%E8%AF%A2%E4%B8%8E%E8%A1%A8%E8%BF%9E%E6%8E%A5">子查询与表连接</a>
+<ul>
+<li><a href="#%E5%AD%90%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97sql">子查询（嵌套sql）</a></li>
+<li><a href="#%E5%85%B3%E7%B3%BB%E8%A1%A8">关系表</a>
+<ul>
+<li><a href="#1-%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB">1、一对一关系</a></li>
+<li><a href="#2-%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB%E4%BD%BF%E7%94%A8%E9%A2%91%E7%8E%87%E6%9C%80%E9%AB%98">2、一对多关系（使用频率最高）</a></li>
+<li><a href="#3-%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB">3、多对多关系</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A1%A8%E8%81%94%E7%BB%93">表联结</a>
+<ul>
+<li><a href="#%E4%B8%A4%E4%B8%AA%E8%A1%A8%E7%9B%B8%E8%81%94%E7%BB%93">两个表相联结</a></li>
+<li><a href="#%E8%81%94%E7%BB%93%E5%A4%9A%E4%B8%AA%E8%A1%A8">联结多个表</a></li>
+<li><a href="#%E8%87%AA%E8%81%94%E7%BB%93">自联结</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A4%96%E9%83%A8%E8%81%94%E7%BB%93">外部联结</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93%E8%A1%A8%E8%81%94%E7%BB%93">总结表联结</a></li>
+<li><a href="#%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2union">组合查询UNION</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="子查询与表连接">子查询与表连接</h1>
+<h2 id="子查询嵌套sql">子查询（嵌套sql）</h2>
+<h2 id="关系表">关系表</h2>
+<p>SQL最强大的功能之一就是能在数据检索查询的执行中联结（join）表。<br>
+关系表的设计就是要保证把信息分解成多个表，一类数据一个表。<br>
+各表通过某些常用值（即关系设计中的关系（relational））相互关联。<br>
+<strong>外键：</strong><br>
+在一个表中，定义一个字段，这个字段中存储的数据是另外一张表中的主键就是在一个表中的字段，代表着这个数据属于谁。<br>
+了解：<br>
+外键实现的方式，有两种：物理外键、逻辑外键<br>
+1、物理外键：<br>
+就是在创建表时，就指定这个表中的字段是一个外键，并且强关联某个表中的某个字段，需要再定义字段时，使用sql语句来实现。<br>
+2、<mark>逻辑外键：</mark>（推荐）<br>
+就是在表中创建一个普通的字段，没有强关联关系，需要通过程序逻辑来实现。</p>
+<h3 id="1-一对一关系">1、一对一关系</h3>
+<p>就是在一个表中的数据，对应着另外一张表中的一个数据，只能有一个。</p>
+<pre><code class="language-java"> 员工表：
+        id，姓名、性别、年龄、籍贯、联系方式、学历、工龄、、、
+    由上面的一个表，拆分成两个表
+    员工表：
+        id，姓名、联系方式、工龄、
+        12  张三  1010    3
+        13  李四  1020    2
+
+    详情表：
+       yid 性别、籍贯、学历
+        12    男    山东 本科
+        13    男    山西 本科
+
+    上面的表关系就是一对一的表关系，通过详情表中的yid这个字段来标记员工表中的主键。
+    一个员工有着一个对应的详情信息，存储在详情表中，
+    在详情表中的数据，也只属于某一个员工。
+</code></pre>
+<h3 id="2-一对多关系使用频率最高">2、一对多关系（使用频率最高）</h3>
+<p>在一个表中的一条数据对应着另外一个表中的多条数据。<br>
+（在一个表中的多条数据，对应着另外一张表中一个数据）</p>
+<pre><code class="language-java">例子：
+商品分类
+     id 分类名
+     1  手机
+     2  电脑
+
+ 商品
+     id 所属分类id，商品名
+     1       1         小米手机
+     2       1         华为手机
+</code></pre>
+<h3 id="3-多对多关系">3、多对多关系</h3>
+<pre><code class="language-java"> 例如一本书，有多个标签，同时每一个标签下又对应多本书
+ books 图书
+ id  name          author
+ 1   &lt;跟川哥学编程&gt;    川哥
+ 2   &lt;跟川哥学数据分析&gt; 川哥
+ 3   &lt;川哥讲法律故事&gt;   川哥
+
+ tags 标签
+ id   name
+ 1    编程
+ 2    计算机
+ 3    互联网
+ 4    法律
+ 5    文学
+
+ 从图书角度看，一本书有多个标签
+ 1   &lt;跟川哥学编程&gt;    川哥   ， 编程、计算机、互联网
+ 2   &lt;跟川哥学数据分析&gt; 川哥  ，  互联网、计算机
+ 3   &lt;川哥讲法律故事&gt;   川哥 ，  法律
+
+ 换一个角度，从标签这个角度看，一个标签包含多个图书
+ 计算机， &lt;跟川哥学编程&gt;， &lt;跟川哥学数据分析&gt;
+</code></pre>
+<h2 id="表联结">表联结</h2>
+<p>是一种查询的机制，用来在一个select语句中关联多个表进行查询，这种情况称为联结。</p>
+<h3 id="两个表相联结">两个表相联结</h3>
+<pre><code class="language-java">需要查询出所有商品以及对应的供应商信息？
+供应商名称，商品名称，商品价格
+select vend_name,prod_name,prod_price
+from vendors,products（限定表格）
+where vendors.vend_id  = products.vend_id（指定两个表中的列名相匹配）
+order by vend_name（按照名字排序）
+</code></pre>
+<p><mark>假如没有where条件时会发生什么呢？</mark><br>
+如果没有where条件，那么第一个表中的每一行数据会与第二个表中的每一行数据进行匹配，不管逻辑是否可以匹配。<br>
+如果没有where条件，那么这种结果称为 笛卡尔积，第一个表的行数乘以第二个表中的行数。<br>
+<strong>所以千万不要忘记where条件！！！</strong><br>
+另一种联结方式：join</p>
+<pre><code class="language-java">select vend_name,prod_name,prod_price
+from vendors
+(inner)可省略 join products on vendors.vend_id = products.vend_id;
+
+以上sql就是使用了 join 的语法，进行了两个表的联结，在 on 后面 去定义了 联结的条件。
+</code></pre>
+<h3 id="联结多个表">联结多个表</h3>
+<pre><code class="language-java">案例： 查询出订单号为20005的订单中购买的商品及对应的产品供应商信息
+select prod_name,vend_name,prod_price,quantity
+from orderitems,products,vendors
+    where products.vend_id = vendors.vend_id（在where语句中说清联结关系）
+    and orderitems.prod_id = products.prod_id
+    and order_num = 20005;
+改写为 join 的语法
+select prod_name,vend_name,prod_price,quantity
+from orderitems
+inner join products on orderitems.prod_id = products.prod_id
+inner join vendors on products.vend_id = vendors.vend_id
+where order_num = 20005;
+</code></pre>
+<p><mark>注：</mark><br>
+MySQL在运行时关联指定的每个表以处理联结，这种处理是非常耗费资源的，因此应该自习，不要联结不必要的表，联结的表越多，性能下降越厉害。</p>
+<h3 id="自联结">自联结</h3>
+<p>自联结:当前这个表与自己这个表 做联结（join）</p>
+<pre><code class="language-java">例子：假如你发现某物品（其ID为DTNTR）存在问题，因此想知道生产该物品的供应商生产的其他物品是否也存在这些问题。因此查询要求首先找到生产ID为DTNTR的物品的供应商，然后找出这个供应商生产的其他物品。
+-- 使用子查询（嵌套查询）
+select prod_id,prod_name
+from products
+where vend_id = (select vend_id from products where prod_id = 'DTNTR');
+-- 使用 自联结方式查询
+select p1.prod_id,p2.prod_name
+from products as p1
+join products as p2 on p1.vend_id = p2.vend_id
+where p2.prod_id = 'DTNTR';
+-- 改成where语句
+select p1.prod_id,p2.prod_name
+from products as p1, products as p2
+where p1.vend_id = p2.vend_id and p2.prod_id = 'DTNTR';
+-- 深入了解 join
+select
+p1.prod_id,p1.prod_name,p1.vend_id,
+p2.prod_id,p2.prod_name,p2.vend_id
+from products as p1,products as p2
+where p1.vend_id = p2.vend_id
+and p2.prod_id = 'DTNTR';
+
+</code></pre>
+<p>子查询（嵌套查询） 是目前可明确知道的 sql中运行效率最低的一种方式，尽可能不使用嵌套语句。</p>
+<h2 id="外部联结">外部联结</h2>
+<p>许多联结将一个表的行与另一个表中的行相关联，当时有时候需要包含没有关联行的那些行<br>
+left join ： 是以 left join 左侧表为基准，去关联右侧的表进行联结，如果有未关联的数据，那么结果为null。<br>
+right join ：是以 right join 右侧表为基准，去关联左侧的表进行联结，如果有未关联的数据，那么结果为null。</p>
+<h2 id="总结表联结">总结表联结</h2>
+<p>内部联结：where，inner join<br>
+自联结：在一个sql中，用当前这个表，联结自己<br>
+外部联结：left join，right join</p>
+<h2 id="组合查询union">组合查询UNION</h2>
+<p>UNION规则：</p>
+<ul>
+<li>UNION必须由两条或者两条以上的SELECT语句组成，语句之间用关键字UNION分隔（如果组合4条SELECT语句，将要使用3个UNION关键字）</li>
+<li>UNION中的每个查询必须包含相同的列，表达式或聚集函数（不过各个列不需要以相同的次序列出）</li>
+<li>列数据类型必须兼容：类型不必完全相同，但必须是DBMS可以隐含的转换的类型（例如：不同的数值类型或者不同的日期类型）<br>
+<mark>注意</mark></li>
+<li>使用UNION时，默认删除重复的行，如果想返回所有的匹配行，可以使用UNION ALL</li>
+<li>对组合查询结果排序时：只能使用一条ORDER BY子句！对于结果集，只能存在一种排序方式。</li>
+</ul>
+<pre><code class="language-java">例如：
+select vend_id,prod_id,prod_price from products where prod_price &lt;= 5
+union
+select vend_id,prod_id,prod_price from products where vend_id in(1001,1002)
+order by prod_price;
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -1053,589 +2228,6 @@ static void hanoi(String start,String mid,String last,int n){
 <h2 id="3-二叉树">3、二叉树</h2>
 <p>见前篇<br>
 链接: <a href="https://vinci-ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian/">二叉树遍历——Java的代码实现</a>.</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[二叉树遍历Java的代码实现]]></title>
-        <id>https://Vinci-Ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian/</id>
-        <link href="https://Vinci-Ma.github.io/post/er-cha-shu-bian-li-java-de-dai-ma-shi-xian/">
-        </link>
-        <updated>2020-06-24T13:14:39.000Z</updated>
-        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
-<li><a href="#%E4%BA%8C%E5%8F%89%E6%A0%91">二叉树</a></li>
-<li><a href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86">二叉树的遍历</a></li>
-<li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">代码实现</a>
-<ul>
-<li><a href="#%E9%A6%96%E5%85%88%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%BB%93%E7%82%B9">首先创建一个结点</a></li>
-<li><a href="#%E5%85%B6%E6%AC%A1%E6%98%AF%E8%BF%9B%E8%A1%8C%E9%81%8D%E5%8E%86%E6%93%8D%E4%BD%9C%E7%9A%84binarytree%E7%B1%BB">其次是进行遍历操作的BinaryTree类</a>
-<ul>
-<li><a href="#%E8%83%BD%E5%A4%9F%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E7%9A%84%E4%B8%89%E4%B8%AA%E6%9D%A1%E4%BB%B6">能够使用递归的三个条件</a></li>
-<li><a href="#%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E8%AF%A6%E8%BF%B0%E4%BB%A5%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E4%B8%BA%E4%BE%8B">递归实现二叉树遍历方法详述（以中序遍历为例）</a></li>
-</ul>
-</li>
-<li><a href="#%E4%B8%BB%E5%87%BD%E6%95%B0">主函数</a></li>
-<li><a href="#%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C">输出结果</a></li>
-</ul>
-</li>
-</ul>
-</p>
-<h1 id="二叉树">二叉树</h1>
-<p>二叉树是树的一种，每个结点最多可具有两个子树，即结点的度最大为2</p>
-<h1 id="二叉树的遍历">二叉树的遍历</h1>
-<p>先序遍历：先访问根节点，然后访问左节点，最后访问右节点。<br>
-【1-&gt;2-&gt;4-&gt;8-&gt;9-&gt;5-&gt;10-&gt;3-&gt;6-&gt;7】<br>
-<img src="https://img-blog.csdnimg.cn/20200627000853767.png?x-oss-process=image" alt="在这里插入图片描述" loading="lazy"><br>
-中序遍历：先访问左节点，然后访问根节点，最后访问右节点。<br>
-【8-&gt;4-&gt;9-&gt;2-&gt;10-&gt;5-&gt;1-&gt;6-&gt;3-&gt;7】<br>
-<img src="https://img-blog.csdnimg.cn/20200627001030262.png?x-oss-process=image" alt="在这里插入图片描述" loading="lazy"><br>
-后序遍历：先访问左节点，然后访问右节点，最后访问根节点。<br>
-【8-&gt;9-&gt;4-&gt;10-&gt;5-&gt;2-&gt;6-&gt;7-&gt;3-&gt;1】<br>
-<img src="https://img-blog.csdnimg.cn/20200627001118497.png?x-oss-process=image" alt="在这里插入图片描述" loading="lazy"></p>
-<h1 id="代码实现">代码实现</h1>
-<h2 id="首先创建一个结点">首先创建一个结点</h2>
-<p>这个结点包括，一个根结点，一个根所对应的左结点，一个根所对应的右节点</p>
-<pre><code class="language-javascript">public class Node {
-    Object data;
-    Node left = null;
-    Node right = null;
-    void Node(Object data,Node left,Node right){
-        this.data = data;
-        this.left = left;
-        this.right = right;
-    }
-}
-</code></pre>
-<h2 id="其次是进行遍历操作的binarytree类">其次是进行遍历操作的BinaryTree类</h2>
-<p>用递归的方法实现遍历</p>
-<pre><code class="language-javascript">public class BinaryTree {
-// 先序遍历
-    void preSearch(Node root){
-        if (root != null){
-            System.out.printf(&quot;%-4s&quot;,root.data);
-            preSearch(root.left);
-            preSearch(root.right);
-        }
-    }
-    // 中序遍历
-    void midSearch(Node root){
-        if (root != null){
-            midSearch(root.left);
-            System.out.printf(&quot;%-4s&quot;,root.data);
-            midSearch(root.right);
-        }
-    }
-    // 后序遍历
-    void bacSearch(Node root){
-        if (root != null){
-            bacSearch(root.left);
-            bacSearch(root.right);
-            System.out.printf(&quot;%-4s&quot;,root.data);
-        }
-    }
-}
-</code></pre>
-<h3 id="能够使用递归的三个条件">能够使用递归的三个条件</h3>
-<ol>
-<li>一个问题可以分解成几个子问题。</li>
-<li>这个问题与分解过后的子问题，除了数据规模不同（子问题更为简单），求解思路完全一样。</li>
-<li>存在一个明确的递归终止条件。</li>
-</ol>
-<p>在此例中，</p>
-<ol>
-<li>遍历二叉树的操作可以分解为遍历单个结点的操作。</li>
-<li>遍历整个二叉树的操作和遍历一个结点的操作相同。</li>
-<li>存在截止条件，即根节点不为null。</li>
-</ol>
-<p>所以，可以使用递归实现二叉树的遍历。</p>
-<h3 id="递归实现二叉树遍历方法详述以中序遍历为例">递归实现二叉树遍历方法详述（以中序遍历为例）</h3>
-<p><img src="https://img-blog.csdnimg.cn/20200627001030262.png?x-oss-process=image" alt="" loading="lazy"><br>
-<img src="https://Vinci-Ma.github.io/post-images/1593329449625.jpg" alt="" loading="lazy"></p>
-<h2 id="主函数">主函数</h2>
-<pre><code class="language-javascript">public class E1 {
-    public static void main(String[] args) {
-        //构造一个二叉树
-        Node node10 = new Node();
-        node10.Node(&quot;10&quot;,null,null);
-        Node node9 = new Node();
-        node9.Node(&quot;9&quot;,null,null);
-        Node node8 = new Node();
-        node8.Node(&quot;8&quot;,null,null);
-        Node node7 = new Node();
-        node7.Node(&quot;7&quot;,null,null);
-        Node node6 = new Node();
-        node6.Node(&quot;6&quot;,null,null);
-        Node node5 = new Node();
-        node5.Node(&quot;5&quot;,node10,null);
-        Node node4 = new Node();
-        node4.Node(&quot;4&quot;,node8,node9);
-        Node node3 = new Node();
-        node3.Node(&quot;3&quot;,node6,node7);
-        Node node2 = new Node();
-        node2.Node(&quot;2&quot;,node4,node5);
-        Node node1 = new Node();
-        node1.Node(&quot;1&quot;,node2,node3);
-        BinaryTree b = new BinaryTree();
-        //对所构造的二叉树遍历输出
-        System.out.println(&quot;前序遍历输出：&quot;);
-        b.preSearch(node1);
-        System.out.println();
-        System.out.println(&quot;中序遍历输出：&quot;);
-        b.midSearch(node1);
-        System.out.println();
-        System.out.println(&quot;后序遍历输出：&quot;);
-        b.bacSearch(node1);
-    }
-}
-</code></pre>
-<h2 id="输出结果">输出结果</h2>
-<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1593178800956.png" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Java基础学习——面向对象]]></title>
-        <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-mian-xiang-dui-xiang/</id>
-        <link href="https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-mian-xiang-dui-xiang/">
-        </link>
-        <updated>2020-06-20T13:37:01.000Z</updated>
-        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
-<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3">面向对象思想</a>
-<ul>
-<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E6%80%9D%E6%83%B3">面向对象的三大思想</a></li>
-<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81">面向对象的三大特征</a>
-<ul>
-<li><a href="#%E5%B0%81%E8%A3%85">封装</a></li>
-<li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
-<li><a href="#%E5%A4%9A%E6%80%81">多态</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</p>
-<h1 id="面向对象思想">面向对象思想</h1>
-<p>面向对象（Object Oriented）是软件开发方法。面向对象（Procedure Oriented）是相对于面向过程来说的，指的是把相关的数据和方法组织为一个整体来看待。面向过程关注的是执行的过程，面向对象关注的是具备功能的对象。</p>
-<h2 id="面向对象的三大思想">面向对象的三大思想</h2>
-<p>OOA（Object Oriented Analysis）：面向对象分析<br>
-OOD（Object Oriented Design）：面向对象设计<br>
-OOP（Object Oriented Programming）：面向对象程序</p>
-<h2 id="面向对象的三大特征">面向对象的三大特征</h2>
-<h3 id="封装">封装</h3>
-<p>1、隐藏具体的实现细节【安全性】<br>
-2、对外提供公共的访问方式【功能】</p>
-<h3 id="继承">继承</h3>
-<p>1、子类可以继承父类的所有非私有成员（成员属性和成员方法）。<br>
-2、子类不可以继承父类的构造，但是默认访问父类的空参构造。<br>
-3、只可以单继承，不能多继承，但是可以多级继承。</p>
-<h3 id="多态">多态</h3>
-<p><strong>多态的前提：</strong></p>
-<ol>
-<li>有类的继承或接口的实现</li>
-<li>子类重写父类的方法</li>
-<li>父类引用指向子类对象</li>
-</ol>
-<p><strong>多态的成员访问特点：</strong></p>
-<ol>
-<li>属性：编译看父类，运行看父类 --- 只有父类有的，编译才能够通过&lt;-多态的弊端产生的原因</li>
-<li><mark>功能：编译看父类，运行看子类</mark></li>
-</ol>
-<p>对于多态访问特点的理解：父类的引用指向子类的对象，可以理解为，fu的外在表现为父类，而实际内核是子类。<br>
-对于属性来说，表现的是外在的特征，所以属性的运行看的是父类；<br>
-而调用方法表现的是本质，所以运行的结果是子类。</p>
-<pre><code class="language-javascript">//示例如下
-public class E1 {
-    public static void main(String[] args) {
-        Fu fu = new Zi();// 3、父类的引用指向子类的对象
-        fu.say();//结果：=====子类   ---&gt;对于功能来说：编译看父类，运行看子类
-        //fu.show;----&gt;编译报错
-        System.out.println(fu.name);//结果：父类   ---&gt;对于属性来说：编译看父类，运行看父类
-        //System.out.println(fu.age);----&gt;编译报错
-        Zi zi = (Zi) fu;//向下转型
-        zi.show();//结果：=====子类show
-    }
-}
-class Fu{
-    String name = &quot;父类&quot;;
-    public void say(){
-        System.out.println(&quot;=====父类&quot;);
-    }
-}
-class Zi extends Fu{  // 1、有类的继承或接口的实现
-    String name = &quot;子类&quot;;
-    int age;
-    public void say(){  // 2、子类重写父类的方法
-        System.out.println(&quot;=====子类&quot;);
-    }
-    public void show(){  
-        System.out.println(&quot;=====子类show&quot;);
-    }
-}
-</code></pre>
-<p><strong>多态的成员访问特点：</strong></p>
-<ol>
-<li>属性：编译看父类，运行看父类 --- 只有父类有的，编译才能够通过&lt;-多态的弊端产生的原因</li>
-<li>功能：编译看父类，运行看子类</li>
-</ol>
-<p><strong>多态的弊端：</strong><br>
-不能访问子类特有的成员</p>
-<p><mark><strong>应用场景：</strong></mark><br>
-<mark>当做形参传递使用</mark></p>
-<pre><code class="language-javascript">//例如在调用时
-say(&quot;aaa&quot;);
-
-//在定义该方法时，根本不需要指导具体的子类是谁，但是可以保证最终执行的是子类的功能
-void say(Object o ){
-    //实际参数 ====&gt; 形式参数  Object o = &quot;aaa&quot;;   形成了多态【父类引用指向子类的对象】
-     System.out.println(o);
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Java基础学习——数组及其常用算法]]></title>
-        <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-shu-zu-ji-qi-chang-yong-suan-fa/</id>
-        <link href="https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-shu-zu-ji-qi-chang-yong-suan-fa/">
-        </link>
-        <updated>2020-06-18T07:49:56.000Z</updated>
-        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
-<li><a href="#%E6%95%B0%E7%BB%84">数组</a>
-<ul>
-<li><a href="#%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84">一维数组</a>
-<ul>
-<li><a href="#%E5%88%9B%E5%BB%BA%E6%A0%BC%E5%BC%8F">创建格式</a></li>
-<li><a href="#%E9%80%9A%E8%BF%87%E4%B8%8B%E6%A0%87%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C">通过下标对数据进行操作</a></li>
-<li><a href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E7%BB%84%E7%9A%84%E9%95%BF%E5%BA%A6">获取数组的长度</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84">二维数组</a>
-<ul>
-<li><a href="#%E5%88%9B%E5%BB%BA%E6%A0%BC%E5%BC%8F-2">创建格式</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95">数组常用算法</a>
-<ul>
-<li><a href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F">冒泡排序</a>
-<ul>
-<li><a href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86">算法原理</a></li>
-<li><a href="#%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0">算法实现</a>
-<ul>
-<li><a href="#%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81">初始状态：</a></li>
-<li><a href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%BE%AA%E7%8E%AF">第一次循环：</a></li>
-<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%BE%AA%E7%8E%AF">第二次循环：</a></li>
-<li><a href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%BE%AA%E7%8E%AF">第三次循环：</a></li>
-<li><a href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E5%BE%AA%E7%8E%AF">第四次循环：</a></li>
-<li><a href="#%E6%9C%80%E7%BB%88%E8%BE%93%E5%87%BA">最终输出</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">代码实现</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE">二分查找</a>
-<ul>
-<li><a href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86-2">算法原理</a></li>
-<li><a href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4">实现步骤</a></li>
-<li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2">代码实现</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</p>
-<h1 id="数组">数组</h1>
-<p>所谓数组，是有序的元素序列。在java语言中，数组是一种最简单的复合数据类型，它是由一些具有相同的数据类型的元素所构成的，可以用一个统一的数组名和下标来唯一地确定数组中的元素。数组有一维数组和多维数组。</p>
-<h2 id="一维数组">一维数组</h2>
-<h3 id="创建格式">创建格式</h3>
-<p>其中第1、2种较为常用<br>
-1、数据类型[ ] 数组名称 = {数组内容1，数组内容2，……，数组内容n}；</p>
-<pre><code class="language-javascript">// 示例如下
-int[] age = {1, 2, 3 ,4};
-</code></pre>
-<p>2、数据类型[ ] 数组名称 = new 数据类型[数组长度]；</p>
-<pre><code class="language-javascript">// 示例如下
-int[] age = new int[4];
-</code></pre>
-<p>3、数据类型 [ ] 数组名称 = new 数据类型[ ] {数组内容1，数组内容2，……，数组内容n}；</p>
-<pre><code class="language-javascript">// 示例如下
-int[] age = new int[]{1, 2, 3 ,4};
-</code></pre>
-<p>4、数据类型[ ] 数组名；<br>
-该种方法只创建了数组引用名，并未在内存中创建数组空间，只能通过以下方式进行初始化设置。</p>
-<pre><code class="language-javascript">// 示例如下
-int[] age;
-age = new int[4];
-</code></pre>
-<h3 id="通过下标对数据进行操作">通过下标对数据进行操作</h3>
-<p>赋值操作：<br>
-数组名[下标] = 值；</p>
-<pre><code class="language-javascript">// 把13赋予了age数组中的第一个元素，该元素在数组中的编号为0
-age[0] = 13;
-</code></pre>
-<p>取值操作：<br>
-数组名[下标]</p>
-<pre><code class="language-javascript">// 示例如下
-age[0];
-</code></pre>
-<h3 id="获取数组的长度">获取数组的长度</h3>
-<p>数组名称.length</p>
-<pre><code class="language-javascript">// 示例如下
-age.length;
-</code></pre>
-<h2 id="二维数组">二维数组</h2>
-<h3 id="创建格式-2">创建格式</h3>
-<p>数据类型[ ][ ] 数组名 = new 数据类型[长度][(可写可不写) ]；</p>
-<pre><code class="language-javascript">// 示例如下
-int[][] age = new int [4][];
-</code></pre>
-<h1 id="数组常用算法">数组常用算法</h1>
-<h2 id="冒泡排序">冒泡排序</h2>
-<p>冒泡排序（Bubble Sort），是一种计算机科学领域的较简单的排序算法。它重复地走访过要排序的元素列，依次比较两个相邻的元素，如果顺序（如从大到小、首字母从Z到A）错误就把他们交换过来。走访元素的工作是重复地进行直到没有相邻元素需要交换，也就是说该元素列已经排序完成。<br>
-【以下以升序排列为例】</p>
-<h3 id="算法原理">算法原理</h3>
-<p>1、比较相邻两个数值的大小，将数值较大的移动到右边。<br>
-2、对每一对相邻元素都进行1中的比较，直到所有相邻元素都经过了比较。此时完成一次外层循环，将最大的数值移动到了数组最右边。<br>
-3、重复1、2的操作，直至所有的元素在数组中都按照从小到大的顺序排列。</p>
-<h3 id="算法实现">算法实现</h3>
-<p>以数组nums = {1,15,9,5,7}为例</p>
-<h4 id="初始状态">初始状态：</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">15</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<h4 id="第一次循环">第一次循环：</h4>
-<p>第1趟排序：<br>
-1和15相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">15</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<p>第2趟排序：<br>
-15和9相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">15</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<p>第3趟排序：<br>
-15和5相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">15</th>
-<th style="text-align:center">7</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<p>第4趟排序：<br>
-15和7相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">15</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<h4 id="第二次循环">第二次循环：</h4>
-<p>第1趟排序：<br>
-1和9相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">15</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<p>第2趟排序：<br>
-9和5相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">15</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<p>第3趟排序：<br>
-9和7相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">15</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<h4 id="第三次循环">第三次循环：</h4>
-<p>第1趟排序：<br>
-1和5相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">15</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<p>第2趟排序：<br>
-5和7相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">15</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<h4 id="第四次循环">第四次循环：</h4>
-<p>第1趟排序：<br>
-1和5相比较</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">15</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<h4 id="最终输出">最终输出</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">15</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<h3 id="代码实现">代码实现</h3>
-<pre><code class="language-javascript">	// 示例如下
-	int[] nums = {1,15,9,5,7};
-	for(int i=0; i&lt;nums.length; i++) {
-		for(int j=0; j&lt;nums.length-i-1; j++) {
-		//如果nums[j+1]的值小于nums[j]，则交换两者位置，使得较大的数字在右边
-			if(nums[j+1]&lt;nums[j]) {
-				nums[j+1] = nums[j] + nums[j+1];
-				nums[j] = nums[j+1] - nums[j];
-				nums[j+1] = nums[j+1] - nums[j];					
-			}
-		}
-	}
-	//利用for循环输出数组
-	System.out.println(&quot;排序后的数组：&quot;);
-	for(int i=0; i&lt;nums.length;i++)
-	System.out.print(nums[i]+&quot;  &quot;);
-</code></pre>
-<p>编译结果<br>
-<img src="https://img-blog.csdnimg.cn/20200613143855899.png" alt="编译结果" loading="lazy"></p>
-<h2 id="二分查找">二分查找</h2>
-<p>二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法。但是，二分查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列。</p>
-<h3 id="算法原理-2">算法原理</h3>
-<p>1、假设数组中元素是有序排列，将数组中间位置的数据与查找数据比较，如果两者相等，则查找成功。<br>
-2、否则利用中间位置记录将数组分成前、后两个子数组，如果中间位置数据大于查找数据，则进一步查找前子数<br>
-组，否则进一步查找后子数组。<br>
-3、重复以上过程，直到找到满足条件的数据，则表示查找成功，直到子数组不存在为止，表示查找不成功。</p>
-<h3 id="实现步骤">实现步骤</h3>
-<p>1、确定查找范围，最小——最大<br>
-2、计算中间下标  =（最小+最大）/2<br>
-3、比较中间下标和寻找的数据大小关系，如果中间下标所对应的元素比所寻找的数字小，则证明所要寻找的数字在数组的右半段，令最小下标 = 中间下标 + 1，中间下标  =（最小+最大）/2，最大下标不变，继续寻找。<br>
-4、如果最小下标 &gt; 最大下标，说明数据不存在</p>
-<h3 id="代码实现-2">代码实现</h3>
-<pre><code class="language-javascript">// 示例如下
-//使用二分法查找6，nums为上述冒泡排序示例
-		int a = 6;
-		int max = nums.length - 1;
-		int min = 0;
-		int mid =  (max + min)/2;
-		while(true) {
-			if(nums[mid] == a)
-				break;
-			//所要查找的数字在右半段
-			else if(nums[mid] &lt; a) {
-				min = mid + 1;
-				mid = (max + min)/2;
-			}
-			//所要查找的数据在左半端
-			else if(nums[mid] &gt; a) {
-				max = mid - 1;
-				mid = (max + min)/2;
-			}
-			
-			if(min &gt; max){
-				mid = -1;
-				break;		
-			}
-			
-		}
-		if(mid == -1)
-			System.out.println(&quot;没有这个数&quot;);
-		else
-			System.out.println(&quot;找到了&quot;+a+&quot;，其下标为：&quot;+mid);
-</code></pre>
-<p>编译结果：<br>
-当a = 6时，即所要查找的数字是6<br>
-<img src="https://img-blog.csdnimg.cn/2020061314410351.png" alt="当a = 6时" loading="lazy"><br>
-当a = 9时，即所要查找的数字是9<br>
-<img src="https://img-blog.csdnimg.cn/20200613150423899.png" alt="当a = 9时" loading="lazy"></p>
 ]]></content>
     </entry>
 </feed>

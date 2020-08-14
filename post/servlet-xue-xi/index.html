@@ -1,0 +1,441 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Servlet学习 | Vinci-Ma</title>
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1597417160648">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Servlet学习 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+Servlet介绍
+Servlet API
+Servlet工作原理
+Servlet的生命周期
+请求
+
+常用方法
+
+
+响应
+会话
+获得初始化参数
+servlet3.0
+
+
+Servlet介绍
+
+
+1、Servlet（Server Apple..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Vinci-Ma.github.io">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1597417160648" alt="">
+  </a>
+  <h1 class="site-title">
+    Vinci-Ma
+  </h1>
+  <p class="site-description">
+    Stay cooool!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://Vinci-Ma.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Vinci-Ma" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Servlet学习
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-14
+              </span>
+              <span>
+                10 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><ul class="markdownIt-TOC">
+<li><a href="#servlet%E4%BB%8B%E7%BB%8D">Servlet介绍</a></li>
+<li><a href="#servlet-api">Servlet API</a></li>
+<li><a href="#servlet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">Servlet工作原理</a></li>
+<li><a href="#servlet%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">Servlet的生命周期</a></li>
+<li><a href="#%E8%AF%B7%E6%B1%82">请求</a>
+<ul>
+<li><a href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95">常用方法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%93%8D%E5%BA%94">响应</a></li>
+<li><a href="#%E4%BC%9A%E8%AF%9D">会话</a></li>
+<li><a href="#%E8%8E%B7%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0">获得初始化参数</a></li>
+<li><a href="#servlet30">servlet3.0</a></li>
+</ul>
+</p>
+<h1 id="servlet介绍">Servlet介绍</h1>
+<ul>
+<li>
+<p>1、Servlet（Server Applet），全称Java Servlet。==是用Java编写的服务器端程序，其主要功能在于交互式地浏览和修改数据，生成动态Web内容。==狭义的Servlet是指Java语言实现的一个接口，广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。</p>
+</li>
+<li>
+<p>2、 Servlet运行于支持Java的应用服务器中。从实现上讲，Servlet可以响应任何类型的请求，但绝大多数情况下Servlet只用来<mark>扩展基于HTTP协议的Web服务器</mark>。</p>
+</li>
+<li>
+<p>3、Servlet工作模式：</p>
+<ul>
+<li>客户端发送请求至服务器。</li>
+<li>服务器启动大概并调用Servlet，Servlet根据客户端请求生成响应内容并将其传给服务器。</li>
+<li>服务器将响应并返回客户端。</li>
+</ul>
+</li>
+</ul>
+<h1 id="servlet-api">Servlet API</h1>
+<ul>
+<li>javax.serv letinterface Servlet
+<ul>
+<li>1.init()</li>
+<li>2.service()</li>
+<li>3.destroy()</li>
+<li>4.getServletConfig()</li>
+<li>5.getServletInfo()</li>
+</ul>
+</li>
+<li>javax.servlet abstract GenericServlet（除了实现或继承Servlet接口中的五个方法外还提供了额外方法）
+<ul>
+<li>1.getInitParameter()</li>
+<li>2.getServletName()</li>
+<li>3.getServletContext()</li>
+</ul>
+</li>
+<li>javax.servlet.http abstract HttpServlet（重载service()方法）
+<ul>
+<li>1.doGet()</li>
+<li>2.doPost()</li>
+</ul>
+</li>
+</ul>
+<h1 id="servlet工作原理">Servlet工作原理</h1>
+<p>(1) Servlet接口定义了Servlet与servlet容器之间的契约。这个契约是：Servlet容器将Servlet类载入内存，并产生<br>
+Servlet实例和调用它具体的方法。但是要注意的是，在一个应用程序中，每种Servlet类型只能有一个实例。<br>
+(2)用户请求致使Servlet容器调用Servlet的Service（）方法，并传入一个ServletRequest对象和一个<br>
+ServletResponse对象。ServletRequest对象和ServletResponse对象都是由Servlet容器（例如TomCat）封<br>
+装好的，并不需要程序员去实现，程序员可以直接使用这两个对象。<br>
+(3)ServletRequest中封装了当前的Http请求，因此，开发人员不必解析和操作原始的Http数据。ServletResponse<br>
+表示当前用户的Http响应，程序员只需直接操作ServletResponse对象就能把响应轻松的发回给用户。<br>
+(4)对于每一个应用程序，Servlet容器还会创建一个ServletContext对象。这个对象中封装了上下文（应用程序）<br>
+的环境详情。每个应用程序只有一个ServletContext。每个Servlet对象也都有一个封装Servlet配置的<br>
+ServletConfig对象。</p>
+<h1 id="servlet的生命周期">Servlet的生命周期</h1>
+<p>当客户端首次发送第一次请求后，由容器(web服务器(tomcat))去解析请求, 根据请求找到对应的servlet,判断该类的对象是否存在，不存在则创建servlet实例，调取init()方法 进行初始化操作,初始化完成后调取service()方法,由service()判断客户端的请求方式，如果是get，则执行doGet(),如果是post则执行doPost().处理方法完成后,作出相应结果给客户端.单次请求处理完毕。<br>
+当用户发送第二次以后的请求时,会判断对象是否存在,但是不再执行init()，而直接执行service方法,调取doGet()/doPost()方法。<br>
+当服务器关闭时调取destroy()方法进行销毁。<br>
+四个过程:<br>
+(1)实例化 --先创建servlet实例<br>
+(2)初始化 --init()<br>
+(3)处理请求 ---service()<br>
+(4)服务终止 --destory()</p>
+<h1 id="请求">请求</h1>
+<p>HttpServletRequest表示Http环境中的Servlet请求。它扩展于javax.servlet.ServletRequest接口)</p>
+<h2 id="常用方法">常用方法</h2>
+<ul>
+<li>1、String getParameter(String name) 根据表单组件名称获取提交数据，返回值是String<br>
+注：服务器在接收数据时使用字符串统一接收</li>
+<li>2、String[ ] getParameterValues(String name) 获取表单组件对应多个值时的请求数据</li>
+<li>3、void setCharacterEncoding(String charset) 指定每个请求的编码(针对post请求才起作用)</li>
+<li>4、RequestDispatcher getRequestDispatcher(String path) --跳转页面</li>
+</ul>
+<p>返回一个RequestDispatcher对象，该对象的forward( )方法用于转发请求</p>
+<pre><code class="language-java">示例：request.getRequestDispatcher(&quot;../success.jsp&quot;).forward(request,response);
+</code></pre>
+<ul>
+<li>5、存值 request.setAttribute(&quot;key&quot;,value);</li>
+<li>6、取值 request.getAttribute(&quot;key&quot;);//取值后需要向下转型</li>
+</ul>
+<h1 id="响应">响应</h1>
+<p>在Service API中，定义了一个HttpServletResponse接口，它继承自ServletResponse接口，专门用来封装HTTP响应消息。 在HttpServletResponse接口中定义了向客户端发送响应状态码，响应消息头，响应消息体的方法。</p>
+<p><strong>常用方法：</strong></p>
+<p>void addCookie(Cookie var1)：给这个响应添加一个cookie</p>
+<p>void sendRedirect(String var1) ：发送一条响应码，将浏览器跳转到指定的位置</p>
+<p>PrintWriter getWriter() ：获得字符流，通过字符流的write(String s)方法可以将字符串设置到response 缓冲区中，随后Tomcat会将response缓冲区中的内容组装成Http响应返回给浏览器端。</p>
+<p>setContentType() ：设置响应内容的类型。</p>
+<p><strong>重定向和转发的对比：</strong></p>
+<p>重定向:response.sendRedirect()</p>
+<p>转发:request.getRequestDispatcher(&quot;../success.jsp&quot;).forward(request,response);</p>
+<p>相同点:都用来跳转页面。</p>
+<p>不同点:</p>
+<ul>
+<li>重定向时地址栏会改变,request中存储的数据会丢失.转发时地址栏显示的是请求页面的地址,request数据可以保存。</li>
+<li>转发属于一次请求一次响应,重定向属于两次请求(地址栏修改了两次)两次响应。</li>
+</ul>
+<p>补充:使用out对象往页面中输出js或html,css</p>
+<pre><code class="language-java">out.print(&quot;&lt;script type='text/javascript'&gt;alert('登录失败');location='../login.jsp'&lt;/script&gt;&quot;);
+</code></pre>
+<p>注:使用js跳转页面，也会丢失request中的数据</p>
+<h1 id="会话">会话</h1>
+<p>**会话（session）的概念:**从打开浏览器到关闭浏览器,期间访问服务器就称为一次会话</p>
+<p><strong>request &amp; session区别和联系：</strong></p>
+<ul>
+<li>
+<p>request存的值只能在单次请求中保存，保存的数据不能跨页面,当重定向时,request存的值会丢失。</p>
+</li>
+<li>
+<p>session的数据可以在多个页面中共享,即使重定向页面,数据不会丢失。</p>
+</li>
+<li>
+<p>session中可以包含n个request。</p>
+</li>
+</ul>
+<p><strong>常用方法：</strong></p>
+<ul>
+<li>
+<p>void setAttribute(String key,Object value) ：以key/value的形式保存对象值,将数据存储在服务器端</p>
+</li>
+<li>
+<p>Object getAttribute(String key) ：通过key获取对象值</p>
+</li>
+<li>
+<p>void invalidate() ：设置session对象失效</p>
+</li>
+<li>
+<p>String getId() ：获取sessionid,当第一次登录成功后，session会产生一个唯一的id，浏览器之后访问时如果发现id值还是之前id，那么说明当前访问的属于同一个会话</p>
+</li>
+<li>
+<p>void setMaxInactiveInterval(int interval) ：设定session的非活动时间</p>
+<ul>
+<li>方式一：</li>
+</ul>
+<pre><code class="language-java">session.setMaxInactiveInterval(10*60);//设置有效时间为10分钟
+</code></pre>
+<ul>
+<li>方式二：</li>
+</ul>
+<pre><code class="language-java">&lt;session-config&gt;
+&lt;session-timeout&gt;10&lt;/session-timeout&gt;//单位:分钟
+&lt;/session-config&gt;
+</code></pre>
+</li>
+<li>
+<p>int getMaxInactiveInterval() ：获取session的有效非活动时间(以秒为单位)，默认的有效时间:30分钟.</p>
+</li>
+<li>
+<p>void removeAttribute(String key)：从session中删除指定名称(key)所对应的对象</p>
+</li>
+<li>
+<p>小结 :让session失效的方式<br>
+（1）invalidate() （2）removeAttribute(&quot;key&quot;) （3）直接关闭浏览器。<br>
+示例:使用session验证用户是否登录<br>
+补充:<br>
+自动刷新到某页面:<br>
+注:在head标签中添加该标签，单位:秒</p>
+</li>
+</ul>
+<h1 id="获得初始化参数">获得初始化参数</h1>
+<p>request.setCharacterEncoding(&quot;utf-8&quot;);代码的耦合度太高，不便于后期维护修改。可以通过初始化参数实现。</p>
+<p><strong>实现方式:</strong></p>
+<p><strong>一、方式一</strong>：</p>
+<ul>
+<li>1、web.xml中先定义初始化参数</li>
+</ul>
+<pre><code class="language-java">&lt;servlet&gt;
+&lt;servlet-name&gt;&lt;/servlet-name&gt;
+&lt;servlet-class&gt;&lt;/servlet-class&gt;
+&lt;init-param&gt;
+&lt;param-name&gt;encoding&lt;/param-name&gt;
+&lt;param-value&gt;utf-8&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;/servlet&gt;
+</code></pre>
+<ul>
+<li>2、servlet中获得初始化参数，重写init()方法</li>
+</ul>
+<pre><code class="language-jav">public void init(ServletConfig config) throws ServletException {
+encoding= config.getInitParameter(&quot;encoding&quot;);
+}
+</code></pre>
+<p>注意:这种方式的初始化参数仅限于当前servlet中使用。</p>
+<p><strong>二、方式二全局初始化参数</strong></p>
+<ul>
+<li>1、定义，context-param是和servlet标签同级别</li>
+</ul>
+<pre><code class="language-java">&lt;context-param&gt;
+&lt;param-name&gt;bianma&lt;/param-name&gt;
+&lt;param-value&gt;utf-8&lt;/param-value&gt;
+&lt;/context-param&gt;
+</code></pre>
+<h1 id="servlet30">servlet3.0</h1>
+<p>从Servlet3.0开始，配置Servlet支持注解方式，但还是保留了配置web.xml方式，所有使用Servlet有两种方式：</p>
+<p>（1）Servlet类上使用@WebServlet注解进行配置</p>
+<p>（2）web.xml文件中配置<br>
+<img src="https://Vinci-Ma.github.io/post-images/1597416954401.png" alt="" loading="lazy"></p>
+<p><mark>注意</mark></p>
+<ul>
+<li>.loadOnStartup属性：标记容器是否在启动应用时就加载Servlet，默认不配置或数值为负数时表示客户端第一次请求Servlet时再加载；0或正数表示启动应用就加载，正数情况下，数值越小，加载该Servlet的优先级越高；</li>
+</ul>
+<pre><code class="language-java">@WebServlet(value=&quot;/test1&quot;,loadOnStartup=1)
+</code></pre>
+<ul>
+<li>
+<p>.name属性：可以指定也可以不指定，通过getServletName()可以获取到，若不指定，则为Servlet的完整类名，如：cn.edu.njit.servlet.UserServlet</p>
+</li>
+<li>
+<p>.urlPatterns/value属性： String[]类型，可以配置多个映射，如：urlPatterns={&quot;/user/test&quot;, &quot;/user/example&quot;}</p>
+</li>
+<li>
+<p>.在使用注解方式时，需要注意：<br>
+根元素中不能配置属性metadata-complete=&quot;true&quot;，否则无法加载Servlet。metadata-complete属性表示通知<br>
+Web容器是否寻找注解，默认不写或者设置false，容器会扫描注解，为Web应用程序构建有效的元数据；metadata-complete=&quot;true&quot;，会在启动时不扫描注解（annotation）。如果不扫描注解的话，用注解进行的配置就无法生效，例如：@WebServlet</p>
+</li>
+<li>
+<p>.urlPatterns的常用规则：</p>
+<ul>
+<li>/*或者/：拦截所有</li>
+<li>*.do：拦截指定后缀</li>
+<li>/user/test：拦截路径</li>
+<li>/user/.do、/.do、test*.do都是非法的，启动时候会报错</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#servlet%E4%BB%8B%E7%BB%8D">Servlet介绍</a></li>
+<li><a href="#servlet-api">Servlet API</a></li>
+<li><a href="#servlet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">Servlet工作原理</a></li>
+<li><a href="#servlet%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">Servlet的生命周期</a></li>
+<li><a href="#%E8%AF%B7%E6%B1%82">请求</a>
+<ul>
+<li><a href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95">常用方法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%93%8D%E5%BA%94">响应</a></li>
+<li><a href="#%E4%BC%9A%E8%AF%9D">会话</a></li>
+<li><a href="#%E8%8E%B7%E5%BE%97%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0">获得初始化参数</a></li>
+<li><a href="#servlet30">servlet3.0</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Vinci-Ma.github.io/post/ajax-xue-xi/">
+              <h3 class="post-title">
+                AJAX学习
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://Vinci-Ma.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

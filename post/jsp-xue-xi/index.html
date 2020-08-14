@@ -1,0 +1,540 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JSP学习 | Vinci-Ma</title>
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1597417160648">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="JSP学习 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+JSP
+JSP出现原因
+JSP中如何嵌套Java代码
+JSP原理
+JSP的9个内置对象【重点】
+
+1、request对象！
+2、response对象！
+3、session对象！
+4、application对象！
+5、out 对象
+6、pa..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Vinci-Ma.github.io">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1597417160648" alt="">
+  </a>
+  <h1 class="site-title">
+    Vinci-Ma
+  </h1>
+  <p class="site-description">
+    Stay cooool!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://Vinci-Ma.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Vinci-Ma" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              JSP学习
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-14
+              </span>
+              <span>
+                14 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><ul class="markdownIt-TOC">
+<li><a href="#jsp">JSP</a></li>
+<li><a href="#jsp%E5%87%BA%E7%8E%B0%E5%8E%9F%E5%9B%A0">JSP出现原因</a></li>
+<li><a href="#jsp%E4%B8%AD%E5%A6%82%E4%BD%95%E5%B5%8C%E5%A5%97java%E4%BB%A3%E7%A0%81">JSP中如何嵌套Java代码</a></li>
+<li><a href="#jsp%E5%8E%9F%E7%90%86">JSP原理</a></li>
+<li><a href="#jsp%E7%9A%849%E4%B8%AA%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9">JSP的9个内置对象【重点】</a>
+<ul>
+<li><a href="#1-request%E5%AF%B9%E8%B1%A1">1、request对象！</a></li>
+<li><a href="#2-response%E5%AF%B9%E8%B1%A1">2、response对象！</a></li>
+<li><a href="#3-session%E5%AF%B9%E8%B1%A1">3、session对象！</a></li>
+<li><a href="#4-application%E5%AF%B9%E8%B1%A1">4、application对象！</a></li>
+<li><a href="#5-out-%E5%AF%B9%E8%B1%A1">5、out 对象</a></li>
+<li><a href="#6-pagecontext-%E5%AF%B9%E8%B1%A1">6、pageContext 对象</a></li>
+<li><a href="#7-config-%E5%AF%B9%E8%B1%A1">7、config 对象</a></li>
+<li><a href="#8-page-%E5%AF%B9%E8%B1%A1">8、page 对象</a></li>
+<li><a href="#9-exception-%E5%AF%B9%E8%B1%A1">9、exception 对象</a></li>
+</ul>
+</li>
+<li><a href="#jsp%E7%9A%84%E4%B8%89%E5%A4%A7%E6%8C%87%E4%BB%A4">JSP的三大指令</a>
+<ul>
+<li><a href="#page-%E6%8C%87%E4%BB%A4">Page 指令</a></li>
+<li><a href="#include%E6%8C%87%E4%BB%A4">include指令</a></li>
+<li><a href="#taglib%E6%8C%87%E4%BB%A4">Taglib指令</a></li>
+</ul>
+</li>
+<li><a href="#jsp%E5%87%BA%E7%8E%B0%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">JSP出现的状态码</a></li>
+<li><a href="#el%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8">EL表达式【常用】</a></li>
+<li><a href="#jstl">JSTL</a>
+<ul>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介：</a></li>
+<li><a href="#jatl%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F">JATL的作用和语法格式</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%A0%87%E7%AD%BE">核心标签</a></li>
+<li><a href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%A0%87%E7%AD%BE">格式化标签</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="jsp">JSP</h1>
+<p>JSP全名为Java Server Pages，中文名叫java服务器页面，其根本是一个简化的Servlet设计，它 是由Sun Microsystems公司倡导、许多公司参与一起建立的一种动态网页技术标准。JSP技术有点类似ASP技术，它是在传统的网页HTML文件(<em>.htm,</em>.html)中插入Java程序段(Scriptlet)和JSP标记(tag)，从而形成JSP文件，后缀名为(*.jsp)。 用JSP开发的Web应用是跨平台的，既能在Linux下运行，也能在其他操作系统上运行。</p>
+<p>JSP将网页逻辑与网页设计的显示分离，支持可重用的基于组件的设计，使基于Web的应用程序的开发变得迅速和容易。</p>
+<p>*.html 静态页面(包含固定的页面内容)</p>
+<p>*.jsp 动态页面(页面数据可以动态更新,支持嵌套java代码和html代码)</p>
+<h1 id="jsp出现原因">JSP出现原因</h1>
+<ol>
+<li>servlet显示信息不方便，引入了JSP</li>
+<li>JSP本质上也是一个servlet</li>
+<li>JSP就是在HTML页面中嵌套了java代码</li>
+</ol>
+<h1 id="jsp中如何嵌套java代码">JSP中如何嵌套Java代码</h1>
+<pre><code class="language-java">声明标签 &lt;%!变量或者方法声明%&gt;
+表达式标签 &lt;%= 表达式%&gt; 在页面上显示的效果
+程序代码标签 &lt;%java代码%&gt; 页面上动态展示内容
+
+page指令:(用于设置当前代码中的一些编码方式、语言、导的包……)
+	&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot;pageEncoding=&quot;UTF-8&quot;%&gt;
+    
+&lt;body&gt;
+&lt;%! int i=10;%&gt;&lt;!--成员变量--&gt;
+&lt;%! public void show(){}%&gt; &lt;!--成员方法--&gt;
+&lt;%=i%&gt; &lt;!--输出变量值--&gt;
+&lt;/body&gt;
+ 
+注释：
+    &lt;!-- html注释内容,查看源码时能看到 --&gt;
+    &lt;%-- jsp注释,查看页面源码时看不到 --%&gt;
+</code></pre>
+<h1 id="jsp原理">JSP原理</h1>
+<p>当浏览器访问http://localhost:8080/day9_1/index.jsp。服务器发现后缀为.jsp，它会根据路径找到index.jsp文件，会将index.jsp翻译成index_jsp.java文件，对这个java文件进行编译，产生一个index_jsp.class文件，将class文件加载运行。</p>
+<p>将JSP翻译成java文件，它是将JSP中的所有的HTML代码通过流进行输出，也就是说最终翻译成class，被虚拟机加载，它本质是servlet，它就会往回响应，响应回去就是把JSP中的HTML代码以流的方式写回浏览器。所以在JSP中展示出了HTML代码。</p>
+<h1 id="jsp的9个内置对象重点">JSP的9个内置对象【重点】</h1>
+<p>JSP中一共预先定义了9个这样的对象，分别为：request、response、session、application、out、pagecontext、config、page、exception</p>
+<h2 id="1-request对象">1、request对象！</h2>
+<p>request 对象是 javax.servlet.httpServletRequest类型的对象。 该对象代表了<strong>客户端的请求信息</strong>，主要用于接受通过HTTP协议传送到服务器的数据。（包括头信息、系统信息、请求方式以及请求参数等）。<strong>request对象的作用域为一次请求。</strong></p>
+<h2 id="2-response对象">2、response对象！</h2>
+<p>response 代表的是<strong>对客户端的响应</strong>，主要是将JSP容器处理过的对象传回到客户端。response对象也具有作用域，它只在JSP页面内有效。所属类型: HttpServletResponse。</p>
+<h2 id="3-session对象">3、session对象！</h2>
+<p>session 对象是由服务器自动创建的与用户请求相关的对象。服务器为每个用户都生成一个session对象，用于保存该用户的信息，跟踪用户的操作状态。session对象内部使用Map类来保存数据，因此保存数据的格式为“Key/value”。 session对象的value可以使复杂的对象类型，而不仅仅局限于字符串类型。<strong>作用域为会话期间</strong>，所属类型: HttpSession。</p>
+<h2 id="4-application对象">4、application对象！</h2>
+<p><strong>application 对象可将信息保存在服务器中，直到服务器关闭，否则application对象中保存的信息会在整个应用中都有效</strong>。<br>
+与session对象相比，application对象生命周期更长，类似于系统的“全局变量” ServletContext。<br>
+<strong><mark>区别：</mark></strong><br>
+request:单次请求<br>
+session:浏览器访问期间(会话期间)<br>
+application:服务器启动期间,所存的数据可以跨浏览器</p>
+<h2 id="5-out-对象">5、out 对象</h2>
+<p><strong>out 对象用于在Web浏览器内输出信息</strong>，并且管理应用服务器上的输出缓冲区。在使用 out 对象输出数据时，可以对数据缓冲区进行操作，及时清除缓冲区中的残余数据，为其他的输出让出缓冲空间。待数据输出完毕后，要及时关闭输出流。</p>
+<pre><code class="language-java">//可以用于弹出弹窗
+out.print(&quot;&lt;script type='text/javascript'&gt;alert('用户名不存在');location.href='index.jsp'&lt;/script&gt;&quot;);
+</code></pre>
+<h2 id="6-pagecontext-对象">6、pageContext 对象</h2>
+<p><strong>pageContext 对象的作用是取得任何范围的参数</strong>，通过它可以获取 JSP页面的out、request、reponse、session、application 等对象。pageContext对象的创建和初始化都是由容器来完成的，在JSP页面中可以直接使用pageContext对象。</p>
+<h2 id="7-config-对象">7、config 对象</h2>
+<p>config 对象的主要作用是<strong>取得服务器的配置信息</strong>。通过 pageConext对象的 getServletConfig() 方法可以获取一个config对象。当一个Servlet 初始化时，容器把某些信息通过config对象传递给这个 Servlet。 开发者可以在web.xml 文件中为应用程序环境中的Servlet程序和JSP页面提供初始化参数。</p>
+<pre><code class="language-java">//将image路径转换成服务器端的路径
+String url= config.getServletContext().getRealPath(&quot;/image&quot;);
+&lt;h1&gt;url=&lt;%=url %&gt;&lt;/h1&gt;
+</code></pre>
+<h2 id="8-page-对象">8、page 对象</h2>
+<p>page 对象代表JSP本身，只有在JSP页面内才是合法的。 page隐含对象本质上包含当前 Servlet接口引用的变量，<strong>类似于Java编程中的 this 指针</strong>。</p>
+<h2 id="9-exception-对象">9、exception 对象</h2>
+<p>exception 对象的作用是<strong>显示异常信息</strong>，只有在包含 isErrorPage=&quot;true&quot; 的页面中才可以被使用，在一般的JSP页面中使用该对象将无法编译JSP文件。excepation对象和Java的所有对象一样，都具有系统提供的继承结构。<br>
+exception 对象几乎定义了所有异常情况。在Java程序中，可以使用try/catch关键字来处理异常情况； 如果在JSP页面中出现没有捕获到的异常，就会生成exception 对象，并把 exception 对象传送到在page指令中设定的错误页面中，然后在错误页面中处理相应的 exception 对象。</p>
+<p>(1)先在可能发生错误的页面中添加errorPage属性:</p>
+<pre><code class="language-java">&lt;%@ page pageEncoding=&quot;utf-8&quot;
+errorPage=&quot;error.jsp&quot;
+contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+</code></pre>
+<p>(2) 在error.jsp页面中设置isErrorPage=&quot;true&quot; 的属性<br>
+(使用exception对象之前，需要先将当前页面设置成错误页面）</p>
+<pre><code class="language-java">&lt;%@ page language=&quot;java&quot; isErrorPage=&quot;true&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+</code></pre>
+<p>jsp存值的作用域:<br>
+pageContext   -&gt;  request     -&gt; session       -&gt; application<br>
+当前页面       单次请求有效  当前会话期间     服务器运行期间有效</p>
+<h1 id="jsp的三大指令">JSP的三大指令</h1>
+<p>JSP指令用来设置整个JSP页面相关的属性，如网页的编码方式和脚本语言。</p>
+<pre><code class="language-java">语法格式如下：
+    &lt;%@ directive attribute=&quot;value&quot; %&gt;
+	directive：指令名称 attribute 属性名 value:属性值
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page</td>
+<td style="text-align:left">定义网路依赖性，比如脚本语言、error页面、缓存需求等</td>
+</tr>
+<tr>
+<td>include</td>
+<td style="text-align:left">包含其他文件</td>
+</tr>
+<tr>
+<td>include</td>
+<td style="text-align:left">引入标签库的定义</td>
+</tr>
+</tbody>
+</table>
+<h2 id="page-指令">Page 指令</h2>
+<pre><code class="language-java">Page指令为容器提供当前页面的使用说明
+一个JSP页面可以包含多个page指令
+Page指令的语法格式：
+	&lt;%@ page attribute=&quot;value&quot; %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>language</td>
+<td>java</td>
+<td>解释该JSP文件时采用的语言，一般为java语言，默认为java</td>
+</tr>
+<tr>
+<td>extends</td>
+<td>任何类的全名</td>
+<td>编译该JSP文件时继承哪个类，JSP为Servlet，因此当指明继承普通类时需要实现Servlet的init、destroy等方法</td>
+</tr>
+<tr>
+<td>import</td>
+<td>任何包名、类名</td>
+<td>引入该JSP中用到的类、包等，import是唯一可以声明多次的page指令属性，一个import可以引用uogelei，中间用英文逗号隔开&lt;%@ page import=包名.类名，包名.类名%&gt;</td>
+</tr>
+<tr>
+<td>session</td>
+<td>true、false</td>
+<td>该JSP内是否内置Session对象，如果为true，则内置Session对象，可直接使用，否则反之，默认为true</td>
+</tr>
+<tr>
+<td>autoFlush</td>
+<td>true、false</td>
+<td>是否运行缓存，如果为true，则使用out.println()等方法输出的字符串并不是立刻到达客户端服务器的，而是暂时存到缓存里，缓存满了或者程序行完毕或者执行out.flush()操作时才到客户端，默认为true。</td>
+</tr>
+<tr>
+<td>buffer</td>
+<td>none或者数字KB</td>
+<td>指定缓存大小，当autoFlush设为true时有效，例如&lt;%@ page buffer=10kb%&gt;</td>
+</tr>
+<tr>
+<td>isThreadSafe</td>
+<td>true、false</td>
+<td>是否线程安全，如果为true，则运行多个线程同时运行该jsp程序，否则只运行一个线程，其余线程等待，默认为false</td>
+</tr>
+<tr>
+<td>isErrorPage</td>
+<td>true、false</td>
+<td>指定该页面是否为错误显示页面，如果为true，则该JSP内置有一个Exception对象exception，可直接使用，否则没有，默认为false</td>
+</tr>
+<tr>
+<td>errorPage</td>
+<td>某个JSP页面的相对路径</td>
+<td>指明一个错误页面，如果该JSP程序抛出一个未捕捉的异常，则转到errorPage指定的页面，errorPage指定的页面通</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>有效的文档类型</td>
+<td>客户端浏览器根据该属性判断文档类型，例如 HTML格式为text/html、纯文本格式为text/plain、JPG图像为image/jpeg、GIF图像为image/gifWORD文档为application/msword，该属性常跟着charset设置编码一起，作用是通知服务器和浏览器都使用同一个码表</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>UTF-8,ISO-8859-</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="include指令">include指令</h2>
+<p>JSP可以通过include指令来包含其他文件。被包含的文件可以是JSP文件、HTML文件或文本文件。包含的文件就好像是该JSP文件的一部分，会被同时编译执行。</p>
+<pre><code class="language-java">Include指令的语法格式如下：
+   &lt;%@ include file=&quot;文件相对 url 地址&quot; %&gt; 
+</code></pre>
+<p>include 指令中的文件名实际上是一个相对的 URL 地址。<br>
+如果您没有给文件关联一个路径，JSP编译器默认在当前路径下寻找。</p>
+<h2 id="taglib指令">Taglib指令</h2>
+<p>JSP API允许<strong>用户自定义标签</strong>，一个自定义标签库就是自定义标签的集合。<br>
+Taglib指令引入一个自定义标签集合的定义，包括库路径、自定义标签。</p>
+<pre><code class="language-java">&lt;%@ taglib uri=&quot;uri&quot; prefix=&quot;&quot; %&gt;
+uri属性确定标签库的位置，prefix属性指定标签库的前缀(可自定义)
+</code></pre>
+<h1 id="jsp出现的状态码">JSP出现的状态码</h1>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1597417114112.png" alt="" loading="lazy"></figure>
+<h1 id="el表达式常用">EL表达式【常用】</h1>
+<p>EL表达式定义：Expression Language，表示语言，只负责取值</p>
+<p>EL表达式语法：</p>
+<ul>
+<li>语法格式：<strong>${需要展示信息的名字}</strong></li>
+<li>语法（想要跳过默认顺序获取时）: <strong>${requestScope.key}</strong></li>
+</ul>
+<p><strong><mark>注意：</mark></strong></p>
+<p>当表达式没有指定变量或者对象的范围时，</p>
+<p>那么容器会依次从pageContext—&gt;request—&gt;session—&gt;application中查找该变量或对象,我们可以通过隐含对象获得指定作用域的值:</p>
+<p>pageScope对象，用于获取当前页面的属性值<br>
+requestScope对象，用于获取请求范围的属性值<br>
+sessionScope对象，用于获取会话范围的属性值<br>
+applicationScope对象，用于获取程序范围的属性值</p>
+<p><strong>EL中基础操作符：</strong><br>
+<img src="https://Vinci-Ma.github.io/post-images/1597417100590.png" alt="" loading="lazy"></p>
+<h1 id="jstl">JSTL</h1>
+<h2 id="简介">简介：</h2>
+<p>JSP标准标签库（JSTL）是一个JSP标签集合，它封装了JSP应用的通用核心功能。</p>
+<p>JSTL支持通用的、结构化的任务，比如迭代，条件判断，XML文档操作，国际化标签，SQL标签。 除了这些，它还提供了一个框架来使用集成JSTL的自定义标签。</p>
+<p>根据JSTL标签所提供的功能，可以将其分为5个类别。核心标签 格式化标签 sql标签 xml标签 jstl函数。</p>
+<h2 id="jatl的作用和语法格式">JATL的作用和语法格式</h2>
+<p><strong>作用：简化jsp页面编写代码</strong></p>
+<p>语法格式：1、配置standard.jar 和 jstl.jar 到 /WEB-INF/lib/ 下</p>
+<p>2、在JSP页面中引入&lt;%@ taglib prefix=”页面使用的名称” uri=”功能范围的路径”%&gt;</p>
+<table>
+<thead>
+<tr>
+<th>功能范围</th>
+<th>url</th>
+<th>前缀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core</td>
+<td>http://java.sun.com/jsp/jstl/core</td>
+<td>c</td>
+</tr>
+<tr>
+<td>i18n</td>
+<td>http://java.sun.com/jsp/jstl/fmt</td>
+<td>fmt</td>
+</tr>
+<tr>
+<td>sql</td>
+<td>http://java.sun.com/jsp/jstl/sql</td>
+<td>sql</td>
+</tr>
+<tr>
+<td>xml</td>
+<td>http://java.sun.com/jsp/jstl/xml</td>
+<td>x</td>
+</tr>
+<tr>
+<td>functions</td>
+<td>http://java.sun.com/jsp/jstl/function</td>
+<td>fn</td>
+</tr>
+</tbody>
+</table>
+<h2 id="核心标签">核心标签</h2>
+<p>核心标签是最常用的 JSTL标签。引用核心标签库的语法如下：</p>
+<pre><code class="language-java">&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+</code></pre>
+<p>核心标签的分类：</p>
+<p>表达式操作 ：out、set、remove、catch</p>
+<p>流程控制 ：if、choose、when、otherwise</p>
+<p>迭代操作： forEach、forTokens</p>
+<p>URL操作： import、param、url、redirect</p>
+<p><strong>Set标签</strong><br>
+<img src="https://Vinci-Ma.github.io/post-images/1597417065005.png" alt="" loading="lazy"><br>
+<img src="https://Vinci-Ma.github.io/post-images/1597417073508.png" alt="" loading="lazy"></p>
+<h2 id="格式化标签">格式化标签</h2>
+<p><strong>1、fmt:formatDate 作用：将日期类型格式化为指定模式的字符串</strong></p>
+<p>属性</p>
+<p>value：将要被格式化的数据</p>
+<p>pattern：格式化的模式，与SimpleDateFormat的参数设置一样</p>
+<p>var：格式化后的字符串所要存放的变量，若不指定var，则会将格式化的结果直接显示在页面</p>
+<p>scope：变量存放的域属性空间，默认page</p>
+<p>type：其取值为date、time、both，表示给出的value是日期、时间、还是两者都包含，默认是date</p>
+<p><strong>2、fmt:parseDate 作用：用于将指定字符串转化为日期类型</strong></p>
+<p>&lt;fmt:parseDate value=&quot;$(now)&quot; pattern=&quot;yyyy-MM-dd&quot; var=&quot;today&quot;/&gt;</p>
+<p>Value：服务器获取的时间</p>
+<p>Pattern：转换的格式</p>
+<p>Var：页面显示的变量</p>
+<p><strong>3、fmt:formatNumber 按照指定格式对数字进行格式化</strong></p>
+<p>属性</p>
+<p>maxIntegerDigits：整数部分最多的位数</p>
+<p>minIntegerDigits：整数部分最少的位数</p>
+<p>maxFrctionDigits：小数部分最多的位数</p>
+<p>minFrctionDigits：小数部分最少的位数</p>
+<p>var：存储格式化结果的变量</p>
+<p>scope：var属性的作用域</p>
+<p>integerOnly：是否只解析整型数true或者浮点数false</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#jsp">JSP</a></li>
+<li><a href="#jsp%E5%87%BA%E7%8E%B0%E5%8E%9F%E5%9B%A0">JSP出现原因</a></li>
+<li><a href="#jsp%E4%B8%AD%E5%A6%82%E4%BD%95%E5%B5%8C%E5%A5%97java%E4%BB%A3%E7%A0%81">JSP中如何嵌套Java代码</a></li>
+<li><a href="#jsp%E5%8E%9F%E7%90%86">JSP原理</a></li>
+<li><a href="#jsp%E7%9A%849%E4%B8%AA%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9">JSP的9个内置对象【重点】</a>
+<ul>
+<li><a href="#1-request%E5%AF%B9%E8%B1%A1">1、request对象！</a></li>
+<li><a href="#2-response%E5%AF%B9%E8%B1%A1">2、response对象！</a></li>
+<li><a href="#3-session%E5%AF%B9%E8%B1%A1">3、session对象！</a></li>
+<li><a href="#4-application%E5%AF%B9%E8%B1%A1">4、application对象！</a></li>
+<li><a href="#5-out-%E5%AF%B9%E8%B1%A1">5、out 对象</a></li>
+<li><a href="#6-pagecontext-%E5%AF%B9%E8%B1%A1">6、pageContext 对象</a></li>
+<li><a href="#7-config-%E5%AF%B9%E8%B1%A1">7、config 对象</a></li>
+<li><a href="#8-page-%E5%AF%B9%E8%B1%A1">8、page 对象</a></li>
+<li><a href="#9-exception-%E5%AF%B9%E8%B1%A1">9、exception 对象</a></li>
+</ul>
+</li>
+<li><a href="#jsp%E7%9A%84%E4%B8%89%E5%A4%A7%E6%8C%87%E4%BB%A4">JSP的三大指令</a>
+<ul>
+<li><a href="#page-%E6%8C%87%E4%BB%A4">Page 指令</a></li>
+<li><a href="#include%E6%8C%87%E4%BB%A4">include指令</a></li>
+<li><a href="#taglib%E6%8C%87%E4%BB%A4">Taglib指令</a></li>
+</ul>
+</li>
+<li><a href="#jsp%E5%87%BA%E7%8E%B0%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">JSP出现的状态码</a></li>
+<li><a href="#el%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8">EL表达式【常用】</a></li>
+<li><a href="#jstl">JSTL</a>
+<ul>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介：</a></li>
+<li><a href="#jatl%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F">JATL的作用和语法格式</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%A0%87%E7%AD%BE">核心标签</a></li>
+<li><a href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%A0%87%E7%AD%BE">格式化标签</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Vinci-Ma.github.io/post/servlet-xue-xi/">
+              <h3 class="post-title">
+                Servlet学习
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://Vinci-Ma.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
