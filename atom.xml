@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-08-15T06:07:16.087Z</updated>
+    <updated>2020-09-01T09:55:12.559Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -10,6 +10,113 @@
     <logo>https://Vinci-Ma.github.io/images/avatar.png</logo>
     <icon>https://Vinci-Ma.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Vinci-Ma</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux常用指令]]></title>
+        <id>https://Vinci-Ma.github.io/post/linux-chang-yong-zhi-ling/</id>
+        <link href="https://Vinci-Ma.github.io/post/linux-chang-yong-zhi-ling/">
+        </link>
+        <updated>2020-09-01T08:11:44.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95">查看目录</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95">创建目录</a></li>
+<li><a href="#%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95">切换目录</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6">创建文件</a></li>
+<li><a href="#%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9">写入内容</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9">查看文件内容</a></li>
+<li><a href="#%E5%A4%8D%E5%88%B6">复制</a></li>
+<li><a href="#%E5%89%AA%E5%88%87">剪切</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4">删除</a></li>
+<li><a href="#%E7%BB%9F%E8%AE%A1%E8%A1%8C">统计行</a></li>
+<li><a href="#%E5%BD%93%E5%89%8D%E8%B7%AF%E5%BE%84">当前路径</a></li>
+<li><a href="#%E6%98%BE%E7%A4%BA%E4%B8%BB%E6%9C%BA">显示主机</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF">系统信息</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E8%80%97%E6%97%B6%E4%B8%8E%E5%8D%A0%E7%94%A8">查看进程耗时与占用</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E5%BF%AB%E7%85%A7">查看进程快照</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F">文件大小</a></li>
+<li><a href="#%E7%A3%81%E7%9B%98%E5%8D%A0%E7%94%A8">磁盘占用</a></li>
+<li><a href="#%E7%BD%91%E5%8D%A1">网卡</a></li>
+<li><a href="#%E5%BC%BA%E5%88%B6%E7%BB%93%E6%9D%9F">强制结束</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3">查看端口</a></li>
+<li><a href="#%E6%89%93%E5%8C%85%E4%B8%8E%E6%8A%98%E5%8C%85%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B%E7%BC%A9">打包与折包（压缩与解压缩）</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8">文本编辑器</a></li>
+</ul>
+</p>
+<h1 id="查看目录">查看目录</h1>
+<p>ll：查看详细信息<br>
+ls：查看目录内容</p>
+<h1 id="创建目录">创建目录</h1>
+<p>mkdir：创建目录<br>
+mkdir -p：创建目录以及其子目录，同时创建多个目录【eg：mkdir -p a/b（创建a目录里面包含b目录）】</p>
+<h1 id="切换目录">切换目录</h1>
+<p>cd （需要切换的目录）：切换目录</p>
+<h1 id="创建文件">创建文件</h1>
+<p>touch：创建文件【eg：touch a.txt（在当前目录下创建a.txt）】</p>
+<h1 id="写入内容">写入内容</h1>
+<p>echo：把内容重定向到指定的文件夹中，有则打开，无则创建<br>
+覆盖模式&gt;: echo “ww”&gt;aa.txt【清除aa.txt的内容，再写入ww】<br>
+追加模式&gt;&gt;: echo &quot;ww&quot;&gt;&gt;aa.txt【在aa.txt末尾添加ww】</p>
+<h1 id="查看文件内容">查看文件内容</h1>
+<p>cat：查看文件内容<br>
+more：分页查看文件内容，按空格键换页</p>
+<h1 id="复制">复制</h1>
+<p>cp：复制文件【eg：cp a.txt b.txt（复制a的内容到b）】</p>
+<h1 id="剪切">剪切</h1>
+<p>mv：剪切、重命名（剪切的文件 放在同一个目录中是重命名）【eg：mv b.txt c.txt（将b的名字改为c）】</p>
+<h1 id="删除">删除</h1>
+<p>rm：删除文件或者文件夹（有提示） -r 递归删除<br>
+rm -fr：直接彻底删除，没有提示</p>
+<h1 id="统计行">统计行</h1>
+<p>wc -l：统计行数</p>
+<h1 id="当前路径">当前路径</h1>
+<p>pwd：查看当前目录的绝对路径</p>
+<h1 id="显示主机">显示主机</h1>
+<p>hostname：显示主机名</p>
+<h1 id="系统信息">系统信息</h1>
+<p>uname -a：显示完整的系统信息</p>
+<h1 id="查看进程耗时与占用">查看进程耗时与占用</h1>
+<p>top：显示当前耗时的进程信息 ,每3秒刷新一次 cltr+c 中断</p>
+<h1 id="查看进程快照">查看进程快照</h1>
+<p>ps -aux：显示当前进程的快照（全部显示）<br>
+ps -aux |qrep java：查看java进程<br>
+ps -aux |qrep mysql：查看mysql进程</p>
+<h1 id="文件大小">文件大小</h1>
+<p>du -sh：显示文件的大小信息</p>
+<h1 id="磁盘占用">磁盘占用</h1>
+<p>df -lh：磁盘使用情况</p>
+<h1 id="网卡">网卡</h1>
+<p>ifconfig：查看或者配置网卡信息</p>
+<h1 id="强制结束">强制结束</h1>
+<p>kill pid：杀死进程<br>
+kill -9 （编号）：强制杀死</p>
+<h1 id="查看端口">查看端口</h1>
+<p>netstat （参数）<br>
+-a或--all：显示所有连线中的Socket；<br>
+-l或--listening：显示监控中的服务器的Socket；<br>
+-n或--numeric：直接使用ip地址，而不通过域名服务器；<br>
+-p或--programs：显示正在使用Socket的程序识别码和程序名称；<br>
+-t或--tcp：显示TCP传输协议的连线状况；<br>
+netstat -tlnp：找出运行在指定端口的进程：【eg：netstat -tlnp | grep ':22'】</p>
+<h1 id="打包与折包压缩与解压缩">打包与折包（压缩与解压缩）</h1>
+<p>tar -czvf （打包后的文件）（需要打包的目录）<br>
+c ：创建的一个归档文件<br>
+x ：拆包<br>
+z ：以gzip 格式压缩 j ：以bzip2格式压缩<br>
+v ：显示打包或者拆包的文件信息<br>
+f ： 后面紧接一个 归档文件<br>
+打包及压缩：tar -czvf yhp.tar.gz ./yhp/<br>
+拆包及解压缩: tar -xzvf yhp.tar.gz</p>
+<h1 id="文本编辑器">文本编辑器</h1>
+<p>vim （需要编辑的文本）<br>
+i：进入编辑模式<br>
+esc：退出编辑模式<br>
+命令模式：<br>
+一般模式中按：进入命令模式【yy复制一行, dd剪切一行,p粘贴】<br>
+:q 安全退出，当没有操作该文档<br>
+:q！修改了内容，但不想保存，强制退出<br>
+:wq 保存退出<br>
+:set number 显示行号set nonumber 取消行号显示</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[JSP学习]]></title>
         <id>https://Vinci-Ma.github.io/post/jsp-xue-xi/</id>
@@ -2137,250 +2244,6 @@ drop user 'lisi'@'%';
 </code></pre>
 <p><strong>输出结果：</strong><br>
 <img src="https://img-blog.csdnimg.cn/20200711112008345.png" alt="在这里插入图片描述" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Java基础学习——集合]]></title>
-        <id>https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-ji-he/</id>
-        <link href="https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-ji-he/">
-        </link>
-        <updated>2020-07-06T02:33:01.000Z</updated>
-        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
-<li><a href="#java%E9%9B%86%E5%90%88">Java集合</a>
-<ul>
-<li><a href="#%E4%B8%80-%E9%9B%86%E5%90%88collection">一、集合（Collection）</a>
-<ul>
-<li><a href="#%E6%95%B0%E7%BB%84%E5%92%8C%E9%9B%86%E5%90%88%E7%9A%84%E5%8C%BA%E5%88%AB">数组和集合的区别：</a></li>
-<li><a href="#collection%E5%8A%9F%E8%83%BD">Collection功能：</a></li>
-<li><a href="#list%E9%9B%86%E5%90%88">List集合</a></li>
-<li><a href="#set%E9%9B%86%E5%90%88">Set集合</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BA%8C-list%E9%9B%86%E5%90%88">二、List集合</a>
-<ul>
-<li><a href="#1-arraylist">1、ArrayList</a>
-<ul>
-<li><a href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95">构造方法：</a></li>
-<li><a href="#add%E6%96%B9%E6%B3%95">add方法</a>
-<ul>
-<li><a href="#1-public-boolean-adde-e%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0%E5%88%B0%E6%AD%A4%E5%88%97%E8%A1%A8%E7%9A%84%E6%9C%AB%E5%B0%BE%E8%BF%94%E5%9B%9E%E7%9A%84%E4%B8%80%E5%AE%9A%E6%98%AFtrue">1、public boolean add(E e)：添加元素到此列表的末尾，返回的一定是==true==</a></li>
-<li><a href="#2-public-void-addint-index-e-element%E5%B0%86%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%E6%8F%92%E5%85%A5%E6%AD%A4%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE">2、public void add(int index, E element)：将指定元素插入此列表中的指定位置</a></li>
-</ul>
-</li>
-<li><a href="#get%E6%96%B9%E6%B3%95">get方法</a></li>
-<li><a href="#set%E6%96%B9%E6%B3%95">set方法</a></li>
-<li><a href="#remove%E6%96%B9%E6%B3%95">remove方法</a></li>
-</ul>
-</li>
-<li><a href="#2-vector">2、Vector</a></li>
-<li><a href="#3-linkedlist">3、LinkedList</a>
-<ul>
-<li><a href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95-2">构造方法：</a></li>
-</ul>
-</li>
-<li><a href="#list%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93">List集合总结</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</p>
-<h1 id="java集合">Java集合</h1>
-<ul>
-<li>
-<p>为什么要学习Java集合？</p>
-</li>
-<li>
-<p>集合和数组有什么区别？</p>
-<p>Java是一门面向对象的语言，为了方便操作多个对象，需要把对象存储器起来，而想要存储多个对象，需要一个<strong>容器</strong>（集合）来装载。</p>
-<p>简单来说：<mark>Java提供了集合这个工具来方便我们去操纵多个Java对象</mark></p>
-</li>
-</ul>
-<h2 id="一-集合collection">一、集合（Collection）</h2>
-<h3 id="数组和集合的区别">数组和集合的区别：</h3>
-<ul>
-<li>1、长度
-<ul>
-<li>数组的长度固定</li>
-<li>集合的长度可变</li>
-</ul>
-</li>
-<li>2、元素的数据类型
-<ul>
-<li>数组可以存储<strong>基本数据类型</strong>，也可以存储<strong>引用数据类型</strong>（类、接口、数组）</li>
-<li>集合智能存储<strong>引用数据类型</strong></li>
-</ul>
-</li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5Cjasmi%5CDesktop%5Ccollection%E5%9B%BE.png" alt="Collection结构图" loading="lazy"></figure>
-<h3 id="collection功能">Collection功能：</h3>
-<p>1、添加功能：</p>
-<ul>
-<li>boolean add(E e)：添加一个元素</li>
-<li>boolean addAll(Collection&lt;? extends E&gt; c)：添加一个集合的元素</li>
-</ul>
-<p>2、删除功能：</p>
-<ul>
-<li>boolean remove(Object o)：删除一个元素</li>
-<li>boolean removeAll(Collection&lt;?&gt; c)：删除一个集合的所有元素</li>
-<li>void clear()：从此集合中删除所有元素</li>
-</ul>
-<p>3、判断功能：</p>
-<ul>
-<li>boolean contains(Object o)：判断集合是否包含此元素</li>
-<li>boolean containsAll(Collection&lt;?&gt; c)：判断集合是否包含指定的集合中的所有元素</li>
-<li>boolean isEmpty()：判断集合是否为空</li>
-</ul>
-<p>4、获取功能：</p>
-<ul>
-<li>Iterator<E> iterator()：迭代器</li>
-</ul>
-<p>5、长度功能：</p>
-<ul>
-<li>int size()：返回集合中的元素个数</li>
-</ul>
-<p>6、交集功能：</p>
-<ul>
-<li>boolean retainAll(Collection&lt;?&gt; c)：从此集合中删除未包含在指定集合中的所有元素，也就是集合A与集合B做交集，最终的结果保存在集合A，返回值表示A集合是否发生变化</li>
-</ul>
-<h3 id="list集合">List集合</h3>
-<p>特点：有序（存储顺序与取出顺序一致），可重复</p>
-<p>常用子类：</p>
-<ul>
-<li>ArrayList：底层数据结构是数组，线程不安全</li>
-<li>LinkedList：底层数据结构是链表，线程不安全</li>
-<li>Vector：底层数据结构是数组，线程安全</li>
-</ul>
-<h3 id="set集合">Set集合</h3>
-<p>特点：元素不可重复</p>
-<p>常用子类：</p>
-<ul>
-<li>HashSet：底层数据结构是哈希表（是一个元素为链表的数组）</li>
-<li>TreeSet：底层数据结构是红黑树（是一个自平衡的二叉树），保证元素的排序方式</li>
-<li>LinkedHashSet：底层数据结构有哈希表和链表组成</li>
-</ul>
-<h2 id="二-list集合">二、List集合</h2>
-<h3 id="1-arraylist">1、ArrayList</h3>
-<p>底层的数据结构是数组，线程不安全，对于添加删除慢，查找快</p>
-<h4 id="构造方法">构造方法：</h4>
-<ul>
-<li>
-<p>ArrayList()：构造一个初始容量为<mark>10</mark>的空列表【在最开始时是一个长度为0的数组，在第一次添加数据时扩容为10】</p>
-</li>
-<li>
-<p>ArrayList(int initialCapacity)：构造指定容量的空列表</p>
-</li>
-<li>
-<p>ArrayList(Collection&lt;? extends E&gt; c)：按照集合的迭代器返回的顺序构造一个包含指定集合元素的列表</p>
-</li>
-</ul>
-<h4 id="add方法">add方法</h4>
-<h5 id="1-public-boolean-adde-e添加元素到此列表的末尾返回的一定是true">1、public boolean add(E e)：添加元素到此列表的末尾，返回的一定是<mark>true</mark></h5>
-<p>实现方式：</p>
-<ul>
-<li>首先检查数组的容量是否足够
-<ul>
-<li>足够：直接添加数据</li>
-<li>不够：扩容
-<ul>
-<li>扩容到原来的1.5倍</li>
-<li>第一次扩容后，如果容量还是小于minCapacity（最小需要的长度），就将容量扩充为minCapacity</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="2-public-void-addint-index-e-element将指定元素插入此列表中的指定位置">2、public void add(int index, E element)：将指定元素插入此列表中的指定位置</h5>
-<p>实现方式：</p>
-<ul>
-<li>首先查看角标是否越界</li>
-<li>空间检查，如果有需要，进行扩容</li>
-<li>利用arraycopy（）来插入元素</li>
-</ul>
-<h4 id="get方法">get方法</h4>
-<p>public E get(int index)：返回此列表中指定未知的元素</p>
-<p>实现方式：</p>
-<ul>
-<li>检查角标</li>
-<li>返回相应元素</li>
-</ul>
-<pre><code class="language-java">public E get(int index){
-    rangeCheck(index);
-    return elementData(index);
-}
-// 检查角标
-private void rangeCheck(int index) {
-if (index &gt;= size)
-throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
-}
-//返回相应元素
-E elementData(int index) {
-return (E) elementData[index];
-}
-</code></pre>
-<h4 id="set方法">set方法</h4>
-<p>public E set(int index, E element)：用指定的元素替代此列表中指定未知的元素</p>
-<p>实现方法：</p>
-<ul>
-<li>检查角标</li>
-<li>替代元素</li>
-<li>放回旧元素的值</li>
-</ul>
-<pre><code class="language-java">public E set(int index, E element){
-    rangeCheck(index);
-    E oldValue = elementData(index);
-    elementData[index] = element;
-    return oldValue;
-}
-</code></pre>
-<h4 id="remove方法">remove方法</h4>
-<p>public E remove(int index)：删除指定位置的元素，返回被删除的元素，删除元素时不会减少容量</p>
-<p>实现方式：</p>
-<ul>
-<li>检查角标</li>
-<li>删除元素</li>
-<li>计算出需要移动的个数，并进行移动</li>
-<li>将数组最后一个多余的数据设置为null，让GC回收</li>
-</ul>
-<pre><code class="language-java">public E remove(int index) {
-    rangeCheck(index);
-    modCount++;
-    E oldValue = elementData(index);
-    int numMoved = size - index - 1;
-    if (numMoved &gt; 0)
-        System.arraycopy(elementData, index+1, elementData, index,numMoved);
-    elementData[--size] = null; // clear to let GC do its work
-    return oldValue;
-}
-</code></pre>
-<h3 id="2-vector">2、Vector</h3>
-<p>Vector底层也是<strong>数组</strong>，与ArrayList最大的区别是：</p>
-<p>1、<mark>线程安全</mark></p>
-<p>2、ArrayList在底层数组不够用时，扩容为原来的1.5倍，Vector扩容为原来的2倍（如果指定增量，则按照增量扩容）</p>
-<h3 id="3-linkedlist">3、LinkedList</h3>
-<p>LinkedList底层是<strong>双向链表</strong>，增删更快，查找慢【和数组相反】</p>
-<h4 id="构造方法-2">构造方法：</h4>
-<ul>
-<li>LinkedList()：构造一个空列表</li>
-<li>LinkedList(Collection&lt;? extends E&gt; c)：按照集合的迭代器返回的顺序构造一个包含指定集合元素的列表</li>
-</ul>
-<h3 id="list集合总结">List集合总结</h3>
-<p>ArrayList：</p>
-<ul>
-<li>底层实现结构是数组</li>
-<li>默认初始化是10，每次扩容为原来的1.5倍</li>
-<li>在增删时需要数组的拷贝复制【arraycopy()】</li>
-</ul>
-<p>Vector：</p>
-<ul>
-<li>底层实现结构是数组</li>
-<li>默认初始化是10，每次扩容为原来的2倍</li>
-</ul>
-<p>LinkedList：</p>
-<ul>
-<li>底层实现结构是双向链表</li>
-</ul>
-<p><mark>使用场景：增删多使用LinkedList，查询多使用ArrayList</mark></p>
 ]]></content>
     </entry>
 </feed>
