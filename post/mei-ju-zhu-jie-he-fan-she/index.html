@@ -1,0 +1,511 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>枚举、注解和反射 | Vinci-Ma</title>
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1599066207582">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="枚举、注解和反射 | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+枚举
+
+1、简介
+2、定义格式
+3、枚举类的主要方法
+4、注意事项
+
+
+注解
+
+1、简介
+2、内置注解
+
+
+反射
+
+1、概述
+2、类加载器
+3、所有类型的Class对象
+4、得到Class的几种方式
+5、获取Constructor
+获取M..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Vinci-Ma.github.io">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1599066207582" alt="">
+  </a>
+  <h1 class="site-title">
+    Vinci-Ma
+  </h1>
+  <p class="site-description">
+    Stay cooool!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://Vinci-Ma.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Vinci-Ma" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              枚举、注解和反射
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-09-03
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><ul class="markdownIt-TOC">
+<li><a href="#%E6%9E%9A%E4%B8%BE">枚举</a>
+<ul>
+<li><a href="#1-%E7%AE%80%E4%BB%8B">1、简介</a></li>
+<li><a href="#2-%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F">2、定义格式</a></li>
+<li><a href="#3-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95">3、枚举类的主要方法</a></li>
+<li><a href="#4-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">4、注意事项</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B3%A8%E8%A7%A3">注解</a>
+<ul>
+<li><a href="#1-%E7%AE%80%E4%BB%8B-2">1、简介</a></li>
+<li><a href="#2-%E5%86%85%E7%BD%AE%E6%B3%A8%E8%A7%A3">2、内置注解</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%8D%E5%B0%84">反射</a>
+<ul>
+<li><a href="#1-%E6%A6%82%E8%BF%B0">1、概述</a></li>
+<li><a href="#2-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8">2、类加载器</a></li>
+<li><a href="#3-%E6%89%80%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84class%E5%AF%B9%E8%B1%A1">3、所有类型的Class对象</a></li>
+<li><a href="#4-%E5%BE%97%E5%88%B0class%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F">4、得到Class的几种方式</a></li>
+<li><a href="#5-%E8%8E%B7%E5%8F%96constructor">5、获取Constructor</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96method">获取Method</a></li>
+<li><a href="#1-%E9%80%9A%E8%BF%87class%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95">1、通过class对象，获取一个类的方法</a></li>
+<li><a href="#2-method%E6%89%A7%E8%A1%8C%E6%96%B9%E6%B3%95">2、Method执行方法</a></li>
+<li><a href="#7-%E8%8E%B7%E5%8F%96field">7、获取Field</a>
+<ul>
+<li><a href="#1-%E9%80%9A%E8%BF%87class%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7">1、通过class对象，获取一个类的属性</a></li>
+<li><a href="#2-field%E5%B1%9E%E6%80%A7%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B">2、Field属性的对象类型</a></li>
+</ul>
+</li>
+<li><a href="#8-%E8%8E%B7%E5%8F%96%E6%B3%A8%E8%A7%A3%E4%BF%A1%E6%81%AF">8、获取注解信息</a>
+<ul>
+<li><a href="#1-%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%B1%9E%E6%80%A7%E6%96%B9%E6%B3%95%E7%9A%84%E5%85%A8%E9%83%A8%E6%B3%A8%E8%A7%A3%E5%AF%B9%E8%B1%A1">1、获取类/属性/方法的全部注解对象</a></li>
+<li><a href="#2-%E6%A0%B9%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%B1%9E%E6%80%A7%E6%96%B9%E6%B3%95%E7%9A%84%E6%B3%A8%E8%A7%A3%E5%AF%B9%E8%B1%A1">2、根据类型获取类/属性/方法的注解对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%86%85%E7%9C%81">内省</a>
+<ul>
+<li><a href="#1-%E7%AE%80%E4%BB%8B-3">1、简介</a></li>
+<li><a href="#2-introspector">2、Introspector</a></li>
+<li><a href="#3-beaninfo">3、BeanInfo</a></li>
+<li><a href="#4-methoddescriptor">4、MethodDescriptor</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="枚举">枚举</h1>
+<h2 id="1-简介">1、简介</h2>
+<p>JDK1.5引入了新的类型——枚举。在JDK1.5 之前，我们定义常量都是： public static fianl.... 。很难管理。<br>
+<strong>枚举</strong>，可以把相关的常量分组到一个枚举类型里，而且枚举提供了比常量更多的方法。<br>
+用于定义有限数量的一组同类常量，</p>
+<h2 id="2-定义格式">2、定义格式</h2>
+<pre><code class="language-java">权限修饰符 enum 枚举名称 {
+	实例1,实例2，实例3，实例4;
+}
+public enum Level {
+    LOW(30), MEDIUM(15), HIGH(7), URGENT(1);
+    private int levelValue;
+    private Level(int levelValue) {
+    	this.levelValue = levelValue;
+    }
+    public int getLevelValue() {
+    	return levelValue;
+    }
+}
+</code></pre>
+<h2 id="3-枚举类的主要方法">3、枚举类的主要方法</h2>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1599066198769.png" alt="" loading="lazy"></figure>
+<h2 id="4-注意事项">4、注意事项</h2>
+<ul>
+<li>一旦定义了枚举，最好不要妄图修改里面的值，除非修改是必要的。</li>
+<li>枚举类默认继承的是java.lang.Enum类而不是Object类</li>
+<li>枚举类不能有子类，因为其枚举类默认被final修饰</li>
+<li>只能有private构造方法</li>
+<li>switch中使用枚举时，直接使用常量名，不用携带类名</li>
+<li>不能定义name属性，因为自带name属性</li>
+<li>不要为枚举类中的属性提供set方法，不符合枚举最初设计初衷。</li>
+</ul>
+<h1 id="注解">注解</h1>
+<p>学习步骤：1、概念</p>
+<p>2、怎么使用内置注解</p>
+<p>3、怎么自定义注解</p>
+<p>4、反射中怎么获取注解内容</p>
+<h2 id="1-简介-2">1、简介</h2>
+<p>Java 注解（Annotation）又称 Java 标注，是 JDK5.0 引入的一种注释机制。</p>
+<p>Java 语言中的类、方法、变量、参数和包等都可以被标注。和注释不同，Java 标注可以通过反射获取标注内容。在编译器生成类文件时，【标注可以被嵌入到字节码中】。Java 虚拟机可以保留标注内容，在运行时可以获取到标注内容 。 当然它也支持自定义 Java 标注。</p>
+<p><strong>注解相当于给机器看的注释</strong></p>
+<ul>
+<li>主要用于：
+<ul>
+<li>编译格式检查</li>
+<li>反射中解析</li>
+<li>生成帮助文档</li>
+<li>跟踪代码依赖</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-内置注解">2、内置注解</h2>
+<p>系统已经存在的注解</p>
+<ul>
+<li>@Override：重写*
+<ul>
+<li>定义在java.lang.Override</li>
+</ul>
+</li>
+<li>@Deprecated：废弃 *
+<ul>
+<li>定义在java.lang.Deprecated</li>
+</ul>
+</li>
+<li>@SafeVarargs
+<ul>
+<li>Java 7 开始支持，忽略任何使用参数为泛型变量的方法或构造函数调用产生的警告。</li>
+</ul>
+</li>
+<li>@FunctionalInterface： 函数式接口 *
+<ul>
+<li>Java 8 开始支持，标识一个匿名函数或函数式接口。</li>
+</ul>
+</li>
+<li>@Repeatable：标识某注解可以在同一个声明上使用多次
+<ul>
+<li>Java 8 开始支持，标识某注解可以在同一个声明上使用多次。</li>
+</ul>
+</li>
+<li>SuppressWarnings：抑制编译时的警告信息。*
+<ul>
+<li>定义在java.lang.SuppressWarnings</li>
+<li>三种使用方式
+<ul>
+<li>1、@SuppressWarnings(&quot;unchecked&quot;) 【抑制单类型的警告】</li>
+<li>2、@SuppressWarnings(&quot;unchecked&quot;,&quot;rawtypes&quot;) 【 抑制多类型的警告】</li>
+<li>3、@SuppressWarnings(&quot;all&quot;) 【抑制所有类型的警告】</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="反射">反射</h1>
+<h2 id="1-概述">1、概述</h2>
+<p>JAVA反射机制是在运行状态中，获取任意一个类的结构 , 创建对象 , 得到方法，执行方法 , 属性 !；这种在运行状态动态获取信息以及动态调用对象方法的功能被称为java语言的反射机制。</p>
+<h2 id="2-类加载器">2、类加载器</h2>
+<p>作用：Java类加载器（Java Classloader）是Java运行时环境（Java Runtime Environment）的一部分，负责动态加载Java类到Java虚拟机的内存空间中。</p>
+<p>种类（3种）：</p>
+<ul>
+<li>BootstrapClassLoader（引导启动类加载器）：嵌在JVM内核中的加载器，该加载器是用C++语言写的，主要负载加载JAVA_HOME/lib下的类库，引<br>
+导启动类加载器无法被应用程序直接使用。</li>
+<li>ExtensionClassLoader（扩展类加载器）：ExtensionClassLoader是用JAVA编写，且它的父类加载器是Bootstrap。是由sun.misc.Launcher$ExtClassLoader实现的，主要加载JAVA_HOME/lib/ext目录中的类库。它的父加载器是BootstrapClassLoader</li>
+<li>App ClassLoader（应用类加载器）：App ClassLoader是应用程序类加载器，负责加载应用程序classpath目录下的所有jar和class文件。它的父加载器为Ext ClassLoader</li>
+</ul>
+<h2 id="3-所有类型的class对象">3、所有类型的Class对象</h2>
+<p>要想了解一个类,必须先要获取到该类的字节码文件对象.<br>
+在Java中，每一个字节码文件，被加载到内存后，都存在一个对应的Class类型的对象</p>
+<h2 id="4-得到class的几种方式">4、得到Class的几种方式</h2>
+<pre><code class="language-java">1. 如果在编写代码时, 指导类的名称, 且类已经存在, 可以通过
+    包名.类名.class 得到一个类的 类对象
+2. 如果拥有类的对象, 可以通过
+        Class 对象.getClass() 得到一个类的 类对象
+3. 如果在编写代码时, 知道类的名称 , 可以通过
+        Class.forName(包名+类名): 得到一个类的 类对象
+上述的三种方式, 在调用时, 如果类在内存中不存在, 则会加载到内存 ! 如果类已经在内存中存在, 不会重复加载, 而是重复利用 !
+(一个class文件 在内存中不会存在两个类对象 )
+</code></pre>
+<h2 id="5-获取constructor">5、获取Constructor</h2>
+<ul>
+<li>1、通过class对象，获取一个类的构造方法</li>
+</ul>
+<pre><code class="language-java">1. 通过指定的参数类型, 获取指定的单个构造方法
+	getConstructor(参数类型的class对象数组)
+    例如:
+    构造方法如下: Person(String name,int age)
+    得到这个构造方法的代码如下:
+    Constructor c = p.getClass().getConstructor(String.class,int.class);
+2. 获取构造方法数组
+	getConstructors();
+3. 获取所有权限的单个构造方法
+	getDeclaredConstructor(参数类型的class对象数组)
+4. 获取所有权限的构造方法数组
+	getDeclaredConstructors();
+</code></pre>
+<ul>
+<li>2、Construction创建对象</li>
+</ul>
+<pre><code class="language-java">常用方法:
+	newInstance(Object... para)
+		调用这个构造方法, 把对应的对象创建出来
+		参数: 是一个Object类型可变参数, 传递的参数顺序 必须匹配构造方法中形式参数列表的顺序!
+	setAccessible(boolean flag)
+		如果flag为true 则表示忽略访问权限检查 !(可以访问任何权限的方法)
+</code></pre>
+<h2 id="获取method">获取Method</h2>
+<h2 id="1-通过class对象获取一个类的方法">1、通过class对象，获取一个类的方法</h2>
+<pre><code class="language-java">1. getMethod(String methodName , class.. clss)
+	根据参数列表的类型和方法名, 得到一个方法(public修饰的)
+2. getMethods();
+	得到一个类的所有方法 (public修饰的)
+3. getDeclaredMethod(String methodName , class.. clss)
+	根据参数列表的类型和方法名, 得到一个方法(除继承以外所有的:包含私有, 共有, 保护, 默认)
+4. getDeclaredMethods();
+	得到一个类的所有方法 (除继承以外所有的:包含私有, 共有, 保护, 默认)
+</code></pre>
+<h2 id="2-method执行方法">2、Method执行方法</h2>
+<pre><code class="language-java">invoke(Object o,Object... para) :
+    调用方法 ,
+    参数1. 要调用方法的对象
+    参数2. 要传递的参数列表
+getName()
+	获取方法的方法名称
+setAccessible(boolean flag)
+	如果flag为true 则表示忽略访问权限检查 !(可以访问任何权限的方法)
+</code></pre>
+<h2 id="7-获取field">7、获取Field</h2>
+<h3 id="1-通过class对象获取一个类的属性">1、通过class对象，获取一个类的属性</h3>
+<pre><code class="language-java">1. getDeclaredField(String filedName)
+	根据属性的名称, 获取一个属性对象 (所有属性)
+2. getDeclaredFields()
+	获取所有属性
+3. getField(String filedName)
+	根据属性的名称, 获取一个属性对象 (public属性)
+4. getFields()
+	获取所有属性 (public)
+</code></pre>
+<h3 id="2-field属性的对象类型">2、Field属性的对象类型</h3>
+<pre><code class="language-java">常用方法:
+1. get(Object o );
+    参数: 要获取属性的对象
+    获取指定对象的此属性值
+2. set(Object o , Object value);
+    参数1. 要设置属性值的 对象
+    参数2. 要设置的值
+    设置指定对象的属性的值
+3. getName()
+	获取属性的名称
+4. setAccessible(boolean flag)
+	如果flag为true 则表示忽略访问权限检查 !(可以访问任何权限的属性)
+</code></pre>
+<h2 id="8-获取注解信息">8、获取注解信息</h2>
+<h3 id="1-获取类属性方法的全部注解对象">1、获取类/属性/方法的全部注解对象</h3>
+<pre><code class="language-java">Annotation[] annotations01 = Class/Field/Method.getAnnotations();
+for (Annotation annotation : annotations01) {
+	System.out.println(annotation);
+}
+</code></pre>
+<h3 id="2-根据类型获取类属性方法的注解对象">2、根据类型获取类/属性/方法的注解对象</h3>
+<pre><code class="language-java">注解类型 对象名 = (注解类型) c.getAnnotation(注解类型.class);
+</code></pre>
+<h1 id="内省">内省</h1>
+<h2 id="1-简介-3">1、简介</h2>
+<p>基于反射 , java所提供的一套应用到JavaBean的API</p>
+<p>一个定义在包中的类 ，拥有无参构造器所有属性私有，所有属性提供get/set方法，实现了序列化接口，这种类, 我们称其为 bean类 。</p>
+<p>Java提供了一套java.beans包的api , 对于反射的操作, 进行了封装</p>
+<h2 id="2-introspector">2、Introspector</h2>
+<pre><code class="language-java">获取Bean类信息
+方法:
+    BeanInfo getBeanInfo(Class cls)
+    通过传入的类信息, 得到这个Bean类的封装对象 .
+</code></pre>
+<h2 id="3-beaninfo">3、BeanInfo</h2>
+<pre><code class="language-java">常用的方法:
+    MethodDescriptor[] getPropertyDescriptors():
+    获取bean类的 get/set方法 数组
+</code></pre>
+<h2 id="4-methoddescriptor">4、MethodDescriptor</h2>
+<pre><code class="language-java">常用方法:
+    1. Method getReadMethod();
+    	获取一个get方法
+    2. Method getWriteMethod();
+    	获取一个set方法
+    	有可能返回null 注意 ,加判断 !
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%9E%9A%E4%B8%BE">枚举</a>
+<ul>
+<li><a href="#1-%E7%AE%80%E4%BB%8B">1、简介</a></li>
+<li><a href="#2-%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F">2、定义格式</a></li>
+<li><a href="#3-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95">3、枚举类的主要方法</a></li>
+<li><a href="#4-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">4、注意事项</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B3%A8%E8%A7%A3">注解</a>
+<ul>
+<li><a href="#1-%E7%AE%80%E4%BB%8B-2">1、简介</a></li>
+<li><a href="#2-%E5%86%85%E7%BD%AE%E6%B3%A8%E8%A7%A3">2、内置注解</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%8D%E5%B0%84">反射</a>
+<ul>
+<li><a href="#1-%E6%A6%82%E8%BF%B0">1、概述</a></li>
+<li><a href="#2-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8">2、类加载器</a></li>
+<li><a href="#3-%E6%89%80%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84class%E5%AF%B9%E8%B1%A1">3、所有类型的Class对象</a></li>
+<li><a href="#4-%E5%BE%97%E5%88%B0class%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F">4、得到Class的几种方式</a></li>
+<li><a href="#5-%E8%8E%B7%E5%8F%96constructor">5、获取Constructor</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96method">获取Method</a></li>
+<li><a href="#1-%E9%80%9A%E8%BF%87class%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95">1、通过class对象，获取一个类的方法</a></li>
+<li><a href="#2-method%E6%89%A7%E8%A1%8C%E6%96%B9%E6%B3%95">2、Method执行方法</a></li>
+<li><a href="#7-%E8%8E%B7%E5%8F%96field">7、获取Field</a>
+<ul>
+<li><a href="#1-%E9%80%9A%E8%BF%87class%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7">1、通过class对象，获取一个类的属性</a></li>
+<li><a href="#2-field%E5%B1%9E%E6%80%A7%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B">2、Field属性的对象类型</a></li>
+</ul>
+</li>
+<li><a href="#8-%E8%8E%B7%E5%8F%96%E6%B3%A8%E8%A7%A3%E4%BF%A1%E6%81%AF">8、获取注解信息</a>
+<ul>
+<li><a href="#1-%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%B1%9E%E6%80%A7%E6%96%B9%E6%B3%95%E7%9A%84%E5%85%A8%E9%83%A8%E6%B3%A8%E8%A7%A3%E5%AF%B9%E8%B1%A1">1、获取类/属性/方法的全部注解对象</a></li>
+<li><a href="#2-%E6%A0%B9%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%B1%9E%E6%80%A7%E6%96%B9%E6%B3%95%E7%9A%84%E6%B3%A8%E8%A7%A3%E5%AF%B9%E8%B1%A1">2、根据类型获取类/属性/方法的注解对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%86%85%E7%9C%81">内省</a>
+<ul>
+<li><a href="#1-%E7%AE%80%E4%BB%8B-3">1、简介</a></li>
+<li><a href="#2-introspector">2、Introspector</a></li>
+<li><a href="#3-beaninfo">3、BeanInfo</a></li>
+<li><a href="#4-methoddescriptor">4、MethodDescriptor</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Vinci-Ma.github.io/post/linux-chang-yong-zhi-ling/">
+              <h3 class="post-title">
+                Linux常用指令
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://Vinci-Ma.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
