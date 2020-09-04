@@ -1,0 +1,326 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Maven | Vinci-Ma</title>
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1599223102043">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Maven | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+1、Maven模型及其原理
+
+1、Maven介绍
+2、Maven功能
+3、Maven模型介绍
+4、Maven依赖管理原理
+5、Maven核心文件Pom.xml
+6、搭建原生的Maven项目
+
+1、通过文件夹的方式创建java项目
+
+
+7、..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Vinci-Ma.github.io">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1599223102043" alt="">
+  </a>
+  <h1 class="site-title">
+    Vinci-Ma
+  </h1>
+  <p class="site-description">
+    Stay cooool!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://Vinci-Ma.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Vinci-Ma" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Maven
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-09-04
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><ul class="markdownIt-TOC">
+<li><a href="#1-maven%E6%A8%A1%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%8E%9F%E7%90%86">1、Maven模型及其原理</a>
+<ul>
+<li><a href="#1-maven%E4%BB%8B%E7%BB%8D">1、Maven介绍</a></li>
+<li><a href="#2-maven%E5%8A%9F%E8%83%BD">2、Maven功能</a></li>
+<li><a href="#3-maven%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D">3、Maven模型介绍</a></li>
+<li><a href="#4-maven%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%E5%8E%9F%E7%90%86">4、Maven依赖管理原理</a></li>
+<li><a href="#5-maven%E6%A0%B8%E5%BF%83%E6%96%87%E4%BB%B6pomxml">5、Maven核心文件Pom.xml</a></li>
+<li><a href="#6-%E6%90%AD%E5%BB%BA%E5%8E%9F%E7%94%9F%E7%9A%84maven%E9%A1%B9%E7%9B%AE">6、搭建原生的Maven项目</a>
+<ul>
+<li><a href="#1-%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E6%96%B9%E5%BC%8F%E5%88%9B%E5%BB%BAjava%E9%A1%B9%E7%9B%AE">1、通过文件夹的方式创建java项目</a></li>
+</ul>
+</li>
+<li><a href="#7-maven%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4">7、Maven常用指令</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="1-maven模型及其原理">1、Maven模型及其原理</h1>
+<h2 id="1-maven介绍">1、Maven介绍</h2>
+<p>Maven(麦文)项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的项目管理工具软件。</p>
+<h2 id="2-maven功能">2、Maven功能</h2>
+<ul>
+<li>1、依赖管理——jar包管理</li>
+<li>2、项目管理——代码编译</li>
+</ul>
+<h2 id="3-maven模型介绍">3、Maven模型介绍</h2>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1599223045646.png" alt="" loading="lazy"></figure>
+<h2 id="4-maven依赖管理原理">4、Maven依赖管理原理</h2>
+<figure data-type="image" tabindex="2"><img src="https://Vinci-Ma.github.io/post-images/1599223063856.png" alt="" loading="lazy"></figure>
+<h2 id="5-maven核心文件pomxml">5、Maven核心文件Pom.xml</h2>
+<pre><code class="language-java">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;!-- 版本：4.0.0 --&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;!-- 组织名称：暂时使用 组织名称+项目名称 作为组织名称 --&gt;
+    &lt;!-- 组织名称：实际名称 按照访问路径规范设置，通常以功能作为名称：
+    eg: junit spring --&gt;
+    &lt;groupId&gt;com.kkb.maven&lt;/groupId&gt;
+    &lt;!-- 项目名称 --&gt;
+    &lt;artifactId&gt;HelloWorld&lt;/artifactId&gt;
+    &lt;!-- 当前项目版本号：同一个项目开发过程中可以发布多个版本，此处标示0.0.1版 --&gt;
+    &lt;!-- 当前项目版本号：每个工程发布后可以发布多个版本，依赖时调取不同的版本，使用不同的版本号 --&gt;
+    &lt;version&gt;0.0.1&lt;/version&gt;
+    &lt;!-- 名称：可省略 --&gt;
+    &lt;name&gt;Hello&lt;/name&gt;
+    &lt;!-- 依赖关系 --&gt;
+     &lt;dependencies&gt;
+        &lt;!-- 依赖设置 --&gt;
+        &lt;dependency&gt;
+            &lt;!-- 依赖组织名称 --&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;!-- 依赖项目名称 --&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;!-- 依赖版本名称 --&gt;
+            &lt;version&gt;4.12&lt;/version&gt;
+            &lt;!-- 依赖范围：test包下依赖该设置 --&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre>
+<h2 id="6-搭建原生的maven项目">6、搭建原生的Maven项目</h2>
+<h3 id="1-通过文件夹的方式创建java项目">1、通过文件夹的方式创建java项目</h3>
+<p>在某个磁盘的根目录按照下面结构创建文件夹</p>
+<p>projectName（项目名称）</p>
+<ul>
+<li>src
+<ul>
+<li>main
+<ul>
+<li>java【存放项目的.java文件】</li>
+<li>resources【存放项目资源文件】</li>
+</ul>
+</li>
+<li>test
+<ul>
+<li>java【存放所有测试.java文件，如JUnit测试类】</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>target【目标文件输出位置例如.class、.jar、.war文件（不需要创建，会自动生成）】</li>
+<li>pom.xml【maven项目核心配置文件】</li>
+</ul>
+<h2 id="7-maven常用指令">7、Maven常用指令</h2>
+<ul>
+<li>
+<p>mvn compile：完成编译操作，执行完毕后，会生成target目录，该目录中存放了编译后的字节码文件。</p>
+</li>
+<li>
+<p>mvn clean：执行完毕后，会将target目录删除。</p>
+</li>
+<li>
+<p>mvn test：执行 mvn test命令，完成单元测试操作。执行完毕后，会在target目录中生成三个文件夹：surefire、 surefire-reports（测试报告）、test-classes（测试的字节码文件）</p>
+</li>
+<li>
+<p>maven package：完成打包操作，执行完毕后，会在target目录中生成一个文件，该文件可能是jar、war。</p>
+</li>
+<li>
+<p>mvn install：完成将打好的jar包安装到本地仓库的操作， 执行完毕后，会在本地仓库中出现安装后的jar包，方便其他工程引用。</p>
+</li>
+<li>
+<p>mvn clean compile：组合指令，先执行clean，再执行compile，通常应用于上线前执行，清除测试类。</p>
+</li>
+<li>
+<p>mvn clean test：组合指令，先执行clean，再执行test，通常应用于测试环节。</p>
+</li>
+<li>
+<p>mvn clean package：组合指令，先执行clean，再执行package，将项目打包，通常应用于发布前。</p>
+<p>执行过程：<br>
+清理————清空环境<br>
+编译————编译源码<br>
+测试————测试源码<br>
+打包————将编译的非测试类打包</p>
+</li>
+<li>
+<p>mvn clean install ：组合指令，先执行clean，再执行install，将项目打包，通常应用于发布前。<br>
+执行过程：<br>
+清理————清空环境<br>
+编译————编译源码<br>
+测试————测试源码<br>
+打包————将编译的非测试类打包<br>
+部署————将打好的包发布到资源仓库中</p>
+</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#1-maven%E6%A8%A1%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%8E%9F%E7%90%86">1、Maven模型及其原理</a>
+<ul>
+<li><a href="#1-maven%E4%BB%8B%E7%BB%8D">1、Maven介绍</a></li>
+<li><a href="#2-maven%E5%8A%9F%E8%83%BD">2、Maven功能</a></li>
+<li><a href="#3-maven%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D">3、Maven模型介绍</a></li>
+<li><a href="#4-maven%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%E5%8E%9F%E7%90%86">4、Maven依赖管理原理</a></li>
+<li><a href="#5-maven%E6%A0%B8%E5%BF%83%E6%96%87%E4%BB%B6pomxml">5、Maven核心文件Pom.xml</a></li>
+<li><a href="#6-%E6%90%AD%E5%BB%BA%E5%8E%9F%E7%94%9F%E7%9A%84maven%E9%A1%B9%E7%9B%AE">6、搭建原生的Maven项目</a>
+<ul>
+<li><a href="#1-%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E6%96%B9%E5%BC%8F%E5%88%9B%E5%BB%BAjava%E9%A1%B9%E7%9B%AE">1、通过文件夹的方式创建java项目</a></li>
+</ul>
+</li>
+<li><a href="#7-maven%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4">7、Maven常用指令</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Vinci-Ma.github.io/post/mei-ju-zhu-jie-he-fan-she/">
+              <h3 class="post-title">
+                枚举、注解和反射
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://Vinci-Ma.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
