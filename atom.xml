@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Vinci-Ma.github.io</id>
     <title>Vinci-Ma</title>
-    <updated>2020-09-04T12:38:28.006Z</updated>
+    <updated>2020-09-21T07:44:47.070Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Vinci-Ma.github.io"/>
     <link rel="self" href="https://Vinci-Ma.github.io/atom.xml"/>
@@ -10,6 +10,620 @@
     <logo>https://Vinci-Ma.github.io/images/avatar.png</logo>
     <icon>https://Vinci-Ma.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Vinci-Ma</rights>
+    <entry>
+        <title type="html"><![CDATA[Spring]]></title>
+        <id>https://Vinci-Ma.github.io/post/spring/</id>
+        <link href="https://Vinci-Ma.github.io/post/spring/">
+        </link>
+        <updated>2020-09-16T07:39:57.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-spring%E4%BB%8B%E7%BB%8D">一、Spring介绍</a>
+<ul>
+<li><a href="#1-%E7%89%B9%E7%82%B9">1、特点</a></li>
+<li><a href="#2-%E7%BB%84%E7%BB%87%E6%A1%86%E6%9E%B6">2、组织框架</a></li>
+<li><a href="#3-%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97">3、核心模块</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-spring%E4%B8%AD%E7%9A%84ioc">二、Spring中的IOC</a>
+<ul>
+<li><a href="#1-%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B">1、实现过程</a></li>
+<li><a href="#2-bean%E6%A0%87%E7%AD%BE%E7%9A%84%E5%B1%9E%E6%80%A7%E4%BB%8B%E7%BB%8D">2、bean标签的属性介绍</a></li>
+<li><a href="#3-spring%E4%B8%AD%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9A%84%E6%96%B9%E5%BC%8F">3、Spring中对象创建的方式</a></li>
+<li><a href="#4-springbean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%87%8D%E8%A6%81">4、SpringBean的生命周期【重要】</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-di%E6%B3%A8%E5%85%A5%E5%80%BC">三、DI注入值</a><br>
+*
+<ul>
+<li><a href="#1-set%E6%B3%A8%E5%85%A5%E5%80%BC">1、set注入值</a></li>
+<li><a href="#2-%E6%9E%84%E9%80%A0%E6%B3%A8%E5%85%A5">2、构造注入</a></li>
+<li><a href="#3-spel-spring%E8%A1%A8%E8%BE%BE%E5%BC%8F">3、spel spring表达式</a></li>
+<li><a href="#4-p%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E6%B3%A8%E5%85%A5%E5%80%BC">4、p命名空间注入值</a></li>
+<li><a href="#5-%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E6%B3%A8%E5%85%A5objectlistsetmapjavautilproperties">5、复杂类型注入（Object[]，list，set，map，java.util.Properties）</a></li>
+<li><a href="#6-%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E7%94%B1%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%8A%A8%E7%BB%99%E5%B1%9E%E6%80%A7%E8%B5%8B%E5%80%BC">6、自动注入（由程序自动给属性赋值）</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0ioc">四、注解实现IOC</a><br>
+*
+<ul>
+<li><a href="#1-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%BA%A6%E6%9D%9F">1、配置文件中添加约束</a></li>
+<li><a href="#3-%E9%85%8D%E7%BD%AE%E6%B3%A8%E8%A7%A3%E6%89%AB%E6%8F%8F%E6%8C%87%E5%AE%9A%E6%89%AB%E6%8F%8F%E5%8C%85%E4%B8%8B%E6%89%80%E6%9C%89%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%B3%A8%E8%A7%A3%E6%89%AB%E6%8F%8F%E5%8C%85%E6%97%B6%E4%BC%9A%E6%89%AB%E6%8F%8F%E5%8C%85%E6%89%80%E6%9C%89%E7%9A%84%E5%AD%90%E5%AD%99%E5%8C%85">3、配置注解扫描:指定扫描包下所有类中的注解,扫描包时,会扫描包所有的子孙包</a></li>
+<li><a href="#3-%E6%B3%A8%E8%A7%A3">3、注解</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-aop%E4%BB%8B%E7%BB%8D">五、Aop介绍</a></li>
+<li><a href="#%E5%85%AD-aop%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6">六、AOP的实现机制</a>
+<ul>
+<li><a href="#1-jdk%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0">1、JDK动态代理实现</a></li>
+<li><a href="#2-cglib%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86">2、CGlib实现代理</a></li>
+<li><a href="#%E4%B8%A4%E7%A7%8D%E4%BB%A3%E7%90%86%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB">两种代理方式的区别:</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="一-spring介绍">一、Spring介绍</h1>
+<blockquote>
+<p>Spring是一个开放源代码的设计层面框架，他解决的是业务逻辑层和其他各层的松耦合问题，因此它将面向接口的编程思想贯穿整个系统应用。Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EE full-stack(一站式) 轻量级开源框架。</p>
+</blockquote>
+<h2 id="1-特点">1、特点</h2>
+<ul>
+<li>1、<strong>方便解耦，简化开发</strong></li>
+<li>2、<strong>AOP编程的支持</strong></li>
+<li>3、<strong>声明式事务的支持</strong></li>
+<li>4、<strong>方便程序的测试</strong></li>
+<li>5、<strong>方便集成各种优秀框架</strong></li>
+<li>6、<strong>降低Java EE API的使用难度</strong></li>
+</ul>
+<h2 id="2-组织框架">2、组织框架</h2>
+<figure data-type="image" tabindex="1"><img src="https://Vinci-Ma.github.io/post-images/1600674050078.png" alt="组织框架" loading="lazy"></figure>
+<h2 id="3-核心模块">3、核心模块</h2>
+<ul>
+<li>spring-core：依赖注入IOC与DI的最基本实现</li>
+<li>spring-beans：Bean工厂与bean的装配</li>
+<li>spring-context：spring的context上下文即IoC容器</li>
+<li>spring-context-support</li>
+<li>spring-expression：spring表达式语言</li>
+</ul>
+<h1 id="二-spring中的ioc">二、Spring中的IOC</h1>
+<p>IOC是 Inverse of Control 的简写，意思是控制反转。是<strong>降低对象之间的耦合关系</strong>的设计思想。</p>
+<p>DI是Dependency Injection的缩写，意思是依赖注入，说的是创建对象实例时，同时为这个对象注入它所依赖的属性。</p>
+<h2 id="1-实现过程">1、实现过程</h2>
+<p>1、添加对应依赖包</p>
+<pre><code class="language-java">&lt;!-- Spring的核心工具包--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+        &lt;version&gt;5.0.8.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;!--在基础IOC功能上提供扩展服务，还提供许多企业级服务的支持，有邮件服务、
+任务调度、远程访问、缓存以及多种视图层框架的支持--&gt;
+    &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;5.0.8.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;!-- Spring IOC的基础实现，包含访问配置文件、创建和管理bean等 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+        &lt;version&gt;5.0.8.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;!-- Spring context的扩展支持，用于MVC方面 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;
+        &lt;version&gt;5.0.8.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;!-- Spring表达式语言 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-expression&lt;/artifactId&gt;
+        &lt;version&gt;5.0.8.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre>
+<p>2、创建配置文件applicationContext.xml</p>
+<pre><code class="language-java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+&lt;/beans&gt;
+</code></pre>
+<p>3、在配置文件中创建对象</p>
+<pre><code class="language-java">&lt;bean id=&quot;对象名&quot; class=&quot;类的完整路径&quot;&gt;
+	&lt;property name=&quot;属性名&quot; ref=&quot;对象的id值&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+<p>4、加载配置文件，获得对象</p>
+<pre><code class="language-java">ApplicationContext app=new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);//解析xml文件
+Users users=(Users)app.getBean(&quot;u1&quot;);//通过getBean得到指定对象
+</code></pre>
+<h2 id="2-bean标签的属性介绍">2、bean标签的属性介绍</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>class</td>
+<td>指定bean对应类的全路径</td>
+</tr>
+<tr>
+<td>name</td>
+<td>name是bean对应对象的一个标识</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>执行bean对象创建模式和生命周期,scope=&quot;singleton&quot;（默认单例）和scope=&quot;prototype&quot;（多例）</td>
+</tr>
+<tr>
+<td>id</td>
+<td>id是bean对象的唯一标识,不能添加特别字符</td>
+</tr>
+<tr>
+<td>lazy-init</td>
+<td>是否延时加载 默认值:false。true 延迟加载对象,当对象被调用的时候才会加载，测试的时候，通过getbean()方法获得对象。lazy-init=&quot;false&quot; 默认值，不延迟，无论对象是否被使用，都会立即创建对象,测试时只需要加载配置文件即可。注意:测试的时候只留下id,class属性</td>
+</tr>
+<tr>
+<td>init-method</td>
+<td>只需要加载配置文件即可对象初始化方法</td>
+</tr>
+<tr>
+<td>destroy-method</td>
+<td>对象销毁方法</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-spring中对象创建的方式">3、Spring中对象创建的方式</h2>
+<p>1、无参构造</p>
+<p>2、有参构造</p>
+<pre><code class="language-java">public Person(String name , Car car){
+        this.name = name;
+        this.car = car;
+        System.out.println(&quot;Person的有参构造方法:&quot;+name+car);
+    }
+
+	&lt;!--给属性赋值时，对象类型选择ref，非对象类型选择value--&gt;
+    &lt;bean name=&quot;person&quot; class=&quot;com.vinci.spring.bean.Person&quot;&gt;
+        &lt;constructor-arg name=&quot;name&quot; value=&quot;rose&quot;/&gt;
+        &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot;/&gt;
+    &lt;/bean&gt;
+</code></pre>
+<p>3、静态方法创建对象</p>
+<pre><code class="language-java">//静态工厂模式
+public class PersonFactory {
+    public static Person createPerson(){
+        System.out.println(&quot;静态工厂创建Person&quot;);
+        return new Person();
+    }
+}
+
+&lt;bean name=&quot;pf&quot; class=&quot;com.xzk.PersonFactory&quot; factory-method=&quot;createPerson&quot; /&gt;
+</code></pre>
+<p>4、非静态工厂方法</p>
+<pre><code class="language-java">public class Users{
+    public Person createPerson1(){
+        System.out.println(&quot;非静态工厂创建Person&quot;);
+        return new Person();
+    }
+}
+
+&lt;bean id=&quot;u2&quot; class=&quot;com.bean.Users&quot;&gt;&lt;/bean&gt;
+&lt;bean id=&quot;u3&quot; factory-method=&quot;createPerson1&quot; factory-bean=&quot;u2&quot;&gt;&lt;/bean&gt;
+</code></pre>
+<h2 id="4-springbean的生命周期重要">4、SpringBean的生命周期【重要】</h2>
+<figure data-type="image" tabindex="2"><img src="https://Vinci-Ma.github.io/post-images/1600674093500.png" alt="生命周期" loading="lazy"></figure>
+<h1 id="三-di注入值">三、DI注入值</h1>
+<p>分类:一种是调取属性的set方法赋值，第二种使用构造方法赋值</p>
+<h3 id="1-set注入值">1、set注入值</h3>
+<pre><code class="language-java">1、基本属性类型值注入
+    &lt;property name=&quot;name&quot; value=&quot;jeck&quot; /&gt;
+2、引用属性类型值注入
+    &lt;property name=&quot;car&quot; ref=&quot;car&quot;&gt;&lt;/property&gt;
+</code></pre>
+<h3 id="2-构造注入">2、构造注入</h3>
+<pre><code class="language-java">1、通过name属性，按照参数名赋值
+    public Person(String name , Car car){
+        this.name = name;
+        this.car = car;
+        System.out.println(&quot;Person的有参构造方法:&quot;+name+car);
+    }
+    &lt;bean name=&quot;person&quot; class=&quot;com.xzk.spring.bean.Person&quot;&gt;
+        &lt;constructor-arg name=&quot;name&quot; value=&quot;rose&quot;/&gt;
+        &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot;/&gt;
+    &lt;/bean&gt;
+2、通过index属性，按照参数索引注入
+        &lt;bean name=&quot;person2&quot; class=&quot;com.xzk.spring.bean.Person&quot;&gt;
+    &lt;constructor-arg name=&quot;name&quot; value=&quot;helen&quot; index=&quot;0&quot;&gt;&lt;/constructor-arg&gt;
+    &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot; index=&quot;1&quot;&gt;&lt;/constructor-arg&gt;
+    &lt;/bean&gt;
+3、使用type注入（一般不使用）
+     public Person(Car car, String name) {
+            super();
+            System.out.println(&quot;Person(Car car, String name)&quot;);
+            this.name = name;
+            this.car = car;
+        }
+        public Person(Car car, Integer name) {
+            super();
+            System.out.println(&quot;Person(Car car, Integer name)&quot;);
+            this.name = name + &quot;&quot;;
+            this.car = car;
+        }
+      &lt;bean name=&quot;person2&quot; class=&quot;com.xzk.spring.bean.Person&quot;&gt;
+        &lt;constructor-arg name=&quot;name&quot; value=&quot;988&quot; type=&quot;java.lang.Integer&quot;&gt;
+        &lt;/constructor-arg&gt;
+        &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot; &gt;&lt;/constructor-arg&gt;
+      &lt;/bean&gt;   
+</code></pre>
+<h3 id="3-spel-spring表达式">3、spel spring表达式</h3>
+<pre><code class="language-java">&lt;bean name=&quot;car&quot; class=&quot;com.xzk.spring.bean.Car&quot; &gt;
+    &lt;property name=&quot;name&quot; value=&quot;mime&quot; /&gt;
+    &lt;property name=&quot;color&quot; value=&quot;白色&quot;/&gt;
+&lt;/bean&gt;
+&lt;!--利用spel引入car的属性 --&gt;
+&lt;bean name=&quot;person1&quot; class=&quot;com.xzk.spring.bean.Person&quot; p:car-ref=&quot;car&quot;&gt;
+    &lt;property name=&quot;name&quot; value=&quot;#{car.name}&quot;/&gt;
+    &lt;property name=&quot;age&quot; value=&quot;#{person.age}&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+<h3 id="4-p命名空间注入值">4、p命名空间注入值</h3>
+<pre><code class="language-java">1、首先引用p命名空间【配置文件中 添加命名空间p】
+    xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
+2、进行操作
+    &lt;bean id=&quot;u6&quot; class=&quot;com.entity.Users&quot; p:age=&quot;30&quot; p:name=&quot;李四&quot; p:student-ref=&quot;stu1&quot;&gt;&lt;/bean&gt;
+   基本类型值: p:属性名=&quot;值&quot;
+   引用类型值: P:属性名-ref=&quot;bean名称&quot;
+</code></pre>
+<h3 id="5-复杂类型注入objectlistsetmapjavautilproperties">5、复杂类型注入（Object[]，list，set，map，java.util.Properties）</h3>
+<pre><code class="language-java">&lt;!-- 数组变量注入 --&gt;
+    &lt;property name=&quot;arrs&quot;&gt;
+        &lt;list&gt;
+            &lt;value&gt;数组1&lt;/value&gt;
+            &lt;!--引入其他类型--&gt;
+            &lt;ref bean=&quot;car&quot;/&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;!-- 集合变量赋值--&gt;
+    &lt;property name=&quot;list&quot;&gt;
+        &lt;list&gt;
+            &lt;value&gt;集合1&lt;/value&gt;
+            &lt;!--集合变量内部包含集合--&gt;
+            &lt;list&gt;
+            &lt;value&gt;集合中的集合1&lt;/value&gt;
+            &lt;value&gt;集合中的集合2&lt;/value&gt;
+            &lt;value&gt;集合中的集合3&lt;/value&gt;
+            &lt;/list&gt;
+            &lt;ref bean=&quot;car&quot; /&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;!-- set赋值--&gt;
+     &lt;property name=&quot;set&quot;&gt;
+        &lt;set&gt;
+            &lt;value&gt;set&lt;/value&gt;
+            &lt;!--引入其他类型--&gt;
+            &lt;ref bean=&quot;car&quot;/&gt;
+        &lt;/set&gt;
+    &lt;/property&gt;
+&lt;!--map赋值 --&gt;
+    &lt;property name=&quot;map&quot;&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;car&quot; value-ref=&quot;car&quot; /&gt;（有ref是对象类型的引用）
+            &lt;entry key=&quot;name&quot; value=&quot;保时捷&quot; /&gt;
+            &lt;entry key=&quot;age&quot; value=&quot;11&quot;/&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+&lt;!-- properties赋值 --&gt;
+    &lt;property name=&quot;properties&quot;&gt;
+        &lt;props&gt;
+            &lt;prop key=&quot;name&quot;&gt;pro1&lt;/prop&gt;
+            &lt;prop key=&quot;age&quot;&gt;111&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+</code></pre>
+<h3 id="6-自动注入由程序自动给属性赋值">6、自动注入（由程序自动给属性赋值）</h3>
+<p>autowire：</p>
+<ul>
+<li>
+<p>no 不自动装配(默认值)</p>
+</li>
+<li>
+<p>byName 属性名=id名 ，调取set方法赋值</p>
+</li>
+<li>
+<p>byType 属性的类型和id对象的类型相同，当找到多个同类型的对象时报错，调取set方法赋值</p>
+</li>
+<li>
+<p>constructor 构造方法的参数类型和id对象的类型相同,当没有找到时，报错。调取构造方法赋值</p>
+</li>
+</ul>
+<pre><code class="language-java">&lt;bean id=&quot;service&quot; class=&quot;service.impl.UserServiceImpl&quot; autowire=&quot;constructor&quot;&gt;
+&lt;/bean&gt;
+配置全局自动装配:
+	&lt;beans default-autowire=&quot;constructor/byName/byType/no&quot;&gt;
+</code></pre>
+<h1 id="四-注解实现ioc">四、注解实现IOC</h1>
+<h3 id="1-配置文件中添加约束">1、配置文件中添加约束</h3>
+<pre><code class="language-java">xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+</code></pre>
+<h3 id="3-配置注解扫描指定扫描包下所有类中的注解扫描包时会扫描包所有的子孙包">3、配置注解扫描:指定扫描包下所有类中的注解,扫描包时,会扫描包所有的子孙包</h3>
+<pre><code class="language-java">&lt;!--扫描包设置--&gt;
+&lt;context:component-scan base-package=&quot;com.vinci.spring.bean&quot;&gt;&lt;/context:component-scan&gt;
+</code></pre>
+<h3 id="3-注解">3、注解</h3>
+<pre><code class="language-java">1、添加在类名上
+    @Component(&quot;对象名&quot;)
+    @Service(&quot;person&quot;) // service层
+    @Controller(&quot;person&quot;) // controller层
+    @Repository(&quot;person&quot;) // dao层
+    @Scope(scopeName=&quot;singleton&quot;) //单例对象
+    @Scope(scopeName=&quot;prototype&quot;) //多例对象
+</code></pre>
+<pre><code class="language-java">2、添加在属性上
+    @Value(&quot;属性值&quot;)
+    private String name;
+   
+	@Autowired //默认使用byType，如果一个接口类型，同时有两个实现类，则报错，此时可以借助@Qualifier(&quot;beanname&quot;)    
+	@Qualifier(&quot;bean name&quot;)
+    private Car car;
+    
+	//说明:@Resource 是java的注释,但是Spring框架支持,@Resource指定注入哪个名称的对象
+    //@Resource(name=&quot;对象名&quot;) == @Autowired + @Qualifier(&quot;name&quot;)   
+	@Resource(name=&quot;baoma&quot;)
+	private Car car;
+</code></pre>
+<pre><code class="language-java">3、添加在方法上
+   @PostConstruct //等价于init-method属性
+    public void init(){
+   	 	System.out.println(&quot;初始化方法&quot;);
+    }
+
+    @PreDestroy //等价于destroy-method属性
+    public void destroy(){
+    	System.out.println(&quot;销毁方法&quot;);
+    } 
+</code></pre>
+<h1 id="五-aop介绍">五、Aop介绍</h1>
+<p>AOP（Aspect Oriented Programming)即面向切面编程。即在不改变原程序的基础上为代码段增加新的功能。应用在权限认证、日志、事务。</p>
+<p>作用：<strong>分离</strong>系统中的各种关注点，将核心关注点和横切关注点分离开来。</p>
+<figure data-type="image" tabindex="3"><img src="https://Vinci-Ma.github.io/post-images/1600674132700.png" alt="aop" loading="lazy"></figure>
+<h1 id="六-aop的实现机制">六、AOP的实现机制</h1>
+<ul>
+<li>JDK 的动态代理：针对实现了接口的类产生代理。InvocationHandler接口</li>
+<li>CGlib 的动态代理：针对没有实现接口的类产生代理，应用的是底层的字节码增强的技术 生成当前类的子类对象，MethodInterceptor接口</li>
+</ul>
+<h2 id="1-jdk动态代理实现">1、JDK动态代理实现</h2>
+<pre><code class="language-java">1、创建接口和对应实现类
+    public interface UserService {
+    	public void login();
+    }
+	//实现类
+    public class UserServiceImpl implements UserService {
+    	public void login(){}
+    }
+2、创建动态代理类，实现InvocationHandler接口
+    public class agency implements InvocationHandler {
+            private UserService target; //目标对象
+            public agency(UserService target){
+             this.target = target;
+            }
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            //本方法中的其他输出输入增强
+            //proxy 代理方法被调用的代理实例
+            System.out.println(&quot;方法触发了&quot;);
+            //执行被代理类 原方法
+            Object invoke = method.invoke(target, args);
+            System.out.println(&quot;执行完毕了&quot;);
+            return invoke;
+        }
+    }
+3、创建测试
+    @Test
+    public void test1(){
+        //测试JDK动态代理技术
+        UserService us = new UserServiceImpl();
+        agency ag = new agency(us);
+        //这里不能转换成一个实际的类，必须是接口类型
+        UserService uservice = (UserService)     Proxy.newProxyInstance(us.getClass().getClassLoader(),us.getClass().getInterfaces(),ag);
+        uservice.login();
+    }
+
+测试结果: 在调用接口方法的前后都会添加代理类的方法!
+</code></pre>
+<h2 id="2-cglib实现代理">2、CGlib实现代理</h2>
+<ul>
+<li>使用JDK创建代理有一个限制,它只能为接口创建代理实例.这一点可以从Proxy的接口方法newProxyInstance(ClassLoader loader,Class [] interfaces,InvocarionHandler h)中看的很清楚</li>
+</ul>
+<h2 id="两种代理方式的区别">两种代理方式的区别:</h2>
+<ul>
+<li>1、jdk动态代理生成的代理类和委托类实现了相同的接口；</li>
+<li>2、cglib动态代理中生成的字节码更加复杂，生成的代理类是委托类的子类，且不能处理被final关键字修饰的方法；</li>
+<li>3、jdk采用反射机制调用委托类的方法，cglib采用类似索引的方式直接调用委托类方法；</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Redis]]></title>
+        <id>https://Vinci-Ma.github.io/post/redis/</id>
+        <link href="https://Vinci-Ma.github.io/post/redis/">
+        </link>
+        <updated>2020-09-08T11:52:28.000Z</updated>
+        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<li><a href="#redis">Redis</a>
+<ul>
+<li><a href="#1-%E6%A6%82%E5%BF%B5">1、概念</a></li>
+<li><a href="#2-redis%E4%BC%98%E5%8A%BF">2、Redis优势</a></li>
+<li><a href="#3-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">3、应用场景</a></li>
+<li><a href="#4-redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">4、Redis数据结构</a></li>
+<li><a href="#5-redis%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4">5、Redis常用指令</a>
+<ul>
+<li><a href="#1-string">1、String</a></li>
+<li><a href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E5%AD%97%E7%9A%84%E9%80%92%E5%A2%9E%E4%B8%8E%E9%80%92%E5%87%8F">2、字符串数字的递增与递减</a></li>
+<li><a href="#3-hash%E6%95%A3%E5%88%97">3、Hash散列</a></li>
+<li><a href="#4-%E9%98%9F%E5%88%97list">4、队列List</a></li>
+<li><a href="#5-set%E9%9B%86%E5%90%88">5、Set集合</a></li>
+<li><a href="#6-zset%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88">6、Zset有序集合</a></li>
+<li><a href="#7-hyoperloglog%E5%91%BD%E4%BB%A4">7、HyoperLogLog命令</a></li>
+<li><a href="#8-%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4">8、其他命令</a></li>
+<li><a href="#9-redis%E5%A4%9A%E6%95%B0%E6%8D%AE%E5%BA%93">9、Redis多数据库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="redis">Redis</h1>
+<h2 id="1-概念">1、概念</h2>
+<p>Redis：REmote DIctionary Server（远程字典服务器）。是完全开源免费的，用C语言编写的， 遵守BCD协议。是一个高性能的(key/value)分布式内存数据库，基于内存运行并支持持久化的NoSQL数据库，是当前最热门的NoSql数据库之一,也被人们称为数据结构服务器。</p>
+<p>特点：</p>
+<ul>
+<li>Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用</li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储</li>
+<li>Redis支持数据的备份，即master-slave(主从)模式的数据备份</li>
+</ul>
+<h2 id="2-redis优势">2、Redis优势</h2>
+<ul>
+<li>1、<strong>性能极高</strong>： Redis能读的速度是110000次/s,写的速度是81000次/s 。</li>
+<li>2、<strong>丰富的数据类型</strong>：Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
+<li>3、<strong>原子</strong>： Redis的所有操作都是原子性的，同时Redis还支持对几个操作全并后的原子性执行。</li>
+<li>4、**丰富的特性 **： Redis还支持 publish/subscribe, 通知, key 过期等等特性</li>
+<li>5、采用<strong>单线程</strong>，避免了不必要的上下文切换和竞争条件，也不存在多进程或者多线程导致的切换而消耗 CPU，不用去考虑各种锁的问题，不存在加锁释放锁操作，没有因为可能出现死锁而导致的性能消耗；</li>
+<li>6、使用<strong>多路I/O复用模型</strong>，非阻塞IO；</li>
+</ul>
+<h2 id="3-应用场景">3、应用场景</h2>
+<p>（1） 缓存(数据查询，短连接，新闻内容，商品内容等)，使用最多</p>
+<p>（2)）聊天室在线好友列表</p>
+<p>（3）任务队列(秒杀，抢购，12306等)</p>
+<p>（4） 应用排行榜</p>
+<p>（5）网站访问统计</p>
+<p>（6）数据过期处理(可以精确到毫秒)</p>
+<p>（7）分布式集群架构中的session问题</p>
+<h2 id="4-redis数据结构">4、Redis数据结构</h2>
+<p>Redis是一种基于内存的数据库，并且提供一定的持久化功能，它是一种键值（key-value）数据库，使用 key 作为索引找到当前缓存的数据，并且返回给程序调用者。</p>
+<p>当前的 Redis 支持 6 种数据类型，它们分别是字符串（String）、列表（List）、集合（set）、哈希结构（hash）、有序集合（zset）和基数（HyperLogLog）<br>
+<img src="https://Vinci-Ma.github.io/post-images/1599306794527.png" alt="Redis的6种数据结构" loading="lazy"></p>
+<h2 id="5-redis常用指令">5、Redis常用指令</h2>
+<h3 id="1-string">1、String</h3>
+<pre><code class="language-java">赋值语法：SET key value【set k1 zhangsan】
+取值语法：GET key【get k1】
+设置多个键语法：MSET key value [key value …]【mset k2 lisi k3 wangwu】
+获得多个键值语法：MGET key [key …]【mget k2 k3】
+删除语法：DEL key【del k3】
+</code></pre>
+<h3 id="2-字符串数字的递增与递减">2、字符串数字的递增与递减</h3>
+<pre><code class="language-java">递增：INCR key【incr num】
+递减：DECR key【decr num】
+增加指定的整数：INCRBY key increment【incrby num2 2】
+减少指定的整数：DECRBY key decrement【decrby num2 1】
+</code></pre>
+<h3 id="3-hash散列">3、Hash散列</h3>
+<p>hash叫散列类型，它提供了字段和字段值的映射。字段值只能是字符串类型，不支持散列类型、集合类型等其它类型。相当于是对象格式的存储</p>
+<pre><code class="language-java">赋值：HSET key field value【hset user1 username zhangsan】
+取值：HGET key field【hget user1 username】
+设置多个字段：HMSET key field value [field value ...]【hmset user1 password 123 age 20】
+取多个值：HMGET key field [field ...]【hmget user1 password age】
+获取所有字段值：HGETALL key【hgetall user1】
+删除字段：HDEL key field [field ...]【hdel user1 username】
+</code></pre>
+<h3 id="4-队列list">4、队列List</h3>
+<p>Redis的list是采用来链表来存储,双向链表存储数据，特点：增删快、查询慢(Linkedlist).这个队列是有序的。</p>
+<pre><code class="language-java">向列表左边增加元素: LPUSH key value [value ...]
+从列表左边弹出元素： LPOP key(临时存储，弹出后,从队列中清除)
+向列表右边增加元素 : RPUSH key value [value ...]
+从列表右边弹出元素： RPOP key
+获取列表中元素的个数: LLEN key
+查看列表语法：LRANGE key start stop
+</code></pre>
+<h3 id="5-set集合">5、Set集合</h3>
+<p>Set集合类型：无序、不可重复</p>
+<pre><code class="language-java">增加元素语法：SADD key member [member ...]
+删除元素语法： SREM key member [member ...]
+获得集合中的所有元素 ： smembers key
+判断元素是否在集合中： SISMEMBER key member
+</code></pre>
+<h3 id="6-zset有序集合">6、Zset有序集合</h3>
+<p>Sortedset又叫zset,是有序集合，可排序的，但是唯一。 Sortedset和set的不同之处，是会给set中的元素添加一个分数，然后通过这个分数进行排序。</p>
+<pre><code class="language-java">增加元素：ZADD key score member [score member ...]
+向有序集合中加入一个元素和该元素的分数(score)，如果该元素已经存在则会用新的分数替换原有的分数。
+添加带分数(可用学生成绩，销售数量等来做分数,方便计算排序)：获得排名在某个范围的元素列表,并按照元素分数降序返回：ZREVRANGE key start stop [WITHSCORES]
+获取元素的分数 :ZSCORE key member
+删除元素ZREM key member [member ...]
+获得元素的分数的可以在命令尾部加上WITHSCORES参数【zrevrange num1 0 4 withscores】
+</code></pre>
+<h3 id="7-hyoperloglog命令">7、HyoperLogLog命令</h3>
+<p>HyperLogLog是一种使用随机化的算法，以少量内存提供集合中唯一元素数量的近似值。</p>
+<p>HyperLogLog 可以接受多个元素作为输入，并给出输入元素的基数估算值：</p>
+<ul>
+<li>
+<p>基数：集合中不同元素的数量。比如 {‘apple’, ‘banana’, ‘cherry’, ‘banana’, ‘apple’} 的基数就是 3 。</p>
+</li>
+<li>
+<p>估算值：算法给出的基数并不是精确的，可能会比实际稍微多一些或者稍微少一些，但会控制在合理的范围之内。</p>
+</li>
+</ul>
+<p>HyperLogLog 的优点是，即使输入元素的数量或者体积非常非常大，计算基数所需的空间总是固定的、并且是很小的。</p>
+<p>HyperLogLog 相关的一些基本命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PFADD key element [element …]</td>
+<td>将指定的元素添加到指定的HyperLogLog 中</td>
+</tr>
+<tr>
+<td>PFCOUNT key [key …]</td>
+<td>返回给定 HyperLogLog 的基数估算值</td>
+</tr>
+<tr>
+<td>PFMERGE destkey sourcekey [sourcekey …]</td>
+<td>将多个 HyperLogLog 合并为一个 HyperLogLog</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-其他命令">8、其他命令</h3>
+<pre><code class="language-java">keys返回满足给定pattern 的所有key
+    keys user* //查询以user开头的key
+	keys * //查询所有的key
+exists确认一个key 是否存在,存在返回1
+    exists key
+del删除一个key
+    del key 删除存在的key返回1，不存在的key返回0
+rename重命名key
+    rename oldkey newkey
+type返回值的类型
+     type key
+设置key的生存时间（单位：秒）key在多少秒后会自动删除
+    EXPIRE key seconds
+查看key剩余的生存时间
+    TTL key 
+清除生存时间
+    PERSIST key 
+获取服务器信息和统计:
+    info
+删除当前选择数据库中的所有key：
+    flushdb
+删除所有数据库中的所有key:
+    flushall
+</code></pre>
+<h3 id="9-redis多数据库">9、Redis多数据库</h3>
+<p>一个redis实例key包括多个数据库，客户端可以指定连接某个redis实例的哪个数据库，就好比一个mysql中创建多个数据库，客户端连接时指定连接哪个数据库。</p>
+<pre><code class="language-java">切换数据库
+    select 1【切换到1号数据库】
+将key的值移动到其他数据库
+    move key 数据库编号【eg：move username 1：把username移动到数据库1】   
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Maven]]></title>
         <id>https://Vinci-Ma.github.io/post/maven/</id>
@@ -1580,473 +2194,6 @@ http://localhost:8080/examples，进入示例项目。其中examples就是项目
 示例:http://localhost:8080/test0918<br>
 注: (1)启动tomcat后,tomcat会加载部署在服务器端的所有项目<br>
 (2) 浏览器访问的页面是服务器端的页面,基本上服务器的项目和工作空间的项目要保持一致</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[MySQL高阶——表联结查询]]></title>
-        <id>https://Vinci-Ma.github.io/post/mysql-gao-jie-biao-lian-jie-cha-xun/</id>
-        <link href="https://Vinci-Ma.github.io/post/mysql-gao-jie-biao-lian-jie-cha-xun/">
-        </link>
-        <updated>2020-07-30T02:04:07.000Z</updated>
-        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
-<li><a href="#%E5%AD%90%E6%9F%A5%E8%AF%A2%E4%B8%8E%E8%A1%A8%E8%BF%9E%E6%8E%A5">子查询与表连接</a>
-<ul>
-<li><a href="#%E5%AD%90%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97sql">子查询（嵌套sql）</a></li>
-<li><a href="#%E5%85%B3%E7%B3%BB%E8%A1%A8">关系表</a>
-<ul>
-<li><a href="#1-%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB">1、一对一关系</a></li>
-<li><a href="#2-%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB%E4%BD%BF%E7%94%A8%E9%A2%91%E7%8E%87%E6%9C%80%E9%AB%98">2、一对多关系（使用频率最高）</a></li>
-<li><a href="#3-%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB">3、多对多关系</a></li>
-</ul>
-</li>
-<li><a href="#%E8%A1%A8%E8%81%94%E7%BB%93">表联结</a>
-<ul>
-<li><a href="#%E4%B8%A4%E4%B8%AA%E8%A1%A8%E7%9B%B8%E8%81%94%E7%BB%93">两个表相联结</a></li>
-<li><a href="#%E8%81%94%E7%BB%93%E5%A4%9A%E4%B8%AA%E8%A1%A8">联结多个表</a></li>
-<li><a href="#%E8%87%AA%E8%81%94%E7%BB%93">自联结</a></li>
-</ul>
-</li>
-<li><a href="#%E5%A4%96%E9%83%A8%E8%81%94%E7%BB%93">外部联结</a></li>
-<li><a href="#%E6%80%BB%E7%BB%93%E8%A1%A8%E8%81%94%E7%BB%93">总结表联结</a></li>
-<li><a href="#%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2union">组合查询UNION</a></li>
-</ul>
-</li>
-</ul>
-</p>
-<h1 id="子查询与表连接">子查询与表连接</h1>
-<h2 id="子查询嵌套sql">子查询（嵌套sql）</h2>
-<h2 id="关系表">关系表</h2>
-<p>SQL最强大的功能之一就是能在数据检索查询的执行中联结（join）表。<br>
-关系表的设计就是要保证把信息分解成多个表，一类数据一个表。<br>
-各表通过某些常用值（即关系设计中的关系（relational））相互关联。<br>
-<strong>外键：</strong><br>
-在一个表中，定义一个字段，这个字段中存储的数据是另外一张表中的主键就是在一个表中的字段，代表着这个数据属于谁。<br>
-了解：<br>
-外键实现的方式，有两种：物理外键、逻辑外键<br>
-1、物理外键：<br>
-就是在创建表时，就指定这个表中的字段是一个外键，并且强关联某个表中的某个字段，需要再定义字段时，使用sql语句来实现。<br>
-2、<mark>逻辑外键：</mark>（推荐）<br>
-就是在表中创建一个普通的字段，没有强关联关系，需要通过程序逻辑来实现。</p>
-<h3 id="1-一对一关系">1、一对一关系</h3>
-<p>就是在一个表中的数据，对应着另外一张表中的一个数据，只能有一个。</p>
-<pre><code class="language-java"> 员工表：
-        id，姓名、性别、年龄、籍贯、联系方式、学历、工龄、、、
-    由上面的一个表，拆分成两个表
-    员工表：
-        id，姓名、联系方式、工龄、
-        12  张三  1010    3
-        13  李四  1020    2
-
-    详情表：
-       yid 性别、籍贯、学历
-        12    男    山东 本科
-        13    男    山西 本科
-
-    上面的表关系就是一对一的表关系，通过详情表中的yid这个字段来标记员工表中的主键。
-    一个员工有着一个对应的详情信息，存储在详情表中，
-    在详情表中的数据，也只属于某一个员工。
-</code></pre>
-<h3 id="2-一对多关系使用频率最高">2、一对多关系（使用频率最高）</h3>
-<p>在一个表中的一条数据对应着另外一个表中的多条数据。<br>
-（在一个表中的多条数据，对应着另外一张表中一个数据）</p>
-<pre><code class="language-java">例子：
-商品分类
-     id 分类名
-     1  手机
-     2  电脑
-
- 商品
-     id 所属分类id，商品名
-     1       1         小米手机
-     2       1         华为手机
-</code></pre>
-<h3 id="3-多对多关系">3、多对多关系</h3>
-<pre><code class="language-java"> 例如一本书，有多个标签，同时每一个标签下又对应多本书
- books 图书
- id  name          author
- 1   &lt;跟川哥学编程&gt;    川哥
- 2   &lt;跟川哥学数据分析&gt; 川哥
- 3   &lt;川哥讲法律故事&gt;   川哥
-
- tags 标签
- id   name
- 1    编程
- 2    计算机
- 3    互联网
- 4    法律
- 5    文学
-
- 从图书角度看，一本书有多个标签
- 1   &lt;跟川哥学编程&gt;    川哥   ， 编程、计算机、互联网
- 2   &lt;跟川哥学数据分析&gt; 川哥  ，  互联网、计算机
- 3   &lt;川哥讲法律故事&gt;   川哥 ，  法律
-
- 换一个角度，从标签这个角度看，一个标签包含多个图书
- 计算机， &lt;跟川哥学编程&gt;， &lt;跟川哥学数据分析&gt;
-</code></pre>
-<h2 id="表联结">表联结</h2>
-<p>是一种查询的机制，用来在一个select语句中关联多个表进行查询，这种情况称为联结。</p>
-<h3 id="两个表相联结">两个表相联结</h3>
-<pre><code class="language-java">需要查询出所有商品以及对应的供应商信息？
-供应商名称，商品名称，商品价格
-select vend_name,prod_name,prod_price
-from vendors,products（限定表格）
-where vendors.vend_id  = products.vend_id（指定两个表中的列名相匹配）
-order by vend_name（按照名字排序）
-</code></pre>
-<p><mark>假如没有where条件时会发生什么呢？</mark><br>
-如果没有where条件，那么第一个表中的每一行数据会与第二个表中的每一行数据进行匹配，不管逻辑是否可以匹配。<br>
-如果没有where条件，那么这种结果称为 笛卡尔积，第一个表的行数乘以第二个表中的行数。<br>
-<strong>所以千万不要忘记where条件！！！</strong><br>
-另一种联结方式：join</p>
-<pre><code class="language-java">select vend_name,prod_name,prod_price
-from vendors
-(inner)可省略 join products on vendors.vend_id = products.vend_id;
-
-以上sql就是使用了 join 的语法，进行了两个表的联结，在 on 后面 去定义了 联结的条件。
-</code></pre>
-<h3 id="联结多个表">联结多个表</h3>
-<pre><code class="language-java">案例： 查询出订单号为20005的订单中购买的商品及对应的产品供应商信息
-select prod_name,vend_name,prod_price,quantity
-from orderitems,products,vendors
-    where products.vend_id = vendors.vend_id（在where语句中说清联结关系）
-    and orderitems.prod_id = products.prod_id
-    and order_num = 20005;
-改写为 join 的语法
-select prod_name,vend_name,prod_price,quantity
-from orderitems
-inner join products on orderitems.prod_id = products.prod_id
-inner join vendors on products.vend_id = vendors.vend_id
-where order_num = 20005;
-</code></pre>
-<p><mark>注：</mark><br>
-MySQL在运行时关联指定的每个表以处理联结，这种处理是非常耗费资源的，因此应该自习，不要联结不必要的表，联结的表越多，性能下降越厉害。</p>
-<h3 id="自联结">自联结</h3>
-<p>自联结:当前这个表与自己这个表 做联结（join）</p>
-<pre><code class="language-java">例子：假如你发现某物品（其ID为DTNTR）存在问题，因此想知道生产该物品的供应商生产的其他物品是否也存在这些问题。因此查询要求首先找到生产ID为DTNTR的物品的供应商，然后找出这个供应商生产的其他物品。
--- 使用子查询（嵌套查询）
-select prod_id,prod_name
-from products
-where vend_id = (select vend_id from products where prod_id = 'DTNTR');
--- 使用 自联结方式查询
-select p1.prod_id,p2.prod_name
-from products as p1
-join products as p2 on p1.vend_id = p2.vend_id
-where p2.prod_id = 'DTNTR';
--- 改成where语句
-select p1.prod_id,p2.prod_name
-from products as p1, products as p2
-where p1.vend_id = p2.vend_id and p2.prod_id = 'DTNTR';
--- 深入了解 join
-select
-p1.prod_id,p1.prod_name,p1.vend_id,
-p2.prod_id,p2.prod_name,p2.vend_id
-from products as p1,products as p2
-where p1.vend_id = p2.vend_id
-and p2.prod_id = 'DTNTR';
-
-</code></pre>
-<p>子查询（嵌套查询） 是目前可明确知道的 sql中运行效率最低的一种方式，尽可能不使用嵌套语句。</p>
-<h2 id="外部联结">外部联结</h2>
-<p>许多联结将一个表的行与另一个表中的行相关联，当时有时候需要包含没有关联行的那些行<br>
-left join ： 是以 left join 左侧表为基准，去关联右侧的表进行联结，如果有未关联的数据，那么结果为null。<br>
-right join ：是以 right join 右侧表为基准，去关联左侧的表进行联结，如果有未关联的数据，那么结果为null。</p>
-<h2 id="总结表联结">总结表联结</h2>
-<p>内部联结：where，inner join<br>
-自联结：在一个sql中，用当前这个表，联结自己<br>
-外部联结：left join，right join</p>
-<h2 id="组合查询union">组合查询UNION</h2>
-<p>UNION规则：</p>
-<ul>
-<li>UNION必须由两条或者两条以上的SELECT语句组成，语句之间用关键字UNION分隔（如果组合4条SELECT语句，将要使用3个UNION关键字）</li>
-<li>UNION中的每个查询必须包含相同的列，表达式或聚集函数（不过各个列不需要以相同的次序列出）</li>
-<li>列数据类型必须兼容：类型不必完全相同，但必须是DBMS可以隐含的转换的类型（例如：不同的数值类型或者不同的日期类型）<br>
-<mark>注意</mark></li>
-<li>使用UNION时，默认删除重复的行，如果想返回所有的匹配行，可以使用UNION ALL</li>
-<li>对组合查询结果排序时：只能使用一条ORDER BY子句！对于结果集，只能存在一种排序方式。</li>
-</ul>
-<pre><code class="language-java">例如：
-select vend_id,prod_id,prod_price from products where prod_price &lt;= 5
-union
-select vend_id,prod_id,prod_price from products where vend_id in(1001,1002)
-order by prod_price;
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[JDBC学习]]></title>
-        <id>https://Vinci-Ma.github.io/post/jdbc-xue-xi/</id>
-        <link href="https://Vinci-Ma.github.io/post/jdbc-xue-xi/">
-        </link>
-        <updated>2020-07-27T02:44:28.000Z</updated>
-        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
-<li><a href="#jdbc%E7%AE%80%E4%BB%8B">JDBC简介</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">使用步骤</a></li>
-<li><a href="#jdbc%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%96%B9%E6%B3%95">JDBC中常用的类型与方法</a></li>
-<li><a href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F">工厂方法设计模式（静态工厂方法模式）</a></li>
-<li><a href="#dao">DAO</a></li>
-<li><a href="#sql%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98">==SQL注入问题==</a>
-<ul>
-<li><a href="#%E8%A7%A3%E5%86%B3sql%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98">解决sql注入问题</a></li>
-<li><a href="#preparedstatement-%E9%A2%84%E7%BC%96%E8%AF%91%E7%9A%84sql%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83">PreparedStatement 预编译的SQL执行环境</a></li>
-<li><a href="#preparedstatement%E4%B8%8Estatement%E8%B0%81%E7%9A%84%E6%80%A7%E8%83%BD%E9%AB%98">PreparedStatement与Statement谁的性能高?</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BA%8B%E5%8A%A1">事务</a>
-<ul>
-<li><a href="#%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98">事务相关面试题</a></li>
-</ul>
-</li>
-<li><a href="#%E6%89%B9%E5%A4%84%E7%90%86">批处理</a></li>
-<li><a href="#properties-%E4%BD%9C%E4%B8%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">Properties 作为配置文件</a></li>
-<li><a href="#%E8%BF%9E%E6%8E%A5%E6%B1%A0datasource%E7%9A%84%E4%BD%BF%E7%94%A8">==连接池(DataSource)的使用==</a>
-<ul>
-<li><a href="#dbcp%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">==DBCP连接池的使用步骤==</a></li>
-<li><a href="#%E5%BE%B7%E9%B2%81%E4%BC%8A%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">==德鲁伊连接池的使用步骤==</a></li>
-</ul>
-</li>
-</ul>
-</p>
-<h1 id="jdbc简介">JDBC简介</h1>
-<p>Java DataBase Connectivity Java数据库连接<br>
-JDBC是一套标准,是Java与各大数据库厂商共同定制的一套接口. 这套接口由各大数据库厂商进行了实现</p>
-<h1 id="使用步骤">使用步骤</h1>
-<blockquote>
-<p>1、 引入jar文件.<br>
-2、加载数据库驱动 (JavaSE项目中可以省略 , JavaWeb项目必须编写此步骤)<br>
-Class.forName(&quot;com.mysql.jdbc.Driver&quot;);<br>
-3、通过驱动管理器, 获取JDBC连接对象.<br>
-Connection conn = DriverManager.getConnection(&quot;数据库连接地址&quot;,&quot;帐号&quot;,&quot;密码&quot;);<br>
-// 数据库连接地址格式: 主协议:子协议://ip地址:端口号/数据库名称<br>
-// mysql的连接地址: jdbc:mysql://localhost:3306/java35<br>
-// oracle的连接地址: jdbc:oracle:thin:@localhost:1521:ORCL<br>
-4、 通过连接对象, 创建SQL执行对象 (SQL执行环境)<br>
-Statement state = conn.createStatement();<br>
-5、通过SQL执行对象 ,执行SQL语句.<br>
-state.execute(String sql语句);<br>
-返回值：true【表示的sql语句有结果集，并不是说执行成功】<br>
-6、释放资源<br>
-state.close();<br>
-conn.close();</p>
-</blockquote>
-<h1 id="jdbc中常用的类型与方法">JDBC中常用的类型与方法</h1>
-<pre><code class="language-javascript">1. DriverManager : 驱动管理器
-    常用方法:
-    - 获取数据库连接:
-    static Connection getConnection(String 数据库地址,String 账号 ,String 密码)
-2. Connection : 数据库连接对象
-    常用方法:
-    - 创建SQL执行对象: Statement createStatement();
-3. Statement : SQL执行对象
-    常用方法:
-    - 执行SQL语句(查询语句返回true, 其它语句返回false)
-    boolean execute(String sql);
-    - 执行DML语句(INSERT UPDATE DELETE) 和 DDL语句(create alter drop)
-    (返回int值, 表示语句对数据库表格的影响行数 !)
-    (通常我们认为 返回值&gt;0 表示执行成功.)
-    int executeUpdate(String sql);
-    - 执行DQL语句 (select)
-    ResultSet executeQuery(String sql);
-4. ResultSet : 结果集对象 (指的是一个select语句的查询结果)
-    常用方法:
-        1. 控制游标移动的常用方法:
-            - boolean next() ****
-            作用: 控制游标向下一行移动.
-            返回值: 移动成功返回true , 下一行不存在移动失败, 返回false
-            - boolean privious() 了解
-            作用: 控制游标向上一行移动.
-            返回值: 移动成功返回true , 上一行不存在移动失败, 返回false
-            - boolean absolute(int 行号) 了解
-            作用: 控制游标向指定行移动
-            返回值: 移动成功返回true , 行不存在移动失败, 返回false
-            - boolean beforeFirst() 了解
-            作用: 控制游标移动到第一行
-            返回值: 移动成功返回true, 没有第一行数据返回false
-            - boolean afterLast() 了解
-            作用: 控制游标移动到最后一行
-            返回值: 移动成功返回true, 没有最后一行数据返回false
-        2. 获取游标指向行的字段值的常用方法:
-            - XXX getXXX(String 列名) ***
-            根据字段名, 得到此字段的值
-            - XXX getXXX(int 字段的索引) *
-            根据字段的索引, 得到字段的值 , 索引从1开始
-</code></pre>
-<h1 id="工厂方法设计模式静态工厂方法模式">工厂方法设计模式（静态工厂方法模式）</h1>
-<p>工厂方法模式一种创建对象的模式.<br>
-工厂方法模式基于&quot;输入&quot;，应用在超类和多个子类之间的情况，这种模式将创建对象的责任转移到工厂类；<br>
-<mark>工厂设计模式的优点:</mark></p>
-<ol>
-<li>面向接口编程，体现了面向对象的思想</li>
-<li>降低了耦合, 将创建对象的工作转移到了工厂类</li>
-</ol>
-<h1 id="dao">DAO</h1>
-<p>DAO(Data Access Object)是一个数据访问接口，数据访问：顾名思义就是与数据库打交道。夹在业务逻辑与数据库资源中间。<br>
-为了建立一个健壮的Java应用，应该将所有对数据源的访问操作抽象封装在一个公共API中。用程序设计的<br>
-语言来说，就是建立一个接口，接口中定义了此应用程序中将会用到的所有事务方法。在这个应用程序中，<br>
-当需要和数据源进行交互的时候则使用这个接口，并且编写一个单独的类来实现这个接口在逻辑上对应这个<br>
-特定的数据存储。<br>
-DAO模式是标准的JavaEE设计模式之一.开发人员使用这个模式把底层的数据访问操作和上层的商务逻辑分<br>
-开.一个典型的DAO实现有下列几个组件：</p>
-<ol>
-<li>一个DAO工厂类；</li>
-<li>一个DAO接口；</li>
-<li>至少一个实现DAO接口的具体类；</li>
-<li>数据传递对象（有些时候叫做Bean对象）</li>
-</ol>
-<h1 id="sql注入问题"><mark>SQL注入问题</mark></h1>
-<pre><code class="language-java">进行用户登录时, 输入不存在的帐号 和 如下的密码:
-    1' or '1'='1
-结果显示登录成功.
-因为用户输入的密码, 与我们的查询语句拼接后, 使得我们的查询语句产生了歧义:
-原查询语句:
-    select * from xzk_user where username='' and password='密码'
-拼接后:
-    select * from xzk_user where username='hahahaheiheihei' and password='1' or '1'='1'
-</code></pre>
-<h2 id="解决sql注入问题">解决sql注入问题</h2>
-<p>我们可以将SQL语句与参数分离,将参数作为SQL的特殊部分进行预处理</p>
-<h2 id="preparedstatement-预编译的sql执行环境">PreparedStatement 预编译的SQL执行环境</h2>
-<p>内部实现原理:<br>
-1. 将未拼接参数的SQL语句, 作为SQL指令, 先传递给数据库 进行编译.<br>
-2. 再将参数传递给数据库, 此时传递的参数不会再作为指令执行, 只会被当作文本存在.</p>
-<pre><code class="language-java">操作流程与Statement基本一致:
-    1. 如何得到一个PreparedStatement 对象
-            PreparedStatement state = conn.prepareStatement(&quot;预编译的SQL语句&quot;);
-    2. 预编译的SQL语句如何编写
-            需要填充参数的位置, 使用?代替即可! 例如:
-            select id from xzk_user where username=? and password=?
-    3. 参数如何填充
-            state.setXXX(int index,XXX value);
-            setXXX中XXX指的是数据类型,
-            参数1: index : SQL语句中?的索引值 , 从1开始
-            参数2: value : 填充的参数值.
-    4. 如何执行填充完毕参数的SQL
-            - boolean execute();
-            - int executeUpdate();
-            - ResultSet executeQuery();
-</code></pre>
-<h2 id="preparedstatement与statement谁的性能高">PreparedStatement与Statement谁的性能高?</h2>
-<p>根据数据库的不同，两者的性能高低也不同。<br>
-在<strong>mysql</strong>中, preparedStatement原理是拼接SQL, 所以<strong>Statement</strong>性能高.<br>
-在<strong>Oracle</strong>中, preparedStatement原理是对SQL指令进行预处理, 再传递的参数不具备特殊含义.有更好的SQL缓存策略,<strong>PreparedStatement</strong>高.</p>
-<h1 id="事务">事务</h1>
-<p>将多条SQL语句, 看作一个整体. 要么一起成功, 要么一起失败。<br>
-事务在mysql中, 是默认自动提交的。</p>
-<pre><code class="language-java">操作方式1：命令行
-    - 开启事务: start transaction;
-    - 回滚 : rollback; --此次事务中所有的sql操作, 放弃.
-    - 提交 : commit; --此次事务中所有的sql操作, 作为一个整体, 提交.
-操作方式2：java
-    JDBC事务通过连接对象开启, 回滚 ,提交. 只针对当前连接对象生效.
-    - 开启事务: conn.setAutoCommit(false);
-    - 回滚事务: conn.rollback();
-    - 提交事务: conn.commit();
-</code></pre>
-<h2 id="事务相关面试题">事务相关面试题</h2>
-<ol>
-<li><strong>请描述事务的四大特征 :</strong><br>
-&lt;1&gt;. 原子性: 事务是一个整体 , 不可分割 , 要么同时成功, 要么同时失败.<br>
-&lt;2&gt;. 持久性: 当事务提交或回滚后, 数据库会持久化的保存数据.<br>
-&lt;3&gt;. 隔离性: 多个事务之间, 隔离开, 相互独立.<br>
-&lt;4&gt;. 一致性: 事务操作的前后 , 数据总量不变 (例如: 转账时: 孟亮给帅兵转账是一个事务, 转账完毕后. 两人余额的和不变.)</li>
-<li><strong>请描述什么是脏读, 幻读, 不可重复读 ?</strong></li>
-</ol>
-<ul>
-<li>脏读: 读取到了一个事务 未提交的数据.</li>
-<li>不可重复读: 一个事务中, 两次连续的读取 ,结果不一致(中间被其它事务更改了).</li>
-<li>幻读: 一个事务A在执行DML语句时, 另一个事务B也在执行DML语句 , B修改了A修改过的数据, 导致A在查询时就像发生了幻觉一样(A更改的内容A看不到了.)<br>
-解决方法：加锁</li>
-</ul>
-<ol start="3">
-<li><strong>请描述事务的隔离级别</strong><br>
-//三种级别锁: 页级,表级,行级(共享锁,排它锁).<br>
-1、 读未提交 : read uncommitted; (可能产生:脏读, 不可重复读, 幻读)<br>
-2、读已提交 : read committed; (可能产生: 不可重复度, 幻读)<br>
-3、可重复读 : repeatable read;(mysql默认值) (可能产生: 幻读)<br>
-4、串行化 : serializable;</li>
-</ol>
-<ul>
-<li>查看数据库当前的隔离级别: select @@tx_isolation; (了解)</li>
-<li>数据库设置隔离级别: set global transaction isolation level 级别字符串;(了解)</li>
-</ul>
-<h1 id="批处理">批处理</h1>
-<p>将多条语句, 放到一起批量处理 。<br>
-批处理的原理: 将多条SQL语句, 转换为一个SQL指令. 显著的提高大量SQL语句执行时的数据库性能。</p>
-<pre><code class="language-java">Statement对象使用流程:
-    1. 得到Statement对象
-    Statement state = conn.createStatement();
-    1. 将一条SQL语句, 加入到批处理中.
-    state.addBatch(String sql);
-    1. 执行批处理
-    state.executeBatch();
-    1. 清空批处理
-    state.clearBatch();
-PreparedStatement对象使用流程:
-    1. 得到PreparedStatement对象
-    PreparedStatement state = conn.prepareStatement(&quot;预编译的SQL&quot;);
-    2. 填充预编译的参数
-    state.setXXX(1,填充参数);
-    3. 将一条填充完毕参数的SQL, 加入到批处理中.
-    state.addBatch();
-    4. 执行批处理
-    state.executeBatch();
-    5. 清空批处理
-    state.clearBatch();
-</code></pre>
-<h1 id="properties-作为配置文件">Properties 作为配置文件</h1>
-<p>Properties类 是Java中的Map集合的实现类.<br>
-.properties文件 用于通过文件描述一组键值对!<br>
-.properties文件 ,可以快速的转换为Properties类的对象.</p>
-<pre><code class="language-java">文件中内容的格式:
-    文件内容都是字符串 , 键与值之间通过等号连接 , 多个键值对之间换行分割.
-    例如:
-    url=xxx
-    user=xxx
-    password=xxx
-如何将文件 转换为 集合:
-    步骤:
-    1. 创建Properties对象
-        Properties ppt = new Properties();
-    2. 创建一个字节输入流 , 指向.properties文件
-        InputStream is = new FileInputStream(&quot;文件地址&quot;);
-    3. 将字节输入流, 传递给properties对象, 进行加载.
-        ppt.load(is);
-</code></pre>
-<h1 id="连接池datasource的使用"><mark>连接池(DataSource)的使用</mark></h1>
-<p>连接池用于缓存连接!<br>
-当我们需要使用连接时, 可以不用再创建连接 ! 可以直接从连接池中获取连接.<br>
-当连接池中存在空闲连接时, 会将空闲连接给到程序使用.<br>
-当连接池中不存在空闲连接时, 且连接池未满时 , 则创建连接提供给程序使用 ,并在程序使用完毕后,<br>
-缓存连接.<br>
-当连接池中不存在空闲连接时, 且连接池已满时 , 则排队等候空闲连接的出现.<br>
-<mark>注意:</mark><br>
-使用连接池中的连接对象操作数据库时, 操作完毕依然需要释放连接(调用close()).<br>
-连接池中的连接在设计时, 使用了动态代理设计模式+装饰者设计模式 . 我们调用它的close方法,代理没有关闭这个连接, 而是将连接重新放入了池中.</p>
-<h2 id="dbcp连接池的使用步骤"><mark>DBCP连接池的使用步骤</mark></h2>
-<pre><code class="language-java">1. 引入相关的jar文件
-    - dbcp.jar
-    - poll.jar
-2. 将配置文件引入
-3. 将配置文件, 转换为Properties对象
-    Properties ppt = new Properties();
-    ppt.load(配置文件的输入流);
-4. 通过连接池的工厂类(BasicDataSourceFactory)的创建连接池的方法(createDataSource())
-    DataSource ds = BasicDataSourceFactory.createDataSource(ppt);
-5. 从连接池中 获取连接对象
-    Connection conn = ds.getConnection();
-</code></pre>
-<h2 id="德鲁伊连接池的使用步骤"><mark>德鲁伊连接池的使用步骤</mark></h2>
-<pre><code class="language-java">1. 引入相关的jar文件
-    - druid-1.0.9.jar
-2. 将配置文件引入
-3. 将配置文件, 转换为Properties对象
-    Properties ppt = new Properties();
-    ppt.load(配置文件的输入流);
-4. 通过连接池的工厂类(DruidDataSourceFactory)的创建连接池的方法(createDataSource())
-    DataSource ds = DruidDataSourceFactory.createDataSource(ppt);
-5. 从连接池中 获取连接对象
-    Connection conn = ds.getConnection();
-</code></pre>
 ]]></content>
     </entry>
 </feed>

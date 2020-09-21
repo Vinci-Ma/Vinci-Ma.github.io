@@ -1,0 +1,375 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Redis | Vinci-Ma</title>
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1600674280000">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Redis | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+Redis
+
+1、概念
+2、Redis优势
+3、应用场景
+4、Redis数据结构
+5、Redis常用指令
+
+1、String
+2、字符串数字的递增与递减
+3、Hash散列
+4、队列List
+5、Set集合
+6、Zset有序集合
+7、Hyo..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Vinci-Ma.github.io">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1600674280000" alt="">
+  </a>
+  <h1 class="site-title">
+    Vinci-Ma
+  </h1>
+  <p class="site-description">
+    Stay cooool!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://Vinci-Ma.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/Vinci-Ma" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Redis
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-09-08
+              </span>
+              <span>
+                8 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><ul class="markdownIt-TOC">
+<li><a href="#redis">Redis</a>
+<ul>
+<li><a href="#1-%E6%A6%82%E5%BF%B5">1、概念</a></li>
+<li><a href="#2-redis%E4%BC%98%E5%8A%BF">2、Redis优势</a></li>
+<li><a href="#3-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">3、应用场景</a></li>
+<li><a href="#4-redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">4、Redis数据结构</a></li>
+<li><a href="#5-redis%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4">5、Redis常用指令</a>
+<ul>
+<li><a href="#1-string">1、String</a></li>
+<li><a href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E5%AD%97%E7%9A%84%E9%80%92%E5%A2%9E%E4%B8%8E%E9%80%92%E5%87%8F">2、字符串数字的递增与递减</a></li>
+<li><a href="#3-hash%E6%95%A3%E5%88%97">3、Hash散列</a></li>
+<li><a href="#4-%E9%98%9F%E5%88%97list">4、队列List</a></li>
+<li><a href="#5-set%E9%9B%86%E5%90%88">5、Set集合</a></li>
+<li><a href="#6-zset%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88">6、Zset有序集合</a></li>
+<li><a href="#7-hyoperloglog%E5%91%BD%E4%BB%A4">7、HyoperLogLog命令</a></li>
+<li><a href="#8-%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4">8、其他命令</a></li>
+<li><a href="#9-redis%E5%A4%9A%E6%95%B0%E6%8D%AE%E5%BA%93">9、Redis多数据库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="redis">Redis</h1>
+<h2 id="1-概念">1、概念</h2>
+<p>Redis：REmote DIctionary Server（远程字典服务器）。是完全开源免费的，用C语言编写的， 遵守BCD协议。是一个高性能的(key/value)分布式内存数据库，基于内存运行并支持持久化的NoSQL数据库，是当前最热门的NoSql数据库之一,也被人们称为数据结构服务器。</p>
+<p>特点：</p>
+<ul>
+<li>Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用</li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储</li>
+<li>Redis支持数据的备份，即master-slave(主从)模式的数据备份</li>
+</ul>
+<h2 id="2-redis优势">2、Redis优势</h2>
+<ul>
+<li>1、<strong>性能极高</strong>： Redis能读的速度是110000次/s,写的速度是81000次/s 。</li>
+<li>2、<strong>丰富的数据类型</strong>：Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
+<li>3、<strong>原子</strong>： Redis的所有操作都是原子性的，同时Redis还支持对几个操作全并后的原子性执行。</li>
+<li>4、**丰富的特性 **： Redis还支持 publish/subscribe, 通知, key 过期等等特性</li>
+<li>5、采用<strong>单线程</strong>，避免了不必要的上下文切换和竞争条件，也不存在多进程或者多线程导致的切换而消耗 CPU，不用去考虑各种锁的问题，不存在加锁释放锁操作，没有因为可能出现死锁而导致的性能消耗；</li>
+<li>6、使用<strong>多路I/O复用模型</strong>，非阻塞IO；</li>
+</ul>
+<h2 id="3-应用场景">3、应用场景</h2>
+<p>（1） 缓存(数据查询，短连接，新闻内容，商品内容等)，使用最多</p>
+<p>（2)）聊天室在线好友列表</p>
+<p>（3）任务队列(秒杀，抢购，12306等)</p>
+<p>（4） 应用排行榜</p>
+<p>（5）网站访问统计</p>
+<p>（6）数据过期处理(可以精确到毫秒)</p>
+<p>（7）分布式集群架构中的session问题</p>
+<h2 id="4-redis数据结构">4、Redis数据结构</h2>
+<p>Redis是一种基于内存的数据库，并且提供一定的持久化功能，它是一种键值（key-value）数据库，使用 key 作为索引找到当前缓存的数据，并且返回给程序调用者。</p>
+<p>当前的 Redis 支持 6 种数据类型，它们分别是字符串（String）、列表（List）、集合（set）、哈希结构（hash）、有序集合（zset）和基数（HyperLogLog）<br>
+<img src="https://Vinci-Ma.github.io/post-images/1599306794527.png" alt="Redis的6种数据结构" loading="lazy"></p>
+<h2 id="5-redis常用指令">5、Redis常用指令</h2>
+<h3 id="1-string">1、String</h3>
+<pre><code class="language-java">赋值语法：SET key value【set k1 zhangsan】
+取值语法：GET key【get k1】
+设置多个键语法：MSET key value [key value …]【mset k2 lisi k3 wangwu】
+获得多个键值语法：MGET key [key …]【mget k2 k3】
+删除语法：DEL key【del k3】
+</code></pre>
+<h3 id="2-字符串数字的递增与递减">2、字符串数字的递增与递减</h3>
+<pre><code class="language-java">递增：INCR key【incr num】
+递减：DECR key【decr num】
+增加指定的整数：INCRBY key increment【incrby num2 2】
+减少指定的整数：DECRBY key decrement【decrby num2 1】
+</code></pre>
+<h3 id="3-hash散列">3、Hash散列</h3>
+<p>hash叫散列类型，它提供了字段和字段值的映射。字段值只能是字符串类型，不支持散列类型、集合类型等其它类型。相当于是对象格式的存储</p>
+<pre><code class="language-java">赋值：HSET key field value【hset user1 username zhangsan】
+取值：HGET key field【hget user1 username】
+设置多个字段：HMSET key field value [field value ...]【hmset user1 password 123 age 20】
+取多个值：HMGET key field [field ...]【hmget user1 password age】
+获取所有字段值：HGETALL key【hgetall user1】
+删除字段：HDEL key field [field ...]【hdel user1 username】
+</code></pre>
+<h3 id="4-队列list">4、队列List</h3>
+<p>Redis的list是采用来链表来存储,双向链表存储数据，特点：增删快、查询慢(Linkedlist).这个队列是有序的。</p>
+<pre><code class="language-java">向列表左边增加元素: LPUSH key value [value ...]
+从列表左边弹出元素： LPOP key(临时存储，弹出后,从队列中清除)
+向列表右边增加元素 : RPUSH key value [value ...]
+从列表右边弹出元素： RPOP key
+获取列表中元素的个数: LLEN key
+查看列表语法：LRANGE key start stop
+</code></pre>
+<h3 id="5-set集合">5、Set集合</h3>
+<p>Set集合类型：无序、不可重复</p>
+<pre><code class="language-java">增加元素语法：SADD key member [member ...]
+删除元素语法： SREM key member [member ...]
+获得集合中的所有元素 ： smembers key
+判断元素是否在集合中： SISMEMBER key member
+</code></pre>
+<h3 id="6-zset有序集合">6、Zset有序集合</h3>
+<p>Sortedset又叫zset,是有序集合，可排序的，但是唯一。 Sortedset和set的不同之处，是会给set中的元素添加一个分数，然后通过这个分数进行排序。</p>
+<pre><code class="language-java">增加元素：ZADD key score member [score member ...]
+向有序集合中加入一个元素和该元素的分数(score)，如果该元素已经存在则会用新的分数替换原有的分数。
+添加带分数(可用学生成绩，销售数量等来做分数,方便计算排序)：获得排名在某个范围的元素列表,并按照元素分数降序返回：ZREVRANGE key start stop [WITHSCORES]
+获取元素的分数 :ZSCORE key member
+删除元素ZREM key member [member ...]
+获得元素的分数的可以在命令尾部加上WITHSCORES参数【zrevrange num1 0 4 withscores】
+</code></pre>
+<h3 id="7-hyoperloglog命令">7、HyoperLogLog命令</h3>
+<p>HyperLogLog是一种使用随机化的算法，以少量内存提供集合中唯一元素数量的近似值。</p>
+<p>HyperLogLog 可以接受多个元素作为输入，并给出输入元素的基数估算值：</p>
+<ul>
+<li>
+<p>基数：集合中不同元素的数量。比如 {‘apple’, ‘banana’, ‘cherry’, ‘banana’, ‘apple’} 的基数就是 3 。</p>
+</li>
+<li>
+<p>估算值：算法给出的基数并不是精确的，可能会比实际稍微多一些或者稍微少一些，但会控制在合理的范围之内。</p>
+</li>
+</ul>
+<p>HyperLogLog 的优点是，即使输入元素的数量或者体积非常非常大，计算基数所需的空间总是固定的、并且是很小的。</p>
+<p>HyperLogLog 相关的一些基本命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PFADD key element [element …]</td>
+<td>将指定的元素添加到指定的HyperLogLog 中</td>
+</tr>
+<tr>
+<td>PFCOUNT key [key …]</td>
+<td>返回给定 HyperLogLog 的基数估算值</td>
+</tr>
+<tr>
+<td>PFMERGE destkey sourcekey [sourcekey …]</td>
+<td>将多个 HyperLogLog 合并为一个 HyperLogLog</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-其他命令">8、其他命令</h3>
+<pre><code class="language-java">keys返回满足给定pattern 的所有key
+    keys user* //查询以user开头的key
+	keys * //查询所有的key
+exists确认一个key 是否存在,存在返回1
+    exists key
+del删除一个key
+    del key 删除存在的key返回1，不存在的key返回0
+rename重命名key
+    rename oldkey newkey
+type返回值的类型
+     type key
+设置key的生存时间（单位：秒）key在多少秒后会自动删除
+    EXPIRE key seconds
+查看key剩余的生存时间
+    TTL key 
+清除生存时间
+    PERSIST key 
+获取服务器信息和统计:
+    info
+删除当前选择数据库中的所有key：
+    flushdb
+删除所有数据库中的所有key:
+    flushall
+</code></pre>
+<h3 id="9-redis多数据库">9、Redis多数据库</h3>
+<p>一个redis实例key包括多个数据库，客户端可以指定连接某个redis实例的哪个数据库，就好比一个mysql中创建多个数据库，客户端连接时指定连接哪个数据库。</p>
+<pre><code class="language-java">切换数据库
+    select 1【切换到1号数据库】
+将key的值移动到其他数据库
+    move key 数据库编号【eg：move username 1：把username移动到数据库1】   
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#redis">Redis</a>
+<ul>
+<li><a href="#1-%E6%A6%82%E5%BF%B5">1、概念</a></li>
+<li><a href="#2-redis%E4%BC%98%E5%8A%BF">2、Redis优势</a></li>
+<li><a href="#3-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">3、应用场景</a></li>
+<li><a href="#4-redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">4、Redis数据结构</a></li>
+<li><a href="#5-redis%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4">5、Redis常用指令</a>
+<ul>
+<li><a href="#1-string">1、String</a></li>
+<li><a href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E5%AD%97%E7%9A%84%E9%80%92%E5%A2%9E%E4%B8%8E%E9%80%92%E5%87%8F">2、字符串数字的递增与递减</a></li>
+<li><a href="#3-hash%E6%95%A3%E5%88%97">3、Hash散列</a></li>
+<li><a href="#4-%E9%98%9F%E5%88%97list">4、队列List</a></li>
+<li><a href="#5-set%E9%9B%86%E5%90%88">5、Set集合</a></li>
+<li><a href="#6-zset%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88">6、Zset有序集合</a></li>
+<li><a href="#7-hyoperloglog%E5%91%BD%E4%BB%A4">7、HyoperLogLog命令</a></li>
+<li><a href="#8-%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4">8、其他命令</a></li>
+<li><a href="#9-redis%E5%A4%9A%E6%95%B0%E6%8D%AE%E5%BA%93">9、Redis多数据库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Vinci-Ma.github.io/post/maven/">
+              <h3 class="post-title">
+                Maven
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://Vinci-Ma.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
