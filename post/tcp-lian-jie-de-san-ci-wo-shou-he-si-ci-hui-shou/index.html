@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TCP连接的”三次握手“和”四次挥手“ | Vinci-Ma</title>
-<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1594695506795">
+<link rel="shortcut icon" href="https://Vinci-Ma.github.io/favicon.ico?v=1621906091453">
 <link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://Vinci-Ma.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="TCP连接的”三次握手“和”四次挥手“ | Vinci-Ma - Atom Feed" href="https://Vinci-Ma.github.io/atom.xml">
@@ -29,7 +29,7 @@ TCP连接”三次握手“的异常情况
       <div class="main-content">
         <div class="site-header">
   <a href="https://Vinci-Ma.github.io">
-  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1594695506795" alt="">
+  <img class="avatar" src="https://Vinci-Ma.github.io/images/avatar.png?v=1621906091453" alt="">
   </a>
   <h1 class="site-title">
     Vinci-Ma
@@ -93,7 +93,7 @@ TCP连接”三次握手“的异常情况
                 2020-07-07
               </span>
               <span>
-                14 min read
+                15 min read
               </span>
               
                 <a href="https://Vinci-Ma.github.io/tag/773fpMCOj/" class="post-tag">
@@ -173,7 +173,14 @@ TCP连接”三次握手“的异常情况
 </ol>
 <h3 id="4-客户端故意不发最后一次syn包"><strong>4、客户端故意不发最后一次【SYN】包</strong></h3>
 <p>如果客户端是恶意的，在发送【SYN】包后，并收到【SYN,ACK】后就不回复了，那么服务端此时处于一种半连接的状态，虽然服务端会通过 tcp_synack_retries 配置重试的次数，不会无限等待下去，但是这也是有一个时间周期的。<br>
-如果短时间内存在大量的这种恶意连接，对服务端来说压力就会很大，这就是所谓的 SYN FLOOD 攻击。</p>
+如果短时间内存在大量的这种恶意连接，对服务端来说压力就会很大，这就是所谓的 SYN FLOOD 攻击。<br>
+常见的防御 SYN 攻击的方法有如下几种：</p>
+<ol>
+<li>缩短超时（SYN Timeout）时间</li>
+<li>增加最大半连接数</li>
+<li>过滤网关防护</li>
+<li>SYN cookies技术</li>
+</ol>
 <h1 id="tcp连接的四次挥手">TCP连接的”四次挥手“</h1>
 <figure data-type="image" tabindex="2"><img src="https://Vinci-Ma.github.io/post-images/1594640340361.jpg" alt="四次挥手" loading="lazy"></figure>
 <ol>
@@ -218,6 +225,10 @@ TCP连接”三次握手“的异常情况
 <p>在超过一定时间后，服务端主动断开。<br>
 收到「RST」后，主动断开连接。<br>
 「RST」消息是一种重置消息，表示当前错误了，应该回到初始的状态。如果客户端跑路后有新的客户端接入，会在此发送「SYN」以期望建立连接，此时这个「SYN」将被忽略，并直接回复「FIN,ACK」消息，新客户端在收到「FIN」消息后是不会认的，并且会回复一个「RST」消息。</p>
+<p>2.2 2MSL等待状态<br>
+TIME_WAIT状态也成为2MSL等待状态。每个具体TCP实现必须选择一个报文段最大生存时间MSL（Maximum Segment Lifetime），它是任何报文段被丢弃前在网络内的最长时间。这个时间是有限的，因为TCP报文段以IP数据报在网络内传输，而IP数据报则有限制其生存时间的TTL字段。<br>
+对一个具体实现所给定的MSL值，处理的原则是：当TCP执行一个主动关闭，并发回最后一个ACK，该连接必须在TIME_WAIT状态停留的时间为2倍的MSL。这样可让TCP再次发送最后的ACK以防这个ACK丢失（另一端超时并重发最后的FIN）。<br>
+这种2MSL等待的另一个结果是这个TCP连接在2MSL等待期间，定义这个连接的插口（客户的IP地址和端口号，服务器的IP地址和端口号）不能再被使用。这个连接只能在2MSL结束后才能再被使用。</p>
 <h1 id="常见面试题">常见面试题</h1>
 <ol>
 <li>【问题1】为什么连接的时候是三次握手，关闭的时候却是四次握手？</li>
@@ -278,9 +289,9 @@ TCP连接”三次握手“的异常情况
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://Vinci-Ma.github.io/post/java-zhong-de-di-gui-suan-fa/">
+            <a href="https://Vinci-Ma.github.io/post/java-ji-chu-xue-xi-ji-he/">
               <h3 class="post-title">
-                Java中的递归算法
+                Java基础学习——集合
               </h3>
             </a>
           </div>
